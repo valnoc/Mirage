@@ -15,7 +15,7 @@ protocol Mock {
 
 extension Mock {
     
-    func verify(_ functionName:String, _ invocationTimesVerificator:InvocationTimesVerificator) {
-        
+    func verify(_ functionName:String, _ invocationTimesVerificator:InvocationTimesVerificator) throws {
+        try mockManager.verify(functionName, invocationTimesVerificator)
     }
 }

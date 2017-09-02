@@ -23,6 +23,10 @@ class MockManager {
         return defaultReturnValue
     }
     
-    
+    func verify(_ functionName:String, _ invocationTimesVerificator:InvocationTimesVerificator) throws {
+        let history = invocationHistory[functionName] ?? []
+        let times = history.count
+        try invocationTimesVerificator.verify(functionName, invocationTimes: times)
+    }
     
 }
