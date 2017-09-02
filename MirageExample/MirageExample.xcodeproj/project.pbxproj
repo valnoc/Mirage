@@ -10,6 +10,9 @@
 		5BF2A3481F5B42AD00B4F997 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A3471F5B42AD00B4F997 /* AppDelegate.swift */; };
 		5BF2A34F1F5B42AD00B4F997 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF2A34E1F5B42AD00B4F997 /* Assets.xcassets */; };
 		5BF2A35D1F5B42AD00B4F997 /* MirageExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A35C1F5B42AD00B4F997 /* MirageExampleTests.swift */; };
+		5BF2A3691F5B437900B4F997 /* MainObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A3681F5B437900B4F997 /* MainObject.swift */; };
+		5BF2A36B1F5B43C700B4F997 /* FirstService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A36A1F5B43C700B4F997 /* FirstService.swift */; };
+		5BF2A36D1F5B43CF00B4F997 /* SecondService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A36C1F5B43CF00B4F997 /* SecondService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +33,9 @@
 		5BF2A3581F5B42AD00B4F997 /* MirageExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MirageExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BF2A35C1F5B42AD00B4F997 /* MirageExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirageExampleTests.swift; sourceTree = "<group>"; };
 		5BF2A35E1F5B42AD00B4F997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BF2A3681F5B437900B4F997 /* MainObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainObject.swift; sourceTree = "<group>"; };
+		5BF2A36A1F5B43C700B4F997 /* FirstService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstService.swift; sourceTree = "<group>"; };
+		5BF2A36C1F5B43CF00B4F997 /* SecondService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				5BF2A3471F5B42AD00B4F997 /* AppDelegate.swift */,
+				5BF2A3681F5B437900B4F997 /* MainObject.swift */,
+				5BF2A36A1F5B43C700B4F997 /* FirstService.swift */,
+				5BF2A36C1F5B43CF00B4F997 /* SecondService.swift */,
 				5BF2A34E1F5B42AD00B4F997 /* Assets.xcassets */,
 				5BF2A3531F5B42AD00B4F997 /* Info.plist */,
 			);
@@ -198,6 +207,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BF2A3481F5B42AD00B4F997 /* AppDelegate.swift in Sources */,
+				5BF2A3691F5B437900B4F997 /* MainObject.swift in Sources */,
+				5BF2A36B1F5B43C700B4F997 /* FirstService.swift in Sources */,
+				5BF2A36D1F5B43CF00B4F997 /* SecondService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
