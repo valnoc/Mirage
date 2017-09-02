@@ -81,10 +81,19 @@
 		5BF2A35B1F5B42AD00B4F997 /* MirageExampleTests */ = {
 			isa = PBXGroup;
 			children = (
+				5BF2A3671F5B431700B4F997 /* Mirage */,
 				5BF2A35C1F5B42AD00B4F997 /* MirageExampleTests.swift */,
 				5BF2A35E1F5B42AD00B4F997 /* Info.plist */,
 			);
 			path = MirageExampleTests;
+			sourceTree = "<group>";
+		};
+		5BF2A3671F5B431700B4F997 /* Mirage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Mirage;
+			path = ../../Mirage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
