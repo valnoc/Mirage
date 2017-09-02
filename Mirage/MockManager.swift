@@ -1,5 +1,5 @@
 //
-//  MockFirstService.swift
+//  MockManager.swift
 //  MirageExample
 //
 //  Created by Valeriy Bezuglyy on 02/09/2017.
@@ -8,10 +8,6 @@
 
 import Foundation
 
-@testable import MirageExample
-
-class MockFirstService: FirstService, Mock {
-    
-    var mockManager: MockManager = MockManager()
+class MockManager {
     
 }

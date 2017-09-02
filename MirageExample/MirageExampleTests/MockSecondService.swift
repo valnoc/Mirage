@@ -10,8 +10,9 @@ import Foundation
 
 @testable import MirageExample
 
-class MockSecondService: SecondService {
+class MockSecondService: SecondService, Mock {
     
+    var mockManager: MockManager = MockManager()
     
     func makeRandomPositiveInt() -> Int {
         return 4
