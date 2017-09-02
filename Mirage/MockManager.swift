@@ -10,23 +10,23 @@ import Foundation
 
 class MockManager {
     
-    var invocationHistory: [String: [[Any?]]]
+    var callHistory: [String: [[Any?]]]
     
     init() {
-        invocationHistory = [:]
+        callHistory = [:]
     }
     
     @discardableResult
     func handle(_ functionName:String, withDefaultReturnValue defaultReturnValue:Any?, withArgs args:Any?...) -> Any? {
-        if invocationHistory[functionName] == nil { invocationHistory[functionName] = [] }
-        invocationHistory[functionName]?.append(args)
+        if callHistory[functionName] == nil { callHistory[functionName] = [] }
+        callHistory[functionName]?.append(args)
         return defaultReturnValue
     }
     
-    func verify(_ functionName:String, _ invocationTimesVerificator:InvocationTimesVerificator) throws {
-        let history = invocationHistory[functionName] ?? []
+    func verify(_ functionName:String, _ callTimesVerificator:CallTimesVerificator) throws {
+        let history = callHistory[functionName] ?? []
         let times = history.count
-        try invocationTimesVerificator.verify(functionName, invocationTimes: times)
+        try callTimesVerificator.verify(functionName, callTimes: times)
     }
     
 }
