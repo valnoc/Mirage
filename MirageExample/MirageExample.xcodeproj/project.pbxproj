@@ -15,6 +15,8 @@
 		5BF2A36D1F5B43CF00B4F997 /* SecondService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A36C1F5B43CF00B4F997 /* SecondService.swift */; };
 		5BF2A36F1F5B45F500B4F997 /* MockFirstService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A36E1F5B45F500B4F997 /* MockFirstService.swift */; };
 		5BF2A3711F5B45FE00B4F997 /* MockSecondService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A3701F5B45FE00B4F997 /* MockSecondService.swift */; };
+		5BF2A3731F5B469F00B4F997 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A3721F5B469F00B4F997 /* Mock.swift */; };
+		5BF2A3751F5B46D000B4F997 /* MockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A3741F5B46D000B4F997 /* MockManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		5BF2A36C1F5B43CF00B4F997 /* SecondService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondService.swift; sourceTree = "<group>"; };
 		5BF2A36E1F5B45F500B4F997 /* MockFirstService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFirstService.swift; sourceTree = "<group>"; };
 		5BF2A3701F5B45FE00B4F997 /* MockSecondService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSecondService.swift; sourceTree = "<group>"; };
+		5BF2A3721F5B469F00B4F997 /* Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
+		5BF2A3741F5B46D000B4F997 /* MockManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 		5BF2A3671F5B431700B4F997 /* Mirage */ = {
 			isa = PBXGroup;
 			children = (
+				5BF2A3721F5B469F00B4F997 /* Mock.swift */,
+				5BF2A3741F5B46D000B4F997 /* MockManager.swift */,
 			);
 			name = Mirage;
 			path = ../../Mirage;
@@ -226,6 +232,8 @@
 				5BF2A3711F5B45FE00B4F997 /* MockSecondService.swift in Sources */,
 				5BF2A36F1F5B45F500B4F997 /* MockFirstService.swift in Sources */,
 				5BF2A35D1F5B42AD00B4F997 /* MainObjectTests.swift in Sources */,
+				5BF2A3751F5B46D000B4F997 /* MockManager.swift in Sources */,
+				5BF2A3731F5B469F00B4F997 /* Mock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

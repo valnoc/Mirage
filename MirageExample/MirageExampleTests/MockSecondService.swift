@@ -10,14 +10,17 @@ import Foundation
 
 @testable import MirageExample
 
-class MockSecondService: SecondService {
+class MockSecondService: SecondService, Mock {
     
+    var mockManager: MockManager = MockManager()
     
+    let sel_makeRandomPositiveInt = "makeRandomPositiveInt()"
     func makeRandomPositiveInt() -> Int {
-        return 4
+        return mockManager.handleCall(sel_makeRandomPositiveInt, withDefaultReturnValue: 4, withArgs: nil) as! Int
     }
     
+    let sel_foo = "foo()"
     func foo() {
-        
+        mockManager.handleCall(sel_foo, withDefaultReturnValue: nil, withArgs: nil)
     }
 }
