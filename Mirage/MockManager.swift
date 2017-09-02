@@ -10,4 +10,17 @@ import Foundation
 
 class MockManager {
     
+    var callHistory: [String: [[Any?]]]
+    
+    init() {
+        callHistory = [:]
+    }
+    
+    @discardableResult
+    func handleCall(_ functionName:String, withDefaultReturnValue defaultReturnValue:Any?, withArgs args:Any?...) -> Any? {
+        if callHistory[functionName] == nil { callHistory[functionName] = [] }
+        callHistory[functionName]?.append(args)
+        return defaultReturnValue
+    }
+    
 }
