@@ -9,11 +9,19 @@
 import XCTest
 @testable import MirageExample
 
-class MirageExampleTests: XCTestCase {
+class MainObjectTests: XCTestCase {
+    
+    var sut: MainObject!
+    
+    var mockFirstService: MockFirstService!
+    var mockSecondService: MockSecondService!
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        sut = MainObject(firstService: mockFirstService,
+                         secondService: mockSecondService)
     }
     
     override func tearDown() {
