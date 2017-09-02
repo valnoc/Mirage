@@ -44,6 +44,7 @@ class MainObjectTests: XCTestCase {
         sut.perfromMainOperation()
         
         //then
+        //try? mockFirstService.verify(mockFirstService.sel_performCalculation, Never())
     }
     
 }
