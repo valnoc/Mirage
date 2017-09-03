@@ -44,7 +44,7 @@ class MainObjectTests: XCTestCase {
         sut.perfromMainOperation()
         
         //then
-        XCTAssertNoThrow(try? mockFirstService.verify(mockFirstService.sel_performCalculation, Never()))        
+        XCTAssertNoThrow(try mockFirstService.verify(mockFirstService.sel_performCalculation, Once()))
     }
     
 }
