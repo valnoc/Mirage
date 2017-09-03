@@ -24,9 +24,16 @@ class MockManager {
     }
     
     func verify(_ functionName:String, _ callTimesVerificator:CallTimesVerificator) throws {
-        let history = callHistory[functionName] ?? []
-        let times = history.count
-        try callTimesVerificator.verify(functionName, callTimes: times)
+        try callTimesVerificator.verify(functionName, callTimes: callTimes(functionName))
     }
     
+    func callTimes(_ functionName:String) -> Int {
+        let history = callHistory[functionName] ?? []
+        let times = history.count
+        return times
+    }
+    
+    func argsOf(_ functionName:String, callTime:Int) throws {
+        
+    }
 }
