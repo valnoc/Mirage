@@ -16,11 +16,11 @@ class MockSecondService: SecondService, Mock {
     
     let sel_makeRandomPositiveInt = "makeRandomPositiveInt()"
     func makeRandomPositiveInt() -> Int {
-        return mockManager.handleCall(sel_makeRandomPositiveInt, withDefaultReturnValue: 4, withArgs: nil) as! Int
+        return mockManager.handle(sel_makeRandomPositiveInt, withDefaultReturnValue: 4, withArgs: nil) as! Int
     }
     
     let sel_foo = "foo()"
     func foo() {
-        mockManager.handleCall(sel_foo, withDefaultReturnValue: nil, withArgs: nil)
+        mockManager.handle(sel_foo, withDefaultReturnValue: nil, withArgs: nil)
     }
 }

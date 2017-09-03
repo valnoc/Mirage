@@ -17,10 +17,16 @@ class MockManager {
     }
     
     @discardableResult
-    func handleCall(_ functionName:String, withDefaultReturnValue defaultReturnValue:Any?, withArgs args:Any?...) -> Any? {
+    func handle(_ functionName:String, withDefaultReturnValue defaultReturnValue:Any?, withArgs args:Any?...) -> Any? {
         if callHistory[functionName] == nil { callHistory[functionName] = [] }
         callHistory[functionName]?.append(args)
         return defaultReturnValue
+    }
+    
+    func verify(_ functionName:String, _ callTimesVerificator:CallTimesVerificator) throws {
+        let history = callHistory[functionName] ?? []
+        let times = history.count
+        try callTimesVerificator.verify(functionName, callTimes: times)
     }
     
 }

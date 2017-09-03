@@ -11,3 +11,11 @@ import Foundation
 protocol Mock {
     var mockManager: MockManager {get set}
 }
+
+
+extension Mock {
+    
+    func verify(_ functionName:String, _ callTimesVerificator:CallTimesVerificator) throws {
+        try mockManager.verify(functionName, callTimesVerificator)
+    }
+}
