@@ -45,6 +45,7 @@ class MainObjectTests: XCTestCase {
         
         //then
         XCTAssertNoThrow(try mockFirstService.verify(mockFirstService.sel_performCalculation, Once()))
+        XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_makeRandomPositiveInt, Times(2)))
     }
     
 }
