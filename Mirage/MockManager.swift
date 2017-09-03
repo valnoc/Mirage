@@ -24,7 +24,7 @@ class MockManager {
     }
     
     func verify(_ functionName:String, _ callTimesVerificator:CallTimesVerificator) throws {
-        try callTimesVerificator.verify(functionName, callTimes: callTimes(functionName))
+        try callTimesVerificator.verify(functionName, callHistoryTimes: callTimes(functionName))
     }
     
     func callTimes(_ functionName:String) -> Int {

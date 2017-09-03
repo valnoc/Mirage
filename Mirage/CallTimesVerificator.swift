@@ -9,7 +9,7 @@
 import Foundation
 
 protocol CallTimesVerificator {
-    func verify(_ functionName:String, callTimes:Int) throws
+    func verify(_ functionName:String, callHistoryTimes:Int) throws
 }
 class WrongCallTimesError: Error {
     //TODO: provide description
@@ -23,8 +23,8 @@ class Times: CallTimesVerificator {
         self.times = times
     }
     
-    func verify(_ functionName: String, callTimes:Int) throws {
-        guard callTimes == times else {
+    func verify(_ functionName: String, callHistoryTimes:Int) throws {
+        guard callHistoryTimes == times else {
             throw WrongCallTimesError()
         }
     }
@@ -52,8 +52,8 @@ class AtLeast: CallTimesVerificator {
         self.times = times
     }
     
-    func verify(_ functionName: String, callTimes:Int) throws {
-        guard callTimes >= times else {
+    func verify(_ functionName: String, callHistoryTimes:Int) throws {
+        guard callHistoryTimes >= times else {
             throw WrongCallTimesError()
         }
     }
@@ -67,8 +67,8 @@ class AtMost: CallTimesVerificator {
         self.times = times
     }
     
-    func verify(_ functionName: String, callTimes:Int) throws {
-        guard callTimes <= times else {
+    func verify(_ functionName: String, callHistoryTimes:Int) throws {
+        guard callHistoryTimes <= times else {
             throw WrongCallTimesError()
         }
     }
