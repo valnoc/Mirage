@@ -26,11 +26,11 @@ class MainObject {
             secondService.foo()
         }
         else {
-            postFailedNotification()
+            postFailedNotification("sum < 0")
         }
     }
     
-    func postFailedNotification() {        
+    func postFailedNotification(_ reason: String) {
     }
     
 }
