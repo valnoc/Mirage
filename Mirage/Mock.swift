@@ -23,10 +23,10 @@ extension Mock {
         return argsOfFirstCall(functionName)
     }
     func argsOfFirstCall(_ functionName:String) -> [Any?]? {
-        return argsOf(functionName, callTime: 1)
+        return argsOf(functionName, callTime: 0)
     }
     func argsOfLastCall(_ functionName:String) -> [Any?]? {
-        return argsOf(functionName, callTime: mockManager.totalCallTimes(functionName))
+        return argsOf(functionName, callTime: mockManager.totalCallTimes(functionName) - 1)
     }
     func argsOf(_ functionName:String, callTime:Int) -> [Any?]? {
         return mockManager.argsOf(functionName, callTime: callTime)
