@@ -26,11 +26,15 @@ class MainObject {
             secondService.foo()
         }
         else {
-            postFailedNotification()
+            postFailedNotification("sum < 0")
         }
     }
     
-    func postFailedNotification() {        
+    func postFailedNotification(_ reason: String) {
     }
     
+    
+    func performArgOperation(_ a: Int, _ b: Int) {
+        _ = firstService.performCalculation(arg1: a, arg2: b * 2)
+    }
 }
