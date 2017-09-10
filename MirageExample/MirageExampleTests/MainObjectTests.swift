@@ -63,7 +63,8 @@ class MainObjectTests: XCTestCase {
         guard let arg1 = args[0] as? Int else { XCTFail(); return }
         guard let arg2 = args[1] as? Int else { XCTFail(); return }
         
-        XCTAssert(arg1 == arg2)
+        XCTAssert(arg1 == a)
+        XCTAssert(arg2 == b * 2)
     }
     
 }
