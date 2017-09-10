@@ -19,16 +19,16 @@ extension Mock {
         try mockManager.verify(functionName, callTimesVerificator)
     }
     
-    func argsOf(_ functionName:String) throws {
-        try argsOfLastCall(functionName)
+    func argsOf(_ functionName:String) -> [Any?]? {
+        return argsOfFirstCall(functionName)
     }
-    func argsOfFirstCall(_ functionName:String) throws {
-        try argsOf(functionName, callTime: 1)
+    func argsOfFirstCall(_ functionName:String) -> [Any?]? {
+        return argsOf(functionName, callTime: 1)
     }
-    func argsOfLastCall(_ functionName:String) throws {
-        try argsOf(functionName, callTime: mockManager.callTimes(functionName))
+    func argsOfLastCall(_ functionName:String) -> [Any?]? {
+        return argsOf(functionName, callTime: mockManager.totalCallTimes(functionName))
     }
-    func argsOf(_ functionName:String, callTime:Int) throws {
-        try mockManager.argsOf(functionName, callTime: callTime)
+    func argsOf(_ functionName:String, callTime:Int) -> [Any?]? {
+        return mockManager.argsOf(functionName, callTime: callTime)
     }
 }
