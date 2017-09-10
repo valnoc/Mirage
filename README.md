@@ -9,5 +9,5 @@ Mocking framework.
 1. arguments of calls
 #### v0.2
 1. stubs 
-#### v1.0
+#### v0.3
 1. partial mocks
