@@ -34,8 +34,8 @@ class MockManager {
     }
     
     func argsOf(_ functionName:String, callTime:Int) -> [Any?]? {
-        guard callTime > 0 else { return nil }
-        guard callTime <= totalCallTimes(functionName) else { return nil }
+        guard callTime > -1 else { return nil }
+        guard callTime < totalCallTimes(functionName) else { return nil }
         return callHistory[functionName]![callTime]
     }
 }
