@@ -33,4 +33,8 @@ class MainObject {
     func postFailedNotification(_ reason: String) {
     }
     
+    
+    func performArgOperation(_ a: Int, _ b: Int) {
+        _ = firstService.performCalculation(arg1: a, arg2: b * 2)
+    }
 }

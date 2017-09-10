@@ -48,4 +48,22 @@ class MainObjectTests: XCTestCase {
         XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_makeRandomPositiveInt, Times(2)))
     }
     
+    func testPerformArgOperation() {
+        //given
+        let a = 15
+        let b = 200
+        
+        //when
+        sut.performArgOperation(a, b)
+        
+        //then
+        XCTAssertNoThrow(try mockFirstService.verify(mockFirstService.sel_performCalculation, Once()))
+        
+        guard let args = mockFirstService.argsOf(mockFirstService.sel_performCalculation) else { XCTFail(); return }
+        guard let arg1 = args[0] as? Int else { XCTFail(); return }
+        guard let arg2 = args[1] as? Int else { XCTFail(); return }
+        
+        XCTAssert(arg1 == arg2)
+    }
+    
 }
