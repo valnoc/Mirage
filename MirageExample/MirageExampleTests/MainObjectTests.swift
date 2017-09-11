@@ -37,8 +37,9 @@ class MainObjectTests: XCTestCase {
         super.tearDown()
     }
     
-    func testPerfromMainOperation() {
+    func testGivenPositiveResultWhenPerfromMainOperationThenItCallsFoo() {
         //given
+        mockFirstService.when(mockFirstService.sel_performCalculation).thenReturn(100)
         
         //when
         sut.perfromMainOperation()
@@ -46,6 +47,20 @@ class MainObjectTests: XCTestCase {
         //then
         XCTAssertNoThrow(try mockFirstService.verify(mockFirstService.sel_performCalculation, Once()))
         XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_makeRandomPositiveInt, Times(2)))
+        XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_foo, Once()))
+    }
+    
+    func testGivenNegativeResultWhenPerfromMainOperationThenItDoesNotCallFoo() {
+        //given
+        mockFirstService.when(mockFirstService.sel_performCalculation).thenReturn(-100)
+        
+        //when
+        sut.perfromMainOperation()
+        
+        //then
+        XCTAssertNoThrow(try mockFirstService.verify(mockFirstService.sel_performCalculation, Once()))
+        XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_makeRandomPositiveInt, Times(2)))
+        XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_foo, Never()))
     }
     
     func testPerformArgOperation() {
