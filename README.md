@@ -1,8 +1,7 @@
 # Mirage
 Mocking framework.
 
-## Roadmap
-### v1.0 (MVP)
+## Roadmap for v1.0 (MVP)
 #### v0.2
 1. stubs 
 #### v0.3
