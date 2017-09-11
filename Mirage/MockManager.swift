@@ -23,7 +23,13 @@ class MockManager {
     func handle(_ functionName:String, withDefaultReturnValue defaultReturnValue:Any?, withArgs args:Any?...) -> Any? {
         if callHistory[functionName] == nil { callHistory[functionName] = [] }
         callHistory[functionName]?.append(args)
-        return defaultReturnValue
+        
+        if let stub = stubForFunction(functionName) {
+            return stub.executeNextAction(args)
+        }
+        else {
+            return defaultReturnValue
+        }
     }
     
     //MARK: verify

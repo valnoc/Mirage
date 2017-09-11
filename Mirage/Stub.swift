@@ -11,11 +11,15 @@ import Foundation
 class Stub {
     
     let functionName: String
+    
     var actions: [StubAction]
+    var nextActionIndex: Int
     
     init(functionName: String) {
         self.functionName = functionName
         actions = []
+        
+        nextActionIndex = 0
     }
     
     //MARK: result
@@ -33,5 +37,21 @@ class Stub {
         }
         actions.append(stubAction)
         return self
+    }
+    
+    //MARK: execute
+    func executeNextAction(_ args:[Any?]) -> Any? {
+        guard actions.count > 0 else { return nil }
+        
+        var action: StubAction
+        if nextActionIndex < actions.count {
+            action = actions[nextActionIndex]
+            nextActionIndex += 1
+        }
+        else {
+            action = actions.last!
+        }
+        
+        return action.execute(args)
     }
 }

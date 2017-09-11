@@ -15,4 +15,8 @@ class StubAction {
     init(action: @escaping (_ args:[Any?]) -> Any?) {
         self.action = action
     }
+    
+    func execute(_ args:[Any?]) -> Any? {
+        return action(args)
+    }
 }
