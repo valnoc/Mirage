@@ -12,8 +12,11 @@ class MockManager {
     
     var callHistory: [String: [[Any?]]]
     
+    var stubs: [Stub]
+    
     init() {
         callHistory = [:]
+        stubs = []
     }
     
     @discardableResult
@@ -43,8 +46,18 @@ class MockManager {
     
     //MARK: stub
     func when(_ functionName:String) -> Stub {
-        let stub = Stub(functionName: functionName)
-        return stub
+        if let oldStub = stubForFunction(functionName) {
+            return oldStub
+        }
+        else {
+            let stub = Stub(functionName: functionName)
+            stubs.append(stub)
+            return stub
+        }
+    }
+    
+    func stubForFunction(_ functionName:String) -> Stub? {
+        return stubs.filter({$0.functionName == functionName}).first
     }
 }
 
