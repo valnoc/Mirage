@@ -23,6 +23,7 @@ class Stub {
     }
     
     //MARK: result
+    @discardableResult
     func thenReturn(_ result: Any) -> Stub {
         let stubAction = StubAction { (_) -> Any? in
             return result
@@ -31,6 +32,7 @@ class Stub {
         return self
     }
 
+    @discardableResult
     func thenDo(_ closure: @escaping (_ args: [Any?]) -> Void) -> Stub {
         let stubAction = StubAction { (args) -> Any? in
             return closure(args)
