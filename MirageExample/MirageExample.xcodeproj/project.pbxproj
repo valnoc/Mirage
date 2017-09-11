@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5BA1C95D1F5B55F900E3B669 /* CallTimesVerificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1C95C1F5B55F900E3B669 /* CallTimesVerificator.swift */; };
 		5BE4226B1F6712B500D762C7 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4226A1F6712B500D762C7 /* Stub.swift */; };
+		5BE4226D1F6716DA00D762C7 /* StubAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4226C1F6716DA00D762C7 /* StubAction.swift */; };
 		5BF2A3481F5B42AD00B4F997 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A3471F5B42AD00B4F997 /* AppDelegate.swift */; };
 		5BF2A34F1F5B42AD00B4F997 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF2A34E1F5B42AD00B4F997 /* Assets.xcassets */; };
 		5BF2A35D1F5B42AD00B4F997 /* MainObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A35C1F5B42AD00B4F997 /* MainObjectTests.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		5BA1C95C1F5B55F900E3B669 /* CallTimesVerificator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallTimesVerificator.swift; sourceTree = "<group>"; };
 		5BE4226A1F6712B500D762C7 /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
+		5BE4226C1F6716DA00D762C7 /* StubAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubAction.swift; sourceTree = "<group>"; };
 		5BF2A3441F5B42AD00B4F997 /* MirageExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MirageExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BF2A3471F5B42AD00B4F997 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BF2A34E1F5B42AD00B4F997 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				5BF2A3741F5B46D000B4F997 /* MockManager.swift */,
 				5BA1C95C1F5B55F900E3B669 /* CallTimesVerificator.swift */,
 				5BE4226A1F6712B500D762C7 /* Stub.swift */,
+				5BE4226C1F6716DA00D762C7 /* StubAction.swift */,
 			);
 			name = Mirage;
 			path = ../../Mirage;
@@ -242,6 +245,7 @@
 				5BF2A3751F5B46D000B4F997 /* MockManager.swift in Sources */,
 				5BF2A3731F5B469F00B4F997 /* Mock.swift in Sources */,
 				5BE4226B1F6712B500D762C7 /* Stub.swift in Sources */,
+				5BE4226D1F6716DA00D762C7 /* StubAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
