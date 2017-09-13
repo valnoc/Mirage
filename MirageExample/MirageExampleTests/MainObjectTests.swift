@@ -52,7 +52,12 @@ class MainObjectTests: XCTestCase {
     
     func testGivenNegativeResultWhenPerfromMainOperationThenItDoesNotCallFoo() {
         //given
-        mockFirstService.when(mockFirstService.sel_performCalculation).thenReturn(-100)
+//        mockFirstService.when(mockFirstService.sel_performCalculation).thenReturn(-100)
+        var triggered = false
+        mockFirstService.when(mockFirstService.sel_performCalculation).thenDo({ _ -> Any? in
+            triggered = true
+            return -100
+        })
         
         //when
         sut.perfromMainOperation()
@@ -61,6 +66,7 @@ class MainObjectTests: XCTestCase {
         XCTAssertNoThrow(try mockFirstService.verify(mockFirstService.sel_performCalculation, Once()))
         XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_makeRandomPositiveInt, Times(2)))
         XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_foo, Never()))
+        XCTAssert(triggered == true)
     }
     
     func testPerformArgOperation() {

@@ -35,6 +35,16 @@ class Stub {
     @discardableResult
     func thenDo(_ closure: @escaping (_ args: [Any?]) -> Void) -> Stub {
         let stubAction = StubAction { (args) -> Any? in
+            closure(args)
+            return nil
+        }
+        actions.append(stubAction)
+        return self
+    }
+    
+    @discardableResult
+    func thenDo(_ closure: @escaping (_ args: [Any?]) -> Any?) -> Stub {
+        let stubAction = StubAction { (args) -> Any? in
             return closure(args)
         }
         actions.append(stubAction)
