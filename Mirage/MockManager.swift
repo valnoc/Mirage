@@ -14,9 +14,18 @@ class MockManager {
     
     var stubs: [Stub]
     
-    init() {
+    let isPartial:Bool
+    var spies: [String]
+    
+    init(isPartial:Bool) {
         callHistory = [:]
         stubs = []
+        spies = []
+        self.isPartial = isPartial
+    }
+    
+    convenience init() {
+        self.init(isPartial: false)
     }
     
     @discardableResult
@@ -58,12 +67,20 @@ class MockManager {
         else {
             let stub = Stub(functionName: functionName)
             stubs.append(stub)
+            spy(functionName)
             return stub
         }
     }
     
     func stubForFunction(_ functionName:String) -> Stub? {
         return stubs.filter({$0.functionName == functionName}).first
+    }
+    
+    // MARK: partial mock
+    func spy(_ functionName:String) {
+        if !spies.contains(functionName) {
+            spies.append(functionName)
+        }
     }
 }
 

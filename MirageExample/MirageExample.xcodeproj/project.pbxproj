@@ -119,11 +119,11 @@
 			isa = PBXGroup;
 			children = (
 				5BF2A3721F5B469F00B4F997 /* Mock.swift */,
+				5B96A2371F69B41F00458BAD /* PartialMock.swift */,
 				5BF2A3741F5B46D000B4F997 /* MockManager.swift */,
 				5BA1C95C1F5B55F900E3B669 /* CallTimesVerificator.swift */,
 				5BE4226A1F6712B500D762C7 /* Stub.swift */,
 				5BE4226C1F6716DA00D762C7 /* StubAction.swift */,
-				5B96A2371F69B41F00458BAD /* PartialMock.swift */,
 			);
 			name = Mirage;
 			path = ../../Mirage;
