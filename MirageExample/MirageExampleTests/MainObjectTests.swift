@@ -111,11 +111,12 @@ class MainObjectTests: XCTestCase {
         let partial = PartialMockMainObject(firstService: mockFirstService, secondService: mockSecondService)
         
         //when
-        _ = partial.calculateSum()
+        let result = partial.calculateSum()
         
         //then
         XCTAssertNoThrow(try partial.verify(partial.sel_makeFirstArg, Once()))
         XCTAssertNoThrow(try partial.verify(partial.sel_makeSecondArg, Once()))
+        XCTAssert(result == 7)
     }
     
 }
