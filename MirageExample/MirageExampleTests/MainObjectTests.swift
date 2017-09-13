@@ -106,4 +106,16 @@ class MainObjectTests: XCTestCase {
         XCTAssert(arg2 == b * 2)
     }
     
+    func testWhenCalculateSumThenItShouldCallMakeFirstAndSecondArgs() {
+        //given
+        let partial = PartialMockMainObject(firstService: mockFirstService, secondService: mockSecondService)
+        
+        //when
+        _ = partial.calculateSum()
+        
+        //then
+        XCTAssertNoThrow(try partial.verify(partial.sel_makeFirstArg, Once()))
+        XCTAssertNoThrow(try partial.verify(partial.sel_makeSecondArg, Once()))
+    }
+    
 }
