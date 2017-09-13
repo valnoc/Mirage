@@ -37,7 +37,7 @@ class MainObjectTests: XCTestCase {
         super.tearDown()
     }
     
-    func testGivenPositiveResultWhenPerfromMainOperationThenItCallsFoo() {
+    func testGivenPositiveResultWhenPerfromMainOperationThenItShouldCallFoo() {
         //given
         mockFirstService.when(mockFirstService.sel_performCalculation).thenReturn(100)
         
@@ -50,9 +50,8 @@ class MainObjectTests: XCTestCase {
         XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_foo, Once()))
     }
     
-    func testGivenNegativeResultWhenPerfromMainOperationThenItDoesNotCallFoo() {
+    func testGivenNegativeResultWhenPerfromMainOperationThenItShouldNotCallFoo() {
         //given
-//        mockFirstService.when(mockFirstService.sel_performCalculation).thenReturn(-100)
         var triggered = false
         mockFirstService.when(mockFirstService.sel_performCalculation).thenDo({ _ -> Any? in
             triggered = true
@@ -67,6 +66,25 @@ class MainObjectTests: XCTestCase {
         XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_makeRandomPositiveInt, Times(2)))
         XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_foo, Never()))
         XCTAssert(triggered == true)
+    }
+    
+    func testGivenTwoPositiveValuesChainingWhenPerfromMainOperationThenItShouldCallFoo() {
+        //given
+        mockSecondService.when(mockSecondService.sel_makeRandomPositiveInt).thenReturn(5).thenReturn(100)
+        
+        mockFirstService.when(mockFirstService.sel_performCalculation).thenDo({ args -> Any? in
+            let arg1 = args.first as? Int ?? 0
+            let arg2 = args.last as? Int ?? 0
+            return arg1 + arg2
+        })
+        
+        //when
+        sut.perfromMainOperation()
+        
+        //then
+        XCTAssertNoThrow(try mockFirstService.verify(mockFirstService.sel_performCalculation, Once()))
+        XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_makeRandomPositiveInt, Times(2)))
+        XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_foo, Once()))
     }
     
     func testPerformArgOperation() {
