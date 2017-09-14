@@ -74,8 +74,6 @@ class MockManager {
     fileprivate func stubForFunction(_ functionName:String) -> Stub? {
         return stubs.filter({$0.functionName == functionName}).first
     }
-    
-    // MARK: partial mock
 
 }
 
