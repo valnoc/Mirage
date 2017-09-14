@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B1FA57C1F6B178A00315C8B /* PartialMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1FA57B1F6B178A00315C8B /* PartialMock.swift */; };
+		5B1FA57E1F6B187700315C8B /* PartialMockFirstService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1FA57D1F6B187700315C8B /* PartialMockFirstService.swift */; };
 		5B96A23A1F69C41500458BAD /* PartialMockMainObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96A2391F69C41500458BAD /* PartialMockMainObject.swift */; };
 		5BA1C95D1F5B55F900E3B669 /* CallTimesVerificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1C95C1F5B55F900E3B669 /* CallTimesVerificator.swift */; };
 		5BE4226B1F6712B500D762C7 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4226A1F6712B500D762C7 /* Stub.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B1FA57B1F6B178A00315C8B /* PartialMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialMock.swift; sourceTree = "<group>"; };
+		5B1FA57D1F6B187700315C8B /* PartialMockFirstService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialMockFirstService.swift; sourceTree = "<group>"; };
 		5B96A2391F69C41500458BAD /* PartialMockMainObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialMockMainObject.swift; sourceTree = "<group>"; };
 		5BA1C95C1F5B55F900E3B669 /* CallTimesVerificator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallTimesVerificator.swift; sourceTree = "<group>"; };
 		5BE4226A1F6712B500D762C7 /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 				5BF2A35C1F5B42AD00B4F997 /* MainObjectTests.swift */,
 				5B96A2391F69C41500458BAD /* PartialMockMainObject.swift */,
 				5BF2A36E1F5B45F500B4F997 /* MockFirstService.swift */,
+				5B1FA57D1F6B187700315C8B /* PartialMockFirstService.swift */,
 				5BF2A3701F5B45FE00B4F997 /* MockSecondService.swift */,
 				5BF2A35E1F5B42AD00B4F997 /* Info.plist */,
 			);
@@ -120,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				5BF2A3721F5B469F00B4F997 /* Mock.swift */,
+				5B1FA57B1F6B178A00315C8B /* PartialMock.swift */,
 				5BF2A3741F5B46D000B4F997 /* MockManager.swift */,
 				5BA1C95C1F5B55F900E3B669 /* CallTimesVerificator.swift */,
 				5BE4226A1F6712B500D762C7 /* Stub.swift */,
@@ -244,7 +250,9 @@
 				5BF2A3711F5B45FE00B4F997 /* MockSecondService.swift in Sources */,
 				5B96A23A1F69C41500458BAD /* PartialMockMainObject.swift in Sources */,
 				5BA1C95D1F5B55F900E3B669 /* CallTimesVerificator.swift in Sources */,
+				5B1FA57C1F6B178A00315C8B /* PartialMock.swift in Sources */,
 				5BF2A36F1F5B45F500B4F997 /* MockFirstService.swift in Sources */,
+				5B1FA57E1F6B187700315C8B /* PartialMockFirstService.swift in Sources */,
 				5BF2A35D1F5B42AD00B4F997 /* MainObjectTests.swift in Sources */,
 				5BF2A3751F5B46D000B4F997 /* MockManager.swift in Sources */,
 				5BF2A3731F5B469F00B4F997 /* Mock.swift in Sources */,

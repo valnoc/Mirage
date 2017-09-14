@@ -10,9 +10,9 @@ import Foundation
 
 @testable import MirageExample
 
-class PartialMockMainObject: MainObject, Mock {
+class PartialMockMainObject: MainObject, PartialMock {
     
-    lazy var mockManager: MockManager = MockManager(shouldCallRealFuncs: true, callRealFuncClosure: { [weak self] (funcName, args) -> Any? in
+    lazy var mockManager: MockManager = MockManager(self, callRealFuncClosure: { [weak self] (funcName, args) -> Any? in
         guard let __self = self else { return nil }
         return __self.callRealFunc(funcName, args)
     })

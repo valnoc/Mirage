@@ -12,10 +12,10 @@ import Foundation
 
 class MockFirstService: FirstService, Mock {
     
-    lazy var mockManager: MockManager = MockManager { [weak self] (funcName, args) -> Any? in
+    lazy var mockManager: MockManager = MockManager(self, callRealFuncClosure: { [weak self] (funcName, args) -> Any? in
         guard let __self = self else { return nil }
         return __self.callRealFunc(funcName, args)
-    }
+    })
     fileprivate func callRealFunc(_ funcName:String, _ args:[Any?]?) -> Any? {
         switch funcName {
         case sel_performCalculation:

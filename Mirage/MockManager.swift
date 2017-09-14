@@ -19,9 +19,9 @@ class MockManager {
     
     let shouldCallRealFuncs:Bool
     
-    init(shouldCallRealFuncs:Bool = false, callRealFuncClosure:@escaping MockFunctionCallBlock) {
+    init(_ mock: Mock, callRealFuncClosure:@escaping MockFunctionCallBlock) {
         self.callRealFuncClosure = callRealFuncClosure
-        self.shouldCallRealFuncs = shouldCallRealFuncs
+        shouldCallRealFuncs = mock is PartialMock
         
         callHistory = [:]
         stubs = []
