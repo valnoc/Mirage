@@ -37,4 +37,17 @@ class MainObject {
     func performArgOperation(_ a: Int, _ b: Int) {
         _ = firstService.performCalculation(arg1: a, arg2: b * 2)
     }
+    
+    
+    func calculateSum() -> Int {
+        return makeFirstArg() + makeSecondArg()
+    }
+    
+    func makeFirstArg() -> Int {
+        return 2
+    }
+    
+    func makeSecondArg() -> Int {
+        return 5
+    }
 }

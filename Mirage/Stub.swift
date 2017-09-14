@@ -11,14 +11,16 @@ import Foundation
 class Stub {
     
     let functionName: String
+    let callRealFuncClosure: MockFunctionCallBlock
     
     var actions: [StubAction]
     var nextActionIndex: Int
     
-    init(functionName: String) {
+    init(functionName: String, callRealFuncClosure:@escaping MockFunctionCallBlock) {
         self.functionName = functionName
-        actions = []
+        self.callRealFuncClosure = callRealFuncClosure
         
+        actions = []        
         nextActionIndex = 0
     }
     
@@ -46,6 +48,25 @@ class Stub {
     func thenDo(_ closure: @escaping (_ args: [Any?]) -> Any?) -> Stub {
         let stubAction = StubAction { (args) -> Any? in
             return closure(args)
+        }
+        actions.append(stubAction)
+        return self
+    }
+    
+    @discardableResult
+    func thenDoNothing() -> Stub {
+        let stubAction = StubAction { (args) -> Any? in
+            return nil
+        }
+        actions.append(stubAction)
+        return self
+    }
+    
+    @discardableResult
+    func thenCallReal() -> Stub {
+        let stubAction = StubAction { [weak self] (args) -> Any? in
+            guard let __self = self else { return nil }
+            return __self.callRealFuncClosure(__self.functionName, args)
         }
         actions.append(stubAction)
         return self

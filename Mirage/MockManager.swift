@@ -8,13 +8,21 @@
 
 import Foundation
 
+typealias MockFunctionCallBlock = (_ functionName:String, _ args:[Any?]?) -> Any?
+
 class MockManager {
     
     var callHistory: [String: [[Any?]]]
     
     var stubs: [Stub]
+    let callRealFuncClosure: MockFunctionCallBlock
     
-    init() {
+    let shouldCallRealFuncs:Bool
+    
+    init(_ mock: Mock, callRealFuncClosure:@escaping MockFunctionCallBlock) {
+        self.callRealFuncClosure = callRealFuncClosure
+        shouldCallRealFuncs = mock is PartialMock
+        
         callHistory = [:]
         stubs = []
     }
@@ -26,8 +34,9 @@ class MockManager {
         
         if let stub = stubForFunction(functionName) {
             return stub.executeNextAction(args)
-        }
-        else {
+        } else if shouldCallRealFuncs {
+            return callRealFuncClosure(functionName, args)
+        } else {
             return defaultReturnValue
         }
     }
@@ -56,14 +65,15 @@ class MockManager {
             return oldStub
         }
         else {
-            let stub = Stub(functionName: functionName)
+            let stub = Stub(functionName: functionName, callRealFuncClosure: callRealFuncClosure)
             stubs.append(stub)
             return stub
         }
     }
     
-    func stubForFunction(_ functionName:String) -> Stub? {
+    fileprivate func stubForFunction(_ functionName:String) -> Stub? {
         return stubs.filter({$0.functionName == functionName}).first
     }
+
 }
 
