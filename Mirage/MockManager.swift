@@ -17,10 +17,14 @@ class MockManager {
     var stubs: [Stub]
     let callRealFuncClosure: MockFunctionCallBlock
     
-    init(callRealFuncClosure:@escaping MockFunctionCallBlock) {
+    let isPartial:Bool
+    
+    init(isPartial:Bool = false, callRealFuncClosure:@escaping MockFunctionCallBlock) {
+        self.callRealFuncClosure = callRealFuncClosure
+        self.isPartial = isPartial
+        
         callHistory = [:]
         stubs = []
-        self.callRealFuncClosure = callRealFuncClosure
     }
     
     @discardableResult
@@ -30,8 +34,9 @@ class MockManager {
         
         if let stub = stubForFunction(functionName) {
             return stub.executeNextAction(args)
-        }
-        else {
+        } else if isPartial {
+            return callRealFuncClosure(functionName, args)
+        } else {
             return defaultReturnValue
         }
     }
