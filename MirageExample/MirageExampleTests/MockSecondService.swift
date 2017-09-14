@@ -12,7 +12,17 @@ import Foundation
 
 class MockSecondService: SecondService, Mock {
     
-    var mockManager: MockManager = MockManager()
+    lazy var mockManager: MockManager = MockManager { [weak self] (funcName, args) -> Any? in
+        guard let __self = self else { return nil }
+        switch funcName {
+        case __self.sel_makeRandomPositiveInt:
+            return __self.makeRandomPositiveInt()
+        case __self.sel_foo:
+            return __self.foo()
+        default:
+            return nil
+        }
+    }
     
     let sel_makeRandomPositiveInt = "makeRandomPositiveInt()"
     func makeRandomPositiveInt() -> Int {

@@ -12,7 +12,16 @@ import Foundation
 
 class PartialMockMainObject: MainObject, PartialMock {
     
-    var mockManager: MockManager = MockManager(isPartial: true)
+    lazy var mockManager: MockManager = MockManager { [weak self] (funcName, args) -> Any? in
+        guard let __self = self else { return nil }
+        switch funcName {
+        case __self.sel_makeFirstArg:
+            return __self.makeFirstArg()
+        case __self.sel_makeSecondArg:
+            return __self.makeSecondArg()
+        default:
+            return nil
+        }    }
     
     let sel_makeFirstArg = "makeFirstArg"
     override func makeFirstArg() -> Int {

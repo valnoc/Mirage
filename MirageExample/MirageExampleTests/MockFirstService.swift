@@ -12,7 +12,15 @@ import Foundation
 
 class MockFirstService: FirstService, Mock {
     
-    var mockManager: MockManager = MockManager()
+    lazy var mockManager: MockManager = MockManager { [weak self] (funcName, args) -> Any? in
+        guard let __self = self else { return nil }
+        switch funcName {
+        case __self.sel_performCalculation:
+            return __self.performCalculation(arg1: args![0] as! Int, arg2: args![1] as! Int)
+        default:
+            return nil
+        }
+    }
     
     let sel_performCalculation = "performCalculation(arg1:arg2:)"
     override func performCalculation(arg1:Int, arg2: Int) -> Int {
