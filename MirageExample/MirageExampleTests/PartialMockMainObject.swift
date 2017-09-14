@@ -12,7 +12,7 @@ import Foundation
 
 class PartialMockMainObject: MainObject, Mock {
     
-    lazy var mockManager: MockManager = MockManager(isPartial: true, callRealFuncClosure: { [weak self] (funcName, args) -> Any? in
+    lazy var mockManager: MockManager = MockManager(shouldCallRealFuncs: true, callRealFuncClosure: { [weak self] (funcName, args) -> Any? in
         guard let __self = self else { return nil }
         return __self.callRealFunc(funcName, args)
     })
