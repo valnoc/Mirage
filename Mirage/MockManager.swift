@@ -8,24 +8,19 @@
 
 import Foundation
 
+typealias MockFunctionCallBlock = (_ functionName:String, _ args:[Any?]?) -> Any?
+
 class MockManager {
     
     var callHistory: [String: [[Any?]]]
     
     var stubs: [Stub]
+    let callRealFuncClosure: MockFunctionCallBlock
     
-    let isPartial:Bool
-    var spies: [String]
-    
-    init(isPartial:Bool) {
+    init(callRealFuncClosure:@escaping MockFunctionCallBlock) {
         callHistory = [:]
         stubs = []
-        spies = []
-        self.isPartial = isPartial
-    }
-    
-    convenience init() {
-        self.init(isPartial: false)
+        self.callRealFuncClosure = callRealFuncClosure
     }
     
     @discardableResult
@@ -65,22 +60,17 @@ class MockManager {
             return oldStub
         }
         else {
-            let stub = Stub(functionName: functionName)
+            let stub = Stub(functionName: functionName, callRealFuncClosure: { _ in return nil})
             stubs.append(stub)
-            spy(functionName)
             return stub
         }
     }
     
-    func stubForFunction(_ functionName:String) -> Stub? {
+    fileprivate func stubForFunction(_ functionName:String) -> Stub? {
         return stubs.filter({$0.functionName == functionName}).first
     }
     
     // MARK: partial mock
-    func spy(_ functionName:String) {
-        if !spies.contains(functionName) {
-            spies.append(functionName)
-        }
-    }
+
 }
 

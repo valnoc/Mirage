@@ -11,9 +11,3 @@ import Foundation
 protocol PartialMock: Mock {
 }
 
-extension PartialMock {
-    func spy(_ functionName:String) {
-        mockManager.spy(functionName)
-    }
-}
-
