@@ -21,7 +21,8 @@ class PartialMockMainObject: MainObject, PartialMock {
             return __self.makeSecondArg()
         default:
             return nil
-        }    }
+        }
+    }
     
     let sel_makeFirstArg = "makeFirstArg"
     override func makeFirstArg() -> Int {

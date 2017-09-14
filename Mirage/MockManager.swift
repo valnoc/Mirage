@@ -60,7 +60,7 @@ class MockManager {
             return oldStub
         }
         else {
-            let stub = Stub(functionName: functionName, callRealFuncClosure: { _ in return nil})
+            let stub = Stub(functionName: functionName, callRealFuncClosure: callRealFuncClosure)
             stubs.append(stub)
             return stub
         }
