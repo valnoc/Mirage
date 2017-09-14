@@ -14,16 +14,20 @@ class PartialMockMainObject: MainObject, PartialMock {
     
     lazy var mockManager: MockManager = MockManager { [weak self] (funcName, args) -> Any? in
         guard let __self = self else { return nil }
+        return __self.callRealFunc(funcName, args)
+    }
+    fileprivate func callRealFunc(_ funcName:String, _ args:[Any?]?) -> Any? {
         switch funcName {
-        case __self.sel_makeFirstArg:
-            return __self.makeFirstArg()
-        case __self.sel_makeSecondArg:
-            return __self.makeSecondArg()
+        case sel_makeFirstArg:
+            return super.makeFirstArg()
+        case sel_makeSecondArg:
+            return super.makeSecondArg()
         default:
             return nil
         }
     }
-    
+
+    //MARK: - mocked calls
     let sel_makeFirstArg = "makeFirstArg"
     override func makeFirstArg() -> Int {
         return mockManager.handle(sel_makeFirstArg, withDefaultReturnValue: 0, withArgs: nil) as! Int

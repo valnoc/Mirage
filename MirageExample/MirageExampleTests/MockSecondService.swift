@@ -14,16 +14,10 @@ class MockSecondService: SecondService, Mock {
     
     lazy var mockManager: MockManager = MockManager { [weak self] (funcName, args) -> Any? in
         guard let __self = self else { return nil }
-        switch funcName {
-        case __self.sel_makeRandomPositiveInt:
-            return __self.makeRandomPositiveInt()
-        case __self.sel_foo:
-            return __self.foo()
-        default:
-            return nil
-        }
+        return nil
     }
     
+    //MARK: - mocked calls
     let sel_makeRandomPositiveInt = "makeRandomPositiveInt()"
     func makeRandomPositiveInt() -> Int {
         return mockManager.handle(sel_makeRandomPositiveInt, withDefaultReturnValue: 4, withArgs: nil) as! Int

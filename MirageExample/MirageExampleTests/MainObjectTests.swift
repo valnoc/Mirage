@@ -71,12 +71,7 @@ class MainObjectTests: XCTestCase {
     func testGivenTwoPositiveValuesChainingWhenPerfromMainOperationThenItShouldCallFoo() {
         //given
         mockSecondService.when(mockSecondService.sel_makeRandomPositiveInt).thenReturn(5).thenReturn(100)
-        
-        mockFirstService.when(mockFirstService.sel_performCalculation).thenDo({ args -> Any? in
-            let arg1 = args.first as? Int ?? 0
-            let arg2 = args.last as? Int ?? 0
-            return arg1 + arg2
-        })
+        mockFirstService.when(mockFirstService.sel_performCalculation).thenCallReal()
         
         //when
         sut.perfromMainOperation()
