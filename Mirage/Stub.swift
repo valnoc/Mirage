@@ -51,6 +51,15 @@ class Stub {
         return self
     }
     
+    @discardableResult
+    func thenDoNothing() -> Stub {
+        let stubAction = StubAction { (args) -> Any? in
+            return nil
+        }
+        actions.append(stubAction)
+        return self
+    }
+    
     //MARK: execute
     func executeNextAction(_ args:[Any?]) -> Any? {
         guard actions.count > 0 else { return nil }
