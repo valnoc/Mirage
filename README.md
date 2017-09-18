@@ -37,6 +37,7 @@ Copy /Mirage folder into your test target.
 ## Usage
 First of all - check Example project.
 ### Mocks
+A Mock is an object which mimics the behaviour of a real object and records functions' calls.
 #### Class mock
 To create a class mock (ex. `FirstService`): 
 1. Create a new Mock class inhereted from the original 
@@ -62,7 +63,7 @@ lazy var mockManager: MockManager = MockManager(self, callRealFuncClosure: { [we
 New implementation should call mockManager.handle(...) for call registration. 
 Arguments are: 
 * func string identifier
-* default return value (`nil` for void functions)
+* default return value (`nil` for void functions) to return if no stub found
 * incoming args
 ```swift
 return mockManager.handle(sel_performCalculation, withDefaultReturnValue: 0, withArgs: arg1, arg2) as! Int
@@ -118,6 +119,31 @@ class MockSecondService: SecondService, Mock {
         mockManager.handle(sel_foo, withDefaultReturnValue: nil, withArgs: nil)
     }
 }
+```
+### Stubs
+Function stubbing allows to change the behavour of a function according to testing needs.
+To create a stub, call mock function `when(...)`, passing the identifier of a stubbed function.
+
+Then call one of the following:
+* `thenReturn(_ result: Any)` to return exact value as a result
+* `thenDo(_ closure: @escaping (_ args: [Any?]) -> Void)` to perform some action
+* `thenDo(_ closure: @escaping (_ args: [Any?]) -> Any?)` to return a result of action
+* `thenDoNothing()` to do... well... nothing)))
+* `thenCallReal()` to call real implementation of this function
+
+This `thenSmth` calls can be chained to return one result for first call and another for next calls.
+
+```swift
+mockFirstService.when(mockFirstService.sel_performCalculation).thenReturn(100)
+mockSecondService.when(mockSecondService.sel_makeRandomPositiveInt).thenReturn(5).thenReturn(100)
+
+var triggered = false
+mockFirstService.when(mockFirstService.sel_performCalculation).thenDo({ _ -> Any? in
+    triggered = true
+    return -100
+})
+
+mockFirstService.when(mockFirstService.sel_performCalculation).thenCallReal()
 ```
 ---
 ## Roadmap for v1.0 (MVP)
