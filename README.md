@@ -44,7 +44,7 @@ To create a class mock (ex. `FirstService`):
 ```swift
 class MockService: FirstService
 ```
-2. Adopt Mock protocol 
+2. Implement Mock protocol 
 ```swift
 class MockService: FirstService, Mock
 ```
@@ -144,6 +144,20 @@ mockFirstService.when(mockFirstService.sel_performCalculation).thenDo({ _ -> Any
 })
 
 mockFirstService.when(mockFirstService.sel_performCalculation).thenCallReal()
+```
+### Partial mocks
+A Partial mock is smth between a real object and a mock.
+- Functions' calls and their args are recorded.
+- Functions automatically call real implementation (real object behaviour).
+- Any function can be stubbed to return test-needed value or to get alternative behavour.
+
+There are discussions whether partial mock is a pattern or an anti-pattern, whether you therefore should use them or not. 
+
+Mirage allows you to create a partial mock with one line of code. It's up to you - to use or not to use.
+
+To create a partial mock, create a mock subclass, implementing PartialMock protocol.
+```swift
+class PartialMockFirstService: MockFirstService, PartialMock { }
 ```
 ---
 ## Roadmap for v1.0 (MVP)
