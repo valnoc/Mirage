@@ -38,14 +38,14 @@ Copy /Mirage folder into your test target.
 First of all - check Example project.
 ### Mocks
 #### Class mock
-To create a class mock (ex. Service): 
+To create a class mock (ex. `FirstService`): 
 1. Create a new Mock class inhereted from the original 
 ```swift
-class MockService: Service
+class MockService: FirstService
 ```
 2. Adopt Mock protocol 
 ```swift
-class MockService: Service, Mock
+class MockService: FirstService, Mock
 ```
 First of all add a MockManager variable. It is recommended to add it like a lazy var. 
 
@@ -53,10 +53,10 @@ First argument of MockManager(...) should always be self. Self is not stored any
 
 Second argument is a closure which is responsible for calling real implementation of mocked functions. This closure is called with `thenCallRealFunc()` stubs or with partial mocks.
 ```swift
-    lazy var mockManager: MockManager = MockManager(self, callRealFuncClosure: { [weak self] (funcName, args) -> Any? in
-        guard let __self = self else { return nil }
-        return __self.callRealFunc(funcName, args)
-    })
+lazy var mockManager: MockManager = MockManager(self, callRealFuncClosure: { [weak self] (funcName, args) -> Any? in
+    guard let __self = self else { return nil }
+    return __self.callRealFunc(funcName, args)
+})
 ```
 3. Override all funcs which should to be mocked.
 New implementation should call mockManager.handle(...) for call registration. 
@@ -92,6 +92,30 @@ class MockFirstService: FirstService, Mock {
     let sel_performCalculation = "performCalculation(arg1:arg2:)"
     override func performCalculation(arg1:Int, arg2: Int) -> Int {
         return mockManager.handle(sel_performCalculation, withDefaultReturnValue: 0, withArgs: arg1, arg2) as! Int
+    }
+}
+```
+#### Protocol mock
+This case is even simpler. Steps are totally the same as creating a class mock except for calling real func implementation.
+##### Example
+`SecondService` is just a protocol.
+```swift
+class MockSecondService: SecondService, Mock {
+    
+    lazy var mockManager: MockManager = MockManager(self, callRealFuncClosure: { [weak self] (funcName, args) -> Any? in
+        guard let __self = self else { return nil }
+        return nil
+    })
+    
+    //MARK: - mocked calls
+    let sel_makeRandomPositiveInt = "makeRandomPositiveInt()"
+    func makeRandomPositiveInt() -> Int {
+        return mockManager.handle(sel_makeRandomPositiveInt, withDefaultReturnValue: 4, withArgs: nil) as! Int
+    }
+    
+    let sel_foo = "foo()"
+    func foo() {
+        mockManager.handle(sel_foo, withDefaultReturnValue: nil, withArgs: nil)
     }
 }
 ```
