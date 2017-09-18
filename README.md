@@ -16,12 +16,12 @@ Requires Swift 3.0
 
 ### Cocoapods
 Add this line into your Podfile under a test target and run `pod update`
-```
+```ruby
 pod 'Mirage'
 ```
 
 #### Podfile example
-```
+```ruby
 target 'MainTarget' do
   ...
   target 'TestTarget' do
@@ -37,7 +37,64 @@ Copy /Mirage folder into your test target.
 ## Usage
 First of all - check Example project.
 ### Mocks
+#### Class mock
+To create a class mock (ex. Service): 
+1. Create a new Mock class inhereted from the original 
+```swift
+class MockService: Service
+```
+2. Adopt Mock protocol 
+```swift
+class MockService: Service, Mock
+```
+First of all add a MockManager variable. It is recommended to add it like a lazy var. 
 
+First argument of MockManager(...) should always be self. Self is not stored anywhere and in fact is used inside init(...) only to get info whether an instance is a mock or a partial mock.
+
+Second argument is a closure which is responsible for calling real implementation of mocked functions. This closure is called with `thenCallRealFunc()` stubs or with partial mocks.
+```swift
+    lazy var mockManager: MockManager = MockManager(self, callRealFuncClosure: { [weak self] (funcName, args) -> Any? in
+        guard let __self = self else { return nil }
+        return __self.callRealFunc(funcName, args)
+    })
+```
+3. Override all funcs which should to be mocked.
+New implementation should call mockManager.handle(...) for call registration. 
+Arguments are: 
+* func string identifier
+* default return value (`nil` for void functions)
+* incoming args
+```swift
+return mockManager.handle(sel_performCalculation, withDefaultReturnValue: 0, withArgs: arg1, arg2) as! Int
+```
+The best pratice for defining `sel_performCalculation` is to use func name + first args if there are overloads like `func foo(_ a:Double)` and `func foo(_ a:Int)`. Anyway you can pass here any string you wish.
+
+**DO NOT FORGET!** to use passed func identifier in callRealFuncClosure of MockManager and call `super.function(...)`
+
+##### Example
+```swift
+class MockFirstService: FirstService, Mock {
+    
+    lazy var mockManager: MockManager = MockManager(self, callRealFuncClosure: { [weak self] (funcName, args) -> Any? in
+        guard let __self = self else { return nil }
+        return __self.callRealFunc(funcName, args)
+    })
+    fileprivate func callRealFunc(_ funcName:String, _ args:[Any?]?) -> Any? {
+        switch funcName {
+        case sel_performCalculation:
+            return super.performCalculation(arg1: args![0] as! Int, arg2: args![1] as! Int)
+        default:
+            return nil
+        }
+    }
+    
+    //MARK: - mocked calls
+    let sel_performCalculation = "performCalculation(arg1:arg2:)"
+    override func performCalculation(arg1:Int, arg2: Int) -> Int {
+        return mockManager.handle(sel_performCalculation, withDefaultReturnValue: 0, withArgs: arg1, arg2) as! Int
+    }
+}
+```
 ---
 ## Roadmap for v1.0 (MVP)
 #### v0.3
