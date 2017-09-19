@@ -170,14 +170,19 @@ There are several verification modes:
 - `Times` for exact number of times
 `verify(...)` throws `WrongCallTimesError` if actual call times do not match verification mode.
 
-Use XCTAssertNoThrow with `verify` call
-```
+Use `XCTAssertNoThrow(try ...)` with `verify` call
+```swift
 XCTAssertNoThrow(try mockFirstService.verify(mockFirstService.sel_performCalculation, Once()))
 XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_makeRandomPositiveInt, Times(2)))
 XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_foo, Never()))
 ```
-
-
+### Args
+You can get arguments of any call from history using `argsOf(...)` function. It returns an array of arguments for this call or nil. So the best pratice is to use guard and XCTFail around `argsOf(...)`.
+```swift
+guard let args = mockFirstService.argsOf(mockFirstService.sel_performCalculation) else { XCTFail(); return }
+guard let arg1 = args[0] as? Int else { XCTFail(); return }
+guard let arg2 = args[1] as? Int else { XCTFail(); return }
+```
 ---
 ## Roadmap for v1.0 (MVP)
 #### v0.3
