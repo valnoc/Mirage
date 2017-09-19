@@ -14,13 +14,13 @@ It provides a mechanism to
 ## Installation
 Requires Swift 3.0
 
-### Cocoapods
+#### Cocoapods
 Add this line into your Podfile under a test target and run `pod update`
 ```ruby
 pod 'Mirage'
 ```
 
-#### Podfile example
+Podfile example
 ```ruby
 target 'MainTarget' do
   ...
@@ -30,7 +30,7 @@ target 'MainTarget' do
   end
 end
 ```
-### Source files
+#### Source files
 Copy /Mirage folder into your test target.
 
 ---
@@ -72,7 +72,7 @@ The best pratice for defining `sel_performCalculation` is to use func name + fir
 
 **DO NOT FORGET!** to use passed func identifier in callRealFuncClosure of MockManager and call `super.function(...)`
 
-##### Example
+Example
 ```swift
 class MockFirstService: FirstService, Mock {
     
@@ -98,7 +98,9 @@ class MockFirstService: FirstService, Mock {
 ```
 #### Protocol mock
 This case is even simpler. Steps are totally the same as creating a class mock except for calling real func implementation.
-##### Example
+
+Example
+
 `SecondService` is just a protocol.
 ```swift
 class MockSecondService: SecondService, Mock {
@@ -159,6 +161,23 @@ To create a partial mock, create a mock subclass, implementing PartialMock proto
 ```swift
 class PartialMockFirstService: MockFirstService, PartialMock { }
 ```
+### Verify
+There are several verification modes:
+- `Never`
+- `Once`
+- `AtLeast`
+- `AtMost`
+- `Times` for exact number of times
+`verify(...)` throws `WrongCallTimesError` if actual call times do not match verification mode.
+
+Use XCTAssertNoThrow with `verify` call
+```
+XCTAssertNoThrow(try mockFirstService.verify(mockFirstService.sel_performCalculation, Once()))
+XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_makeRandomPositiveInt, Times(2)))
+XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_foo, Never()))
+```
+
+
 ---
 ## Roadmap for v1.0 (MVP)
 #### v0.3
