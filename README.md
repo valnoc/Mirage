@@ -191,4 +191,4 @@ guard let arg2 = args[1] as? Int else { XCTFail(); return }
 1. unit tests
 
 ## License
-Mirage is availabke Apache 2 License.
+Mirage is availabke under MIT License.
