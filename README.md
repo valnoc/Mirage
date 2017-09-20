@@ -35,7 +35,9 @@ Copy /Mirage folder into your test target.
 
 ---
 ## Usage
-First of all - check Example project.
+Check Example project for details.
+
+Try [Fata Morgana](https://github.com/valnoc/FataMorgana) for mocks generation.
 ### Mocks
 A Mock is an object which mimics the behaviour of a real object and records functions' calls.
 #### Class mock
