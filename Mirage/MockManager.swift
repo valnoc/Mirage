@@ -1,16 +1,32 @@
 //
-//  MockManager.swift
-//  MirageExample
+//    MIT License
 //
-//  Created by Valeriy Bezuglyy on 02/09/2017.
-//  Copyright © 2017 Valeriy Bezuglyy. All rights reserved.
+//    Copyright (c) 2017 Valeriy Bezuglyy
+//
+//    Permission is hereby granted, free of charge, to any person obtaining a copy
+//    of this software and associated documentation files (the "Software"), to deal
+//    in the Software without restriction, including without limitation the rights
+//    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//    copies of the Software, and to permit persons to whom the Software is
+//    furnished to do so, subject to the following conditions:
+//
+//    The above copyright notice and this permission notice shall be included in all
+//    copies or substantial portions of the Software.
+//
+//    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//    SOFTWARE.
 //
 
 import Foundation
 
-typealias MockFunctionCallBlock = (_ functionName:String, _ args:[Any?]?) -> Any?
+public typealias MockFunctionCallBlock = (_ functionName:String, _ args:[Any?]?) -> Any?
 
-class MockManager {
+public class MockManager {
     
     var callHistory: [String: [[Any?]]]
     
@@ -19,7 +35,7 @@ class MockManager {
     
     let shouldCallRealFuncs:Bool
     
-    init(_ mock: Mock, callRealFuncClosure:@escaping MockFunctionCallBlock) {
+    public init(_ mock: Mock, callRealFuncClosure:@escaping MockFunctionCallBlock) {
         self.callRealFuncClosure = callRealFuncClosure
         shouldCallRealFuncs = mock is PartialMock
         
@@ -28,7 +44,7 @@ class MockManager {
     }
     
     @discardableResult
-    func handle(_ functionName:String, withDefaultReturnValue defaultReturnValue:Any?, withArgs args:Any?...) -> Any? {
+    public func handle(_ functionName:String, withDefaultReturnValue defaultReturnValue:Any?, withArgs args:Any?...) -> Any? {
         if callHistory[functionName] == nil { callHistory[functionName] = [] }
         callHistory[functionName]?.append(args)
         
