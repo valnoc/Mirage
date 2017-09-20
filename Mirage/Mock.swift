@@ -30,6 +30,13 @@ protocol Mock {
 
 //MARK: verify
 extension Mock {
+    
+    /// Verifies that function was called an expected number of times according to verificator.
+    ///
+    /// - Parameters:
+    ///   - functionName: Name of the function.
+    ///   - callTimesVerificator: Verificator describes expected number of call times.
+    /// - Throws: WrongCallTimesError if function was called another number of times than it was expected.
     func verify(_ functionName:String, _ callTimesVerificator:CallTimesVerificator) throws {
         try mockManager.verify(functionName, callTimesVerificator)
     }
@@ -37,15 +44,37 @@ extension Mock {
 
 //MARK: args
 extension Mock {
+    
+    /// Get args of first call from history.
+    ///
+    /// - Parameter functionName: Name of the function.
+    /// - Returns: Array of args or nil.
     func argsOf(_ functionName:String) -> [Any?]? {
         return argsOfFirstCall(functionName)
     }
+    
+    /// Get args of first call from history.
+    ///
+    /// - Parameter functionName: Name of the function.
+    /// - Returns: Array of args or nil.
     func argsOfFirstCall(_ functionName:String) -> [Any?]? {
         return argsOf(functionName, callTime: 0)
     }
+    
+    /// Get args of last call from history.
+    ///
+    /// - Parameter functionName: Name of the function.
+    /// - Returns: Array of args or nil.
     func argsOfLastCall(_ functionName:String) -> [Any?]? {
         return argsOf(functionName, callTime: mockManager.totalCallTimes(functionName) - 1)
     }
+    
+    /// Get args of exact call from history.
+    ///
+    /// - Parameters:
+    ///   - functionName: Name of the function.
+    ///   - callTime: Call order.
+    /// - Returns: Array of args or nil.
     func argsOf(_ functionName:String, callTime:Int) -> [Any?]? {
         return mockManager.argsOf(functionName, callTime: callTime)
     }
@@ -53,6 +82,11 @@ extension Mock {
 
 //MARK: stub 
 extension Mock {
+    
+    /// Creates a stub for a function.
+    ///
+    /// - Parameter functionName: Name of the function.
+    /// - Returns: A function stub to be called with `thenDoSmth`, etc.
     func when(_ functionName:String) -> Stub {
         return mockManager.when(functionName)
     }

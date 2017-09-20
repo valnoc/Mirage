@@ -41,6 +41,11 @@ class Stub {
     }
     
     //MARK: result
+    
+    /// Returns new result instead of default
+    ///
+    /// - Parameter result: New result.
+    /// - Returns: A stub for chained call.
     @discardableResult
     func thenReturn(_ result: Any) -> Stub {
         let stubAction = StubAction { (_) -> Any? in
@@ -50,6 +55,10 @@ class Stub {
         return self
     }
 
+    /// Execute closure instead of called function.
+    ///
+    /// - Parameter closure: A closure to execute.
+    /// - Returns: A stub for chained call.
     @discardableResult
     func thenDo(_ closure: @escaping (_ args: [Any?]) -> Void) -> Stub {
         let stubAction = StubAction { (args) -> Any? in
@@ -60,6 +69,10 @@ class Stub {
         return self
     }
     
+    /// Execute closure instead of called function and return result.
+    ///
+    /// - Parameter closure: A closure to execute.
+    /// - Returns: A stub for chained call.
     @discardableResult
     func thenDo(_ closure: @escaping (_ args: [Any?]) -> Any?) -> Stub {
         let stubAction = StubAction { (args) -> Any? in
@@ -69,6 +82,9 @@ class Stub {
         return self
     }
     
+    /// Do nothing when function was called. Useful for partial mocks as common mocks are already doing nothing on call.
+    ///
+    /// - Returns: A stub for chained call.
     @discardableResult
     func thenDoNothing() -> Stub {
         let stubAction = StubAction { (args) -> Any? in
@@ -78,6 +94,9 @@ class Stub {
         return self
     }
     
+    /// Call real func implementation.
+    ///
+    /// - Returns:  A stub for chained call.
     @discardableResult
     func thenCallReal() -> Stub {
         let stubAction = StubAction { [weak self] (args) -> Any? in
