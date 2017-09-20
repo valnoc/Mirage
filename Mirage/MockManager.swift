@@ -24,9 +24,9 @@
 
 import Foundation
 
-typealias MockFunctionCallBlock = (_ functionName:String, _ args:[Any?]?) -> Any?
+public typealias MockFunctionCallBlock = (_ functionName:String, _ args:[Any?]?) -> Any?
 
-class MockManager {
+public class MockManager {
     
     var callHistory: [String: [[Any?]]]
     
@@ -35,7 +35,7 @@ class MockManager {
     
     let shouldCallRealFuncs:Bool
     
-    init(_ mock: Mock, callRealFuncClosure:@escaping MockFunctionCallBlock) {
+    public init(_ mock: Mock, callRealFuncClosure:@escaping MockFunctionCallBlock) {
         self.callRealFuncClosure = callRealFuncClosure
         shouldCallRealFuncs = mock is PartialMock
         
@@ -44,7 +44,7 @@ class MockManager {
     }
     
     @discardableResult
-    func handle(_ functionName:String, withDefaultReturnValue defaultReturnValue:Any?, withArgs args:Any?...) -> Any? {
+    public func handle(_ functionName:String, withDefaultReturnValue defaultReturnValue:Any?, withArgs args:Any?...) -> Any? {
         if callHistory[functionName] == nil { callHistory[functionName] = [] }
         callHistory[functionName]?.append(args)
         

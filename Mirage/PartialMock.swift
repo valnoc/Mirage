@@ -24,5 +24,5 @@
 
 import Foundation
 
-protocol PartialMock: Mock {
+public protocol PartialMock: Mock {
 }

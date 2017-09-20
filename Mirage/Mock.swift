@@ -24,12 +24,12 @@
 
 import Foundation
 
-protocol Mock {
+public protocol Mock {
     var mockManager: MockManager {get set}
 }
 
 //MARK: verify
-extension Mock {
+public extension Mock {
     
     /// Verifies that function was called an expected number of times according to verificator.
     ///
@@ -43,7 +43,7 @@ extension Mock {
 }
 
 //MARK: args
-extension Mock {
+public extension Mock {
     
     /// Get args of first call from history.
     ///
@@ -81,7 +81,7 @@ extension Mock {
 }
 
 //MARK: stub 
-extension Mock {
+public extension Mock {
     
     /// Creates a stub for a function.
     ///

@@ -24,22 +24,23 @@
 
 import Foundation
 
-protocol CallTimesVerificator {
+public protocol CallTimesVerificator {
     func verify(_ functionName:String, totalCallTimes:Int) throws
 }
-class WrongCallTimesError: Error {
+public class WrongCallTimesError: Error {
+    public init() { }
     //TODO: provide description
 }
 
 //MARK: -
-class Times: CallTimesVerificator {
+open class Times: CallTimesVerificator {
     
     var times:Int
-    init(_ times:Int) {
+    public init(_ times:Int) {
         self.times = times
     }
     
-    func verify(_ functionName: String, totalCallTimes:Int) throws {
+    public func verify(_ functionName: String, totalCallTimes:Int) throws {
         guard totalCallTimes == times else {
             throw WrongCallTimesError()
         }
@@ -47,28 +48,23 @@ class Times: CallTimesVerificator {
 }
 
 //MARK: -
-class Once: Times {
-    init() {
+open class Once: Times {
+    public init() {
         super.init(1)
     }
 }
 
 //MARK: -
-class Never: Times {
-    init() {
+open class Never: Times {
+    public init() {
         super.init(0)
     }
 }
 
 //MARK: -
-class AtLeast: CallTimesVerificator {
+open class AtLeast: Times {
     
-    var times:Int
-    init(_ times:Int) {
-        self.times = times
-    }
-    
-    func verify(_ functionName: String, totalCallTimes:Int) throws {
+    override public func verify(_ functionName: String, totalCallTimes:Int) throws {
         guard totalCallTimes >= times else {
             throw WrongCallTimesError()
         }
@@ -76,14 +72,9 @@ class AtLeast: CallTimesVerificator {
 }
 
 //MARK: -
-class AtMost: CallTimesVerificator {
-    
-    var times:Int
-    init(_ times:Int) {
-        self.times = times
-    }
-    
-    func verify(_ functionName: String, totalCallTimes:Int) throws {
+open class AtMost: Times {
+
+    override public func verify(_ functionName: String, totalCallTimes:Int) throws {
         guard totalCallTimes <= times else {
             throw WrongCallTimesError()
         }
