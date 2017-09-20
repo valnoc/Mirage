@@ -1,4 +1,6 @@
 # Mirage
+[![](https://img.shields.io/cocoapods/v/Mirage.svg)]()
+
 Mirage is a lightweight mocking framework for swift projects. 
 
 Its version is still below 1.0, nevertheless it is production-ready and can be used in your projects. 
