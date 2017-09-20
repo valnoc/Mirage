@@ -13,6 +13,11 @@ Pod::Spec.new do |s|
   s.summary          = "Mirage is a lightweight mocking framework for swift projects."
   s.description      = <<-DESC
 Mirage is a lightweight mocking framework for swift projects.
+Features.
+It provides a mechanism to:
+- create mocks, stubs, partial mocks
+- verify call times
+- get call arguments history
                        DESC
   s.homepage         = "https://github.com/valnoc/Mirage"
 
