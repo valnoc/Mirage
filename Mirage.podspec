@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Mirage"
-  s.version          = "0.3.0"
+  s.version          = "0.3.1"
   s.summary          = "Mirage is a lightweight mocking framework for swift projects."
   s.description      = <<-DESC
 Mirage is a lightweight mocking framework for swift projects.
