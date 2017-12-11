@@ -9,44 +9,41 @@
 import Foundation
 
 class MainObject {
-    
+
     var firstService: FirstService
     var secondService: SecondService
-    
+
     init(firstService: FirstService,
          secondService: SecondService) {
         self.firstService = firstService
         self.secondService = secondService
     }
-    
+
     func perfromMainOperation() {
         let sum = firstService.performCalculation(arg1: secondService.makeRandomPositiveInt(), arg2: secondService.makeRandomPositiveInt())
-        
+
         if sum > 0 {
             secondService.foo()
-        }
-        else {
+        } else {
             postFailedNotification("sum < 0")
         }
     }
-    
+
     func postFailedNotification(_ reason: String) {
     }
-    
-    
+
     func performArgOperation(_ a: Int, _ b: Int) {
         _ = firstService.performCalculation(arg1: a, arg2: b * 2)
     }
-    
-    
+
     func calculateSum() -> Int {
         return makeFirstArg() + makeSecondArg()
     }
-    
+
     func makeFirstArg() -> Int {
         return 2
     }
-    
+
     func makeSecondArg() -> Int {
         return 5
     }
