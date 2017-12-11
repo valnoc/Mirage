@@ -47,7 +47,7 @@ public class Stub {
     /// - Parameter result: New result.
     /// - Returns: A stub for chained call.
     @discardableResult
-    public func thenReturn(_ result: Any) -> Stub {
+    public func thenReturn(_ result: Any?) -> Stub {
         let stubAction = StubAction { (_) -> Any? in
             return result
         }
