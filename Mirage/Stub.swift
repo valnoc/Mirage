@@ -32,7 +32,7 @@ public class Stub {
     var actions: [StubAction]
     var nextActionIndex: Int
     
-    init(functionName: String, callRealFuncClosure:@escaping MockFunctionCallBlock) {
+    init(functionName: String, callRealFuncClosure: @escaping MockFunctionCallBlock) {
         self.functionName = functionName
         self.callRealFuncClosure = callRealFuncClosure
         
@@ -47,7 +47,7 @@ public class Stub {
     /// - Parameter result: New result.
     /// - Returns: A stub for chained call.
     @discardableResult
-    public func thenReturn(_ result: Any) -> Stub {
+    public func thenReturn(_ result: Any?) -> Stub {
         let stubAction = StubAction { (_) -> Any? in
             return result
         }
@@ -108,15 +108,14 @@ public class Stub {
     }
     
     //MARK: execute
-    func executeNextAction(_ args:[Any?]) -> Any? {
+    func executeNextAction(_ args: [Any?]) -> Any? {
         guard actions.count > 0 else { return nil }
         
         var action: StubAction
         if nextActionIndex < actions.count {
             action = actions[nextActionIndex]
             nextActionIndex += 1
-        }
-        else {
+        } else {
             action = actions.last!
         }
         

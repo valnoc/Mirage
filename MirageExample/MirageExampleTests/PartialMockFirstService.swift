@@ -9,5 +9,5 @@
 import Foundation
 
 class PartialMockFirstService: MockFirstService, PartialMock {
-    
+
 }

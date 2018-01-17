@@ -11,18 +11,18 @@ import Foundation
 @testable import MirageExample
 
 class MockSecondService: SecondService, Mock {
-    
-    lazy var mockManager: MockManager = MockManager(self, callRealFuncClosure: { [weak self] (funcName, args) -> Any? in
+
+    lazy var mockManager: MockManager = MockManager(self, callRealFuncClosure: { [weak self] (_, _) -> Any? in
         guard let __self = self else { return nil }
         return nil
     })
-    
-    //MARK: - mocked calls
+
+    // MARK: - mocked calls
     let sel_makeRandomPositiveInt = "makeRandomPositiveInt()"
     func makeRandomPositiveInt() -> Int {
         return mockManager.handle(sel_makeRandomPositiveInt, withDefaultReturnValue: 4, withArgs: nil) as! Int
     }
-    
+
     let sel_foo = "foo()"
     func foo() {
         mockManager.handle(sel_foo, withDefaultReturnValue: nil, withArgs: nil)

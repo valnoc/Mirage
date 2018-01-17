@@ -10,6 +10,6 @@ import Foundation
 
 protocol SecondService {
     func makeRandomPositiveInt() -> Int
-    
+
     func foo()
 }
