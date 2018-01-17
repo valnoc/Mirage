@@ -26,13 +26,13 @@ import Foundation
 
 class StubAction {
     
-    var action: (_ args:[Any?]) -> Any?
+    var action: (_ args: [Any?]) -> Any?
     
-    init(action: @escaping (_ args:[Any?]) -> Any?) {
+    init(action: @escaping (_ args: [Any?]) -> Any?) {
         self.action = action
     }
     
-    func execute(_ args:[Any?]) -> Any? {
+    func execute(_ args: [Any?]) -> Any? {
         return action(args)
     }
 }
