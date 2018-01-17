@@ -14,7 +14,7 @@ It provides a mechanism to
 
 ---
 ## Installation
-Requires Swift 3.0
+Requires Swift 4.0
 
 #### Cocoapods
 Add this line into your Podfile under a test target and run `pod update`
