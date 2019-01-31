@@ -7,12 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B1FA57C1F6B178A00315C8B /* PartialMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1FA57B1F6B178A00315C8B /* PartialMock.swift */; };
 		5B1FA57E1F6B187700315C8B /* PartialMockFirstService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1FA57D1F6B187700315C8B /* PartialMockFirstService.swift */; };
 		5B96A23A1F69C41500458BAD /* PartialMockMainObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96A2391F69C41500458BAD /* PartialMockMainObject.swift */; };
-		5BA1C95D1F5B55F900E3B669 /* CallTimesVerificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1C95C1F5B55F900E3B669 /* CallTimesVerificator.swift */; };
-		5BE4226B1F6712B500D762C7 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4226A1F6712B500D762C7 /* Stub.swift */; };
-		5BE4226D1F6716DA00D762C7 /* StubAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE4226C1F6716DA00D762C7 /* StubAction.swift */; };
 		5BF2A3481F5B42AD00B4F997 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A3471F5B42AD00B4F997 /* AppDelegate.swift */; };
 		5BF2A34F1F5B42AD00B4F997 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF2A34E1F5B42AD00B4F997 /* Assets.xcassets */; };
 		5BF2A35D1F5B42AD00B4F997 /* MainObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A35C1F5B42AD00B4F997 /* MainObjectTests.swift */; };
@@ -21,8 +17,12 @@
 		5BF2A36D1F5B43CF00B4F997 /* SecondService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A36C1F5B43CF00B4F997 /* SecondService.swift */; };
 		5BF2A36F1F5B45F500B4F997 /* MockFirstService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A36E1F5B45F500B4F997 /* MockFirstService.swift */; };
 		5BF2A3711F5B45FE00B4F997 /* MockSecondService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A3701F5B45FE00B4F997 /* MockSecondService.swift */; };
-		5BF2A3731F5B469F00B4F997 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A3721F5B469F00B4F997 /* Mock.swift */; };
-		5BF2A3751F5B46D000B4F997 /* MockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2A3741F5B46D000B4F997 /* MockManager.swift */; };
+		652E39612202E3EC009BD47F /* MockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652E395B2202E3EC009BD47F /* MockManager.swift */; };
+		652E39622202E3EC009BD47F /* CallTimesVerificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652E395C2202E3EC009BD47F /* CallTimesVerificator.swift */; };
+		652E39632202E3EC009BD47F /* PartialMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652E395D2202E3EC009BD47F /* PartialMock.swift */; };
+		652E39642202E3EC009BD47F /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652E395E2202E3EC009BD47F /* Mock.swift */; };
+		652E39652202E3EC009BD47F /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652E395F2202E3EC009BD47F /* Stub.swift */; };
+		652E39662202E3EC009BD47F /* StubAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652E39602202E3EC009BD47F /* StubAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,12 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5B1FA57B1F6B178A00315C8B /* PartialMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialMock.swift; sourceTree = "<group>"; };
 		5B1FA57D1F6B187700315C8B /* PartialMockFirstService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialMockFirstService.swift; sourceTree = "<group>"; };
 		5B96A2391F69C41500458BAD /* PartialMockMainObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialMockMainObject.swift; sourceTree = "<group>"; };
-		5BA1C95C1F5B55F900E3B669 /* CallTimesVerificator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallTimesVerificator.swift; sourceTree = "<group>"; };
-		5BE4226A1F6712B500D762C7 /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
-		5BE4226C1F6716DA00D762C7 /* StubAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubAction.swift; sourceTree = "<group>"; };
 		5BF2A3441F5B42AD00B4F997 /* MirageExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MirageExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BF2A3471F5B42AD00B4F997 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BF2A34E1F5B42AD00B4F997 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,8 +50,12 @@
 		5BF2A36C1F5B43CF00B4F997 /* SecondService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondService.swift; sourceTree = "<group>"; };
 		5BF2A36E1F5B45F500B4F997 /* MockFirstService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFirstService.swift; sourceTree = "<group>"; };
 		5BF2A3701F5B45FE00B4F997 /* MockSecondService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSecondService.swift; sourceTree = "<group>"; };
-		5BF2A3721F5B469F00B4F997 /* Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
-		5BF2A3741F5B46D000B4F997 /* MockManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockManager.swift; sourceTree = "<group>"; };
+		652E395B2202E3EC009BD47F /* MockManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockManager.swift; path = Mirage/MockManager.swift; sourceTree = "<group>"; };
+		652E395C2202E3EC009BD47F /* CallTimesVerificator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CallTimesVerificator.swift; path = Mirage/CallTimesVerificator.swift; sourceTree = "<group>"; };
+		652E395D2202E3EC009BD47F /* PartialMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PartialMock.swift; path = Mirage/PartialMock.swift; sourceTree = "<group>"; };
+		652E395E2202E3EC009BD47F /* Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Mock.swift; path = Mirage/Mock.swift; sourceTree = "<group>"; };
+		652E395F2202E3EC009BD47F /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stub.swift; path = Mirage/Stub.swift; sourceTree = "<group>"; };
+		652E39602202E3EC009BD47F /* StubAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StubAction.swift; path = Mirage/StubAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,12 +124,12 @@
 		5BF2A3671F5B431700B4F997 /* Mirage */ = {
 			isa = PBXGroup;
 			children = (
-				5BF2A3721F5B469F00B4F997 /* Mock.swift */,
-				5B1FA57B1F6B178A00315C8B /* PartialMock.swift */,
-				5BF2A3741F5B46D000B4F997 /* MockManager.swift */,
-				5BA1C95C1F5B55F900E3B669 /* CallTimesVerificator.swift */,
-				5BE4226A1F6712B500D762C7 /* Stub.swift */,
-				5BE4226C1F6716DA00D762C7 /* StubAction.swift */,
+				652E395C2202E3EC009BD47F /* CallTimesVerificator.swift */,
+				652E395E2202E3EC009BD47F /* Mock.swift */,
+				652E395B2202E3EC009BD47F /* MockManager.swift */,
+				652E395D2202E3EC009BD47F /* PartialMock.swift */,
+				652E395F2202E3EC009BD47F /* Stub.swift */,
+				652E39602202E3EC009BD47F /* StubAction.swift */,
 			);
 			name = Mirage;
 			path = ../../Mirage;
@@ -249,16 +249,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BF2A3711F5B45FE00B4F997 /* MockSecondService.swift in Sources */,
+				652E39652202E3EC009BD47F /* Stub.swift in Sources */,
+				652E39662202E3EC009BD47F /* StubAction.swift in Sources */,
 				5B96A23A1F69C41500458BAD /* PartialMockMainObject.swift in Sources */,
-				5BA1C95D1F5B55F900E3B669 /* CallTimesVerificator.swift in Sources */,
-				5B1FA57C1F6B178A00315C8B /* PartialMock.swift in Sources */,
+				652E39622202E3EC009BD47F /* CallTimesVerificator.swift in Sources */,
+				652E39632202E3EC009BD47F /* PartialMock.swift in Sources */,
 				5BF2A36F1F5B45F500B4F997 /* MockFirstService.swift in Sources */,
+				652E39612202E3EC009BD47F /* MockManager.swift in Sources */,
 				5B1FA57E1F6B187700315C8B /* PartialMockFirstService.swift in Sources */,
 				5BF2A35D1F5B42AD00B4F997 /* MainObjectTests.swift in Sources */,
-				5BF2A3751F5B46D000B4F997 /* MockManager.swift in Sources */,
-				5BF2A3731F5B469F00B4F997 /* Mock.swift in Sources */,
-				5BE4226B1F6712B500D762C7 /* Stub.swift in Sources */,
-				5BE4226D1F6716DA00D762C7 /* StubAction.swift in Sources */,
+				652E39642202E3EC009BD47F /* Mock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
