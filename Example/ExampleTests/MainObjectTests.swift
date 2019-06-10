@@ -1,13 +1,14 @@
 //
-//  MirageExampleTests.swift
-//  MirageExampleTests
+//  ExampleTests.swift
+//  ExampleTests
 //
 //  Created by Valeriy Bezuglyy on 02/09/2017.
 //  Copyright © 2017 Valeriy Bezuglyy. All rights reserved.
 //
 
 import XCTest
-@testable import MirageExample
+import Mirage
+@testable import Example
 
 class MainObjectTests: XCTestCase {
 

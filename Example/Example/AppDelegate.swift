@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  MirageExample
+//  Example
 //
-//  Created by Valeriy Bezuglyy on 02/09/2017.
-//  Copyright © 2017 Valeriy Bezuglyy. All rights reserved.
+//  Created by Valeriy Bezuglyy on 10/06/2019.
+//  Copyright © 2019 Valeriy Bezuglyy. All rights reserved.
 //
 
 import UIKit
@@ -13,7 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
     }
@@ -40,4 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+
 }
+
