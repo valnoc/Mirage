@@ -44,17 +44,18 @@ public class MockManager {
     }
     
     @discardableResult
-    public func handle(_ functionName: String,
-                       withDefaultReturnValue defaultReturnValue: Any?,
-                       withArgs args: Any?...) -> Any? {
+    public func handle<TReturn>(_ functionName: String,
+                       withDefaultReturnValue defaultReturnValue: TReturn,
+                       withArgs args: Any?...) -> TReturn {
         if callHistory[functionName] == nil { callHistory[functionName] = [] }
         callHistory[functionName]?.append(args)
-        
         if let stub = stubForFunction(functionName) {
-            return stub.executeNextAction(args)
+            //TODO: fix
+            return stub.executeNextAction(args) as! TReturn
             
         } else if shouldCallRealFuncs {
-            return callRealFuncClosure(functionName, args)
+            //TODO: fix
+            return callRealFuncClosure(functionName, args) as! TReturn
             
         } else {
             return defaultReturnValue
