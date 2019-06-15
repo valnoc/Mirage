@@ -25,9 +25,9 @@
 import Foundation
 
 public protocol Mock {
-    associatedtype Func where Func: Hashable
+    associatedtype TFunc where TFunc: Hashable
     
-    var callHandler: CallHandler<Func> {get set}
+    var callHandler: CallHandler<TFunc> {get set}
 }
 
 //MARK: verify
@@ -39,14 +39,14 @@ public extension Mock {
     ///   - functionName: Name of the function.
     ///   - OldCallTimesVerificator: Verificator describes expected number of call times.
     /// - Throws: WrongCallTimesError if function was called another number of times than it was expected.
-    func verify(_ function: Func, called rule: CallTimesRule) throws {
+    func verify(_ function: TFunc, called rule: CallTimesRule) throws {
         try callHandler.verify(function, called: rule)
     }
 }
 
 ////MARK: args
 //public extension Mock {
-//    
+//
 //    /// Get args of first call from history.
 //    ///
 //    /// - Parameter functionName: Name of the function.
@@ -54,7 +54,7 @@ public extension Mock {
 //    func argsOf(_ functionName: String) -> [Any?]? {
 //        return argsOfFirstCall(functionName)
 //    }
-//    
+//
 //    /// Get args of first call from history.
 //    ///
 //    /// - Parameter functionName: Name of the function.
@@ -62,7 +62,7 @@ public extension Mock {
 //    func argsOfFirstCall(_ functionName: String) -> [Any?]? {
 //        return argsOf(functionName, callTime: 0)
 //    }
-//    
+//
 //    /// Get args of last call from history.
 //    ///
 //    /// - Parameter functionName: Name of the function.
@@ -70,7 +70,7 @@ public extension Mock {
 //    func argsOfLastCall(_ functionName: String) -> [Any?]? {
 //        return argsOf(functionName, callTime: mockManager.totalCallTimes(functionName) - 1)
 //    }
-//    
+//
 //    /// Get args of exact call from history.
 //    ///
 //    /// - Parameters:
@@ -82,9 +82,9 @@ public extension Mock {
 //    }
 //}
 //
-////MARK: stub 
+////MARK: stub
 //public extension Mock {
-//    
+//
 //    /// Creates a stub for a function.
 //    ///
 //    /// - Parameter functionName: Name of the function.

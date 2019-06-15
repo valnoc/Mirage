@@ -26,29 +26,30 @@ import Foundation
 
 //public typealias MockFunctionCallBlock = (_ functionName: String, _ args: [Any?]?) -> Any?
 
-public class CallHandler<Func> where Func: Hashable {
+public class CallHandler<TFunc> where TFunc: Hashable {
     
-    var callHistory: [Func: [[Any?]]] = [:]
-//
+    fileprivate var callHistory: [TFunc: [Any]] = [:] //[TFunc: [TArgs]]]
+
 //    var stubs: [Stub]
 //    let callRealFuncClosure: MockFunctionCallBlock
 //
 //    let shouldCallRealFuncs:Bool
-//
-//    public init(_ mock: Mock, callRealFuncClosure: @escaping MockFunctionCallBlock) {
+
+//    public init(callRealFuncClosure: @escaping MockFunctionCallBlock) {
 //        self.callRealFuncClosure = callRealFuncClosure
 //        shouldCallRealFuncs = mock is PartialMock
 //
 //        callHistory = [:]
 //        stubs = []
 //    }
-//
-//    @discardableResult
-//    public func handle<TReturn>(_ function: Func,
-//                       withDefaultReturnValue defaultReturnValue: TReturn,
-//                       withArgs args: Any?...) -> TReturn {
-//        if callHistory[functionName] == nil { callHistory[functionName] = [] }
-//        callHistory[functionName]?.append(args)
+    
+    @discardableResult
+    public func handle<TArgs, TReturn>(_ function: TFunc,
+                                       withArgs args: TArgs,
+                                       defaultReturnValue: TReturn) -> TReturn {
+        if callHistory[function] == nil { callHistory[function] = [] }
+        callHistory[function]?.append(args)
+        
 //        if let stub = stubForFunction(functionName) {
 //            //TODO: fix
 //            return stub.executeNextAction(args) as! TReturn
@@ -58,12 +59,12 @@ public class CallHandler<Func> where Func: Hashable {
 //            return callRealFuncClosure(functionName, args) as! TReturn
 //
 //        } else {
-//            return defaultReturnValue
+            return defaultReturnValue
 //        }
-//    }
-//
+    }
+
     //MARK: verify
-    func verify(_ function: Func, called rule: CallTimesRule) throws {
+    func verify(_ function: TFunc, called rule: CallTimesRule) throws {
         let times = (callHistory[function] ?? []).count
         try rule.verify(times)
     }
