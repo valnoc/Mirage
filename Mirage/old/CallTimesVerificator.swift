@@ -24,7 +24,7 @@
 
 import Foundation
 
-public protocol CallTimesVerificator {
+public protocol OldCallTimesVerificator {
     func verify(_ functionName: String, totalCallTimes: Int) throws
 }
 
@@ -34,7 +34,7 @@ public class WrongCallTimesError: Error {
 }
 
 //MARK: -
-open class Times: CallTimesVerificator {
+open class Times: OldCallTimesVerificator {
     
     var times: Int
     public init(_ times: Int) {

@@ -24,5 +24,5 @@
 
 import Foundation
 
-public protocol PartialMock: Mock {
+public protocol OldPartialMock: OldMock {
 }

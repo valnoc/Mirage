@@ -24,26 +24,26 @@
 
 import Foundation
 
-public protocol Mock {
-    var mockManager: MockManager {get set}
+public protocol OldMock {
+    var mockManager: OldMockManager {get set}
 }
 
 //MARK: verify
-public extension Mock {
+public extension OldMock {
     
     /// Verifies that function was called an expected number of times according to verificator.
     ///
     /// - Parameters:
     ///   - functionName: Name of the function.
-    ///   - callTimesVerificator: Verificator describes expected number of call times.
+    ///   - OldCallTimesVerificator: Verificator describes expected number of call times.
     /// - Throws: WrongCallTimesError if function was called another number of times than it was expected.
-    func verify(_ functionName: String, _ callTimesVerificator: CallTimesVerificator) throws {
-        try mockManager.verify(functionName, callTimesVerificator)
+    func verify(_ functionName: String, _ OldCallTimesVerificator: OldCallTimesVerificator) throws {
+        try mockManager.verify(functionName, OldCallTimesVerificator)
     }
 }
 
 //MARK: args
-public extension Mock {
+public extension OldMock {
     
     /// Get args of first call from history.
     ///
@@ -81,13 +81,13 @@ public extension Mock {
 }
 
 //MARK: stub 
-public extension Mock {
+public extension OldMock {
     
     /// Creates a stub for a function.
     ///
     /// - Parameter functionName: Name of the function.
     /// - Returns: A function stub to be called with `thenDoSmth`, etc.
-    func when(_ functionName: String) -> Stub {
+    func when(_ functionName: String) -> OldStub {
         return mockManager.when(functionName)
     }
 }

@@ -24,7 +24,7 @@
 
 import Foundation
 
-class StubAction {
+class OldStubAction {
     
     var action: (_ args: [Any?]) -> Any?
     

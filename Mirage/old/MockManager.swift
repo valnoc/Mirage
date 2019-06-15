@@ -24,20 +24,20 @@
 
 import Foundation
 
-public typealias MockFunctionCallBlock = (_ functionName: String, _ args: [Any?]?) -> Any?
+public typealias OldMockFunctionCallBlock = (_ functionName: String, _ args: [Any?]?) -> Any?
 
-public class MockManager {
+public class OldMockManager {
     
     var callHistory: [String: [[Any?]]]
     
-    var stubs: [Stub]
-    let callRealFuncClosure: MockFunctionCallBlock
+    var stubs: [OldStub]
+    let callRealFuncClosure: OldMockFunctionCallBlock
     
     let shouldCallRealFuncs:Bool
     
-    public init(_ mock: Mock, callRealFuncClosure: @escaping MockFunctionCallBlock) {
+    public init(_ mock: OldMock, callRealFuncClosure: @escaping OldMockFunctionCallBlock) {
         self.callRealFuncClosure = callRealFuncClosure
-        shouldCallRealFuncs = mock is PartialMock
+        shouldCallRealFuncs = mock is OldPartialMock
         
         callHistory = [:]
         stubs = []
@@ -62,8 +62,8 @@ public class MockManager {
     }
     
     //MARK: verify
-    func verify(_ functionName: String, _ callTimesVerificator: CallTimesVerificator) throws {
-        try callTimesVerificator.verify(functionName, totalCallTimes: totalCallTimes(functionName))
+    func verify(_ functionName: String, _ OldCallTimesVerificator: OldCallTimesVerificator) throws {
+        try OldCallTimesVerificator.verify(functionName, totalCallTimes: totalCallTimes(functionName))
     }
     
     //MARK: args
@@ -80,18 +80,18 @@ public class MockManager {
     }
     
     //MARK: stub
-    func when(_ functionName: String) -> Stub {
-        if let oldStub = stubForFunction(functionName) {
-            return oldStub
+    func when(_ functionName: String) -> OldStub {
+        if let oldOldStub = stubForFunction(functionName) {
+            return oldOldStub
             
         } else {
-            let stub = Stub(functionName: functionName, callRealFuncClosure: callRealFuncClosure)
+            let stub = OldStub(functionName: functionName, callRealFuncClosure: callRealFuncClosure)
             stubs.append(stub)
             return stub
         }
     }
     
-    fileprivate func stubForFunction(_ functionName: String) -> Stub? {
+    fileprivate func stubForFunction(_ functionName: String) -> OldStub? {
         return stubs.filter({$0.functionName == functionName}).first
     }
 

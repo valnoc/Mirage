@@ -24,15 +24,15 @@
 
 import Foundation
 
-public class Stub {
+public class OldStub {
     
     let functionName: String
-    let callRealFuncClosure: MockFunctionCallBlock
+    let callRealFuncClosure: OldMockFunctionCallBlock
     
-    var actions: [StubAction]
+    var actions: [OldStubAction]
     var nextActionIndex: Int
     
-    init(functionName: String, callRealFuncClosure: @escaping MockFunctionCallBlock) {
+    init(functionName: String, callRealFuncClosure: @escaping OldMockFunctionCallBlock) {
         self.functionName = functionName
         self.callRealFuncClosure = callRealFuncClosure
         
@@ -47,8 +47,8 @@ public class Stub {
     /// - Parameter result: New result.
     /// - Returns: A stub for chained call.
     @discardableResult
-    public func thenReturn(_ result: Any?) -> Stub {
-        let stubAction = StubAction { (_) -> Any? in
+    public func thenReturn(_ result: Any?) -> OldStub {
+        let stubAction = OldStubAction { (_) -> Any? in
             return result
         }
         actions.append(stubAction)
@@ -60,8 +60,8 @@ public class Stub {
     /// - Parameter closure: A closure to execute.
     /// - Returns: A stub for chained call.
     @discardableResult
-    public func thenDo(_ closure: @escaping (_ args: [Any?]) -> Void) -> Stub {
-        let stubAction = StubAction { (args) -> Any? in
+    public func thenDo(_ closure: @escaping (_ args: [Any?]) -> Void) -> OldStub {
+        let stubAction = OldStubAction { (args) -> Any? in
             closure(args)
             return nil
         }
@@ -74,8 +74,8 @@ public class Stub {
     /// - Parameter closure: A closure to execute.
     /// - Returns: A stub for chained call.
     @discardableResult
-    public func thenDo(_ closure: @escaping (_ args: [Any?]) -> Any?) -> Stub {
-        let stubAction = StubAction { (args) -> Any? in
+    public func thenDo(_ closure: @escaping (_ args: [Any?]) -> Any?) -> OldStub {
+        let stubAction = OldStubAction { (args) -> Any? in
             return closure(args)
         }
         actions.append(stubAction)
@@ -86,8 +86,8 @@ public class Stub {
     ///
     /// - Returns: A stub for chained call.
     @discardableResult
-    public func thenDoNothing() -> Stub {
-        let stubAction = StubAction { (args) -> Any? in
+    public func thenDoNothing() -> OldStub {
+        let stubAction = OldStubAction { (args) -> Any? in
             return nil
         }
         actions.append(stubAction)
@@ -98,8 +98,8 @@ public class Stub {
     ///
     /// - Returns:  A stub for chained call.
     @discardableResult
-    public func thenCallReal() -> Stub {
-        let stubAction = StubAction { [weak self] (args) -> Any? in
+    public func thenCallReal() -> OldStub {
+        let stubAction = OldStubAction { [weak self] (args) -> Any? in
             guard let __self = self else { return nil }
             return __self.callRealFuncClosure(__self.functionName, args)
         }
@@ -111,7 +111,7 @@ public class Stub {
     func executeNextAction(_ args: [Any?]) -> Any? {
         guard actions.count > 0 else { return nil }
         
-        var action: StubAction
+        var action: OldStubAction
         if nextActionIndex < actions.count {
             action = actions[nextActionIndex]
             nextActionIndex += 1
