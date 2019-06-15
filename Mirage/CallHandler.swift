@@ -26,9 +26,9 @@ import Foundation
 
 //public typealias MockFunctionCallBlock = (_ functionName: String, _ args: [Any?]?) -> Any?
 
-public class CallHandler<Func> {
+public class CallHandler<Func> where Func: Hashable {
     
-//    var callHistory: [String: [[Any?]]]
+    var callHistory: [Func: [[Any?]]]
 //
 //    var stubs: [Stub]
 //    let callRealFuncClosure: MockFunctionCallBlock
@@ -63,8 +63,9 @@ public class CallHandler<Func> {
 //    }
 //
     //MARK: verify
-    func verify(_ function: Func, _ callTimesVerificator: CallTimesVerificator) throws {
-        try callTimesVerificator.verify(functionName, totalCallTimes: totalCallTimes(functionName))
+    func verifyCallTimes(_ function: Func, _ rule: CallTimesRule) throws {
+        let times = (callHistory[function] ?? []).count
+        try rule.isValid(times)
     }
 
 //    //MARK: args

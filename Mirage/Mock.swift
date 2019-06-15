@@ -27,7 +27,7 @@ import Foundation
 public protocol Mock {
     associatedtype Func
     
-    var callHandler: CallHandler {get set}
+    var callHandler: CallHandler<Func> {get set}
 }
 
 //MARK: verify
@@ -39,8 +39,8 @@ public extension Mock {
     ///   - functionName: Name of the function.
     ///   - callTimesVerificator: Verificator describes expected number of call times.
     /// - Throws: WrongCallTimesError if function was called another number of times than it was expected.
-    func verify(_ function: Func, _ callTimesVerificator: CallTimesVerificator) throws {
-        try callHandler.verify(function, callTimesVerificator)
+    func verifyCallTimes(_ function: Func, _ rule: CallTimesRule) throws {
+        try callHandler.verify(function, rule)
     }
 }
 
