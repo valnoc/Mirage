@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B2A654822B539D100A27C88 /* CallHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A654722B539D100A27C88 /* CallHandler.swift */; };
 		652E393F2202E1CB009BD47F /* Mirage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 652E39352202E1CB009BD47F /* Mirage.framework */; };
 		652E39442202E1CB009BD47F /* MirageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652E39432202E1CB009BD47F /* MirageTests.swift */; };
 		652E39462202E1CB009BD47F /* Mirage.h in Headers */ = {isa = PBXBuildFile; fileRef = 652E39382202E1CB009BD47F /* Mirage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B2A654722B539D100A27C88 /* CallHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallHandler.swift; sourceTree = "<group>"; };
 		652E39352202E1CB009BD47F /* Mirage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mirage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		652E39382202E1CB009BD47F /* Mirage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mirage.h; sourceTree = "<group>"; };
 		652E39392202E1CB009BD47F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			children = (
 				652E39502202E2D9009BD47F /* CallTimesVerificator.swift */,
 				652E39522202E2D9009BD47F /* Mock.swift */,
+				5B2A654722B539D100A27C88 /* CallHandler.swift */,
 				652E394F2202E2D9009BD47F /* MockManager.swift */,
 				652E39512202E2D9009BD47F /* PartialMock.swift */,
 				652E39532202E2D9009BD47F /* Stub.swift */,
@@ -215,6 +218,7 @@
 				652E39552202E2DA009BD47F /* MockManager.swift in Sources */,
 				652E395A2202E2DA009BD47F /* StubAction.swift in Sources */,
 				652E39592202E2DA009BD47F /* Stub.swift in Sources */,
+				5B2A654822B539D100A27C88 /* CallHandler.swift in Sources */,
 				652E39562202E2DA009BD47F /* CallTimesVerificator.swift in Sources */,
 				652E39572202E2DA009BD47F /* PartialMock.swift in Sources */,
 				652E39582202E2DA009BD47F /* Mock.swift in Sources */,
