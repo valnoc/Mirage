@@ -13,19 +13,30 @@ import Mirage
 
 class MockSecondService: SecondService, Mock {
 
-    lazy var mockManager: MockManager = MockManager(self, callRealFuncClosure: { [weak self] (_, _) -> Any? in
-        guard let __self = self else { return nil }
-        return nil
-    })
+    enum Func: String {
+        case makeRandomPositiveInt, foo
+    }
+    
+    lazy var callHandler = CallHandler<Func>()
 
     // MARK: - mocked calls
-    let sel_makeRandomPositiveInt = "makeRandomPositiveInt()"
+    class MakeRandomPositiveIntArgs {
+        init() {
+        }
+    }
     func makeRandomPositiveInt() -> Int {
-        return mockManager.handle(sel_makeRandomPositiveInt, withDefaultReturnValue: 4, withArgs: nil) as! Int
+        return callHandler.handle(.makeRandomPositiveInt,
+                                  withArgs: MakeRandomPositiveIntArgs(),
+                                  defaultReturnValue: 4)
     }
 
-    let sel_foo = "foo()"
+    class FooArgs {
+        init() {
+        }
+    }
     func foo() {
-        mockManager.handle(sel_foo, withDefaultReturnValue: nil, withArgs: nil)
+        callHandler.handle(.foo,
+                           withArgs: FooArgs(),
+                           defaultReturnValue: ())
     }
 }

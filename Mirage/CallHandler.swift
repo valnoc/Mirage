@@ -30,6 +30,8 @@ public class CallHandler<TFunc> where TFunc: Hashable {
     
     fileprivate var callHistory: [TFunc: [Any]] = [:] //[TFunc: [TArgs]]]
 
+    public init() {}
+    
 //    var stubs: [Stub]
 //    let callRealFuncClosure: MockFunctionCallBlock
 //

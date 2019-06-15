@@ -14,23 +14,23 @@ class MainObjectTests: XCTestCase {
 
     var sut: MainObject!
 
-    var mockFirstService: MockFirstService!
-    var mockSecondService: MockSecondService!
+    var firstService: MockFirstService!
+    var secondService: MockSecondService!
 
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
-        mockFirstService = MockFirstService()
-        mockSecondService = MockSecondService()
+        firstService = MockFirstService()
+        secondService = MockSecondService()
 
-        sut = MainObject(firstService: mockFirstService,
-                         secondService: mockSecondService)
+        sut = MainObject(firstService: firstService,
+                         secondService: secondService)
     }
 
     override func tearDown() {
-        mockFirstService = nil
-        mockSecondService = nil
+        firstService = nil
+        secondService = nil
 
         sut = nil
 
@@ -40,47 +40,47 @@ class MainObjectTests: XCTestCase {
 
     func testGivenPositiveResultWhenPerfromMainOperationThenItShouldCallFoo() {
         //given
-        mockFirstService.when(mockFirstService.sel_performCalculation).thenReturn(100)
+//        firstService.when(.performCalculation).thenReturn(100)
 
         //when
         sut.perfromMainOperation()
 
         //then
-        XCTAssertNoThrow(try mockFirstService.verify(mockFirstService.sel_performCalculation, Once()))
-        XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_makeRandomPositiveInt, Times(2)))
-        XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_foo, Once()))
+        XCTAssertNoThrow(try firstService.verify(.performCalculation, called: .once))
+        XCTAssertNoThrow(try secondService.verify(.makeRandomPositiveInt, called: .times(2)))
+        XCTAssertNoThrow(try secondService.verify(.foo, called: .once))
     }
 
     func testGivenNegativeResultWhenPerfromMainOperationThenItShouldNotCallFoo() {
         //given
         var triggered = false
-        mockFirstService.when(mockFirstService.sel_performCalculation).thenDo({ _ -> Any? in
-            triggered = true
-            return -100
-        })
+//        firstService.when(.performCalculation).thenDo({ _ -> Any? in
+//            triggered = true
+//            return -100
+//        })
 
         //when
         sut.perfromMainOperation()
 
         //then
-        XCTAssertNoThrow(try mockFirstService.verify(mockFirstService.sel_performCalculation, Once()))
-        XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_makeRandomPositiveInt, Times(2)))
-        XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_foo, Never()))
+        XCTAssertNoThrow(try firstService.verify(.performCalculation, called: .once))
+        XCTAssertNoThrow(try secondService.verify(.makeRandomPositiveInt, called: .times(2)))
+        XCTAssertNoThrow(try secondService.verify(.foo, called: .never))
         XCTAssert(triggered == true)
     }
 
     func testGivenTwoPositiveValuesChainingWhenPerfromMainOperationThenItShouldCallFoo() {
         //given
-        mockSecondService.when(mockSecondService.sel_makeRandomPositiveInt).thenReturn(5).thenReturn(100)
-        mockFirstService.when(mockFirstService.sel_performCalculation).thenCallReal()
+//        secondService.when(.makeRandomPositiveInt).thenReturn(5).thenReturn(100)
+//        firstService.when(.performCalculation).thenCallReal()
 
         //when
         sut.perfromMainOperation()
 
         //then
-        XCTAssertNoThrow(try mockFirstService.verify(mockFirstService.sel_performCalculation, Once()))
-        XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_makeRandomPositiveInt, Times(2)))
-        XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_foo, Once()))
+        XCTAssertNoThrow(try firstService.verify(.performCalculation, called: .once))
+        XCTAssertNoThrow(try secondService.verify(.makeRandomPositiveInt, called: .times(2)))
+        XCTAssertNoThrow(try secondService.verify(.foo, called: .once))
     }
 
     func testPerformArgOperation() {
@@ -92,27 +92,25 @@ class MainObjectTests: XCTestCase {
         sut.performArgOperation(a, b)
 
         //then
-        XCTAssertNoThrow(try mockFirstService.verify(mockFirstService.sel_performCalculation, Once()))
+        XCTAssertNoThrow(try firstService.verify(.performCalculation, called: .once))
 
-        guard let args = mockFirstService.argsOf(mockFirstService.sel_performCalculation) else { XCTFail(); return }
-        guard let arg1 = args[0] as? Int else { XCTFail(); return }
-        guard let arg2 = args[1] as? Int else { XCTFail(); return }
+        guard let args = firstService.argsOf(.performCalculation) as MockFirstService.PerformCalculationArgs else { XCTFail(); return }
 
-        XCTAssert(arg1 == a)
-        XCTAssert(arg2 == b * 2)
+        XCTAssert(args.arg1 == a)
+        XCTAssert(args.arg2 == b * 2)
     }
 
-    func testWhenCalculateSumThenItShouldCallMakeFirstAndSecondArgs() {
-        //given
-        let partial = PartialMockMainObject(firstService: mockFirstService, secondService: mockSecondService)
-
-        //when
-        let result = partial.calculateSum()
-
-        //then
-        XCTAssertNoThrow(try partial.verify(partial.sel_makeFirstArg, Once()))
-        XCTAssertNoThrow(try partial.verify(partial.sel_makeSecondArg, Once()))
-        XCTAssert(result == 7)
-    }
+//    func testWhenCalculateSumThenItShouldCallMakeFirstAndSecondArgs() {
+//        //given
+//        let partial = PartialMockMainObject(firstService: firstService, secondService: secondService)
+//
+//        //when
+//        let result = partial.calculateSum()
+//
+//        //then
+//        XCTAssertNoThrow(try partial.verify(partial.sel_makeFirstArg, called: .once))
+//        XCTAssertNoThrow(try partial.verify(partial.sel_makeSecondArg, called: .once))
+//        XCTAssert(result == 7)
+//    }
 
 }
