@@ -9,6 +9,6 @@
 import Foundation
 import Mirage
 
-class PartialMockFirstService: MockFirstService, PartialMock {
-
-}
+//class PartialMockFirstService: MockFirstService, PartialMock {
+//
+//}
