@@ -28,7 +28,7 @@ import Foundation
 
 public class CallHandler<Func> where Func: Hashable {
     
-    var callHistory: [Func: [[Any?]]]
+    var callHistory: [Func: [[Any?]]] = [:]
 //
 //    var stubs: [Stub]
 //    let callRealFuncClosure: MockFunctionCallBlock
@@ -63,9 +63,9 @@ public class CallHandler<Func> where Func: Hashable {
 //    }
 //
     //MARK: verify
-    func verifyCallTimes(_ function: Func, _ rule: CallTimesRule) throws {
+    func verify(_ function: Func, called rule: CallTimesRule) throws {
         let times = (callHistory[function] ?? []).count
-        try rule.isValid(times)
+        try rule.verify(times)
     }
 
 //    //MARK: args

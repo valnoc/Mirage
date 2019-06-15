@@ -25,7 +25,7 @@
 import Foundation
 
 public protocol Mock {
-    associatedtype Func
+    associatedtype Func where Func: Hashable
     
     var callHandler: CallHandler<Func> {get set}
 }
@@ -37,59 +37,59 @@ public extension Mock {
     ///
     /// - Parameters:
     ///   - functionName: Name of the function.
-    ///   - callTimesVerificator: Verificator describes expected number of call times.
+    ///   - OldCallTimesVerificator: Verificator describes expected number of call times.
     /// - Throws: WrongCallTimesError if function was called another number of times than it was expected.
-    func verifyCallTimes(_ function: Func, _ rule: CallTimesRule) throws {
-        try callHandler.verify(function, rule)
+    func verify(_ function: Func, called rule: CallTimesRule) throws {
+        try callHandler.verify(function, called: rule)
     }
 }
 
-//MARK: args
-public extension Mock {
-    
-    /// Get args of first call from history.
-    ///
-    /// - Parameter functionName: Name of the function.
-    /// - Returns: Array of args or nil.
-    func argsOf(_ functionName: String) -> [Any?]? {
-        return argsOfFirstCall(functionName)
-    }
-    
-    /// Get args of first call from history.
-    ///
-    /// - Parameter functionName: Name of the function.
-    /// - Returns: Array of args or nil.
-    func argsOfFirstCall(_ functionName: String) -> [Any?]? {
-        return argsOf(functionName, callTime: 0)
-    }
-    
-    /// Get args of last call from history.
-    ///
-    /// - Parameter functionName: Name of the function.
-    /// - Returns: Array of args or nil.
-    func argsOfLastCall(_ functionName: String) -> [Any?]? {
-        return argsOf(functionName, callTime: mockManager.totalCallTimes(functionName) - 1)
-    }
-    
-    /// Get args of exact call from history.
-    ///
-    /// - Parameters:
-    ///   - functionName: Name of the function.
-    ///   - callTime: Call order.
-    /// - Returns: Array of args or nil.
-    func argsOf(_ functionName: String, callTime: Int) -> [Any?]? {
-        return mockManager.argsOf(functionName, callTime: callTime)
-    }
-}
-
-//MARK: stub 
-public extension Mock {
-    
-    /// Creates a stub for a function.
-    ///
-    /// - Parameter functionName: Name of the function.
-    /// - Returns: A function stub to be called with `thenDoSmth`, etc.
-    func when(_ functionName: String) -> Stub {
-        return mockManager.when(functionName)
-    }
-}
+////MARK: args
+//public extension Mock {
+//    
+//    /// Get args of first call from history.
+//    ///
+//    /// - Parameter functionName: Name of the function.
+//    /// - Returns: Array of args or nil.
+//    func argsOf(_ functionName: String) -> [Any?]? {
+//        return argsOfFirstCall(functionName)
+//    }
+//    
+//    /// Get args of first call from history.
+//    ///
+//    /// - Parameter functionName: Name of the function.
+//    /// - Returns: Array of args or nil.
+//    func argsOfFirstCall(_ functionName: String) -> [Any?]? {
+//        return argsOf(functionName, callTime: 0)
+//    }
+//    
+//    /// Get args of last call from history.
+//    ///
+//    /// - Parameter functionName: Name of the function.
+//    /// - Returns: Array of args or nil.
+//    func argsOfLastCall(_ functionName: String) -> [Any?]? {
+//        return argsOf(functionName, callTime: mockManager.totalCallTimes(functionName) - 1)
+//    }
+//    
+//    /// Get args of exact call from history.
+//    ///
+//    /// - Parameters:
+//    ///   - functionName: Name of the function.
+//    ///   - callTime: Call order.
+//    /// - Returns: Array of args or nil.
+//    func argsOf(_ functionName: String, callTime: Int) -> [Any?]? {
+//        return mockManager.argsOf(functionName, callTime: callTime)
+//    }
+//}
+//
+////MARK: stub 
+//public extension Mock {
+//    
+//    /// Creates a stub for a function.
+//    ///
+//    /// - Parameter functionName: Name of the function.
+//    /// - Returns: A function stub to be called with `thenDoSmth`, etc.
+//    func when(_ functionName: String) -> OldStub {
+//        return mockManager.when(functionName)
+//    }
+//}
