@@ -51,7 +51,7 @@ public extension Mock {
     ///
     /// - Parameter functionName: Name of the function.
     /// - Returns: Array of args or nil.
-    func argsOf(_ function: TFunc) -> Any? {
+    func argsOf<TArgs>(_ function: TFunc) -> TArgs? {
         return argsOf(function, callTime: callHandler.callTimesCount(of: function) - 1)
     }
 
@@ -61,7 +61,7 @@ public extension Mock {
     ///   - functionName: Name of the function.
     ///   - callTime: Call order.
     /// - Returns: Array of args or nil.
-    func argsOf(_ function: TFunc, callTime: Int) -> Any? {
+    func argsOf<TArgs>(_ function: TFunc, callTime: Int) -> TArgs? {
         return callHandler.argsOf(function, callTime: callTime)
     }
 }

@@ -73,10 +73,12 @@ public class CallHandler<TFunc> where TFunc: Hashable {
         return (callHistory[function] ?? []).count
     }
     
-    func argsOf(_ function: TFunc, callTime: Int) -> Any? {
+    func argsOf<TArgs>(_ function: TFunc, callTime: Int) -> TArgs? {
         guard callTime > -1,
-            callTime < callTimesCount(of: function) else { return nil }
-        return callHistory[function]![callTime]
+            let allCalls = callHistory[function],
+            callTime < allCalls.count,
+            let args = allCalls[callTime] as? TArgs else { return nil }
+        return args
     }
 
 //    //MARK: stub
