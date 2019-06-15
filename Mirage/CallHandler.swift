@@ -63,27 +63,24 @@ public class CallHandler<TFunc> where TFunc: Hashable {
 //        }
     }
 
-    //MARK: verify
+    //MARK: - verify
     func verify(_ function: TFunc, called rule: CallTimesRule) throws {
-        let times = (callHistory[function] ?? []).count
-        try rule.verify(times)
+        try rule.verify(callTimesCount(of: function))
     }
 
-//    //MARK: args
-//    func totalCallTimes(_ functionName: String) -> Int {
-//        let history = callHistory[functionName] ?? []
-//        let times = history.count
-//        return times
-//    }
-//
-//    func argsOf(_ functionName: String, callTime: Int) -> [Any?]? {
-//        guard callTime > -1 else { return nil }
-//        guard callTime < totalCallTimes(functionName) else { return nil }
-//        return callHistory[functionName]![callTime]
-//    }
-//
+    //MARK: - args
+    func callTimesCount(of function: TFunc) -> Int {
+        return (callHistory[function] ?? []).count
+    }
+    
+    func argsOf(_ function: TFunc, callTime: Int) -> Any? {
+        guard callTime > -1,
+            callTime < callTimesCount(of: function) else { return nil }
+        return callHistory[function]![callTime]
+    }
+
 //    //MARK: stub
-//    func when(_ functionName: String) -> Stub {
+//    func when(_ function: TFunc) -> Stub {
 //        if let oldStub = stubForFunction(functionName) {
 //            return oldStub
 //
@@ -94,7 +91,7 @@ public class CallHandler<TFunc> where TFunc: Hashable {
 //        }
 //    }
 //
-//    fileprivate func stubForFunction(_ functionName: String) -> Stub? {
+//    fileprivate func stubForFunction(_ function: TFunc) -> Stub? {
 //        return stubs.filter({$0.functionName == functionName}).first
 //    }
 

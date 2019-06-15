@@ -30,7 +30,7 @@ public protocol Mock {
     var callHandler: CallHandler<TFunc> {get set}
 }
 
-//MARK: verify
+//MARK: - verify
 public extension Mock {
     
     /// Verifies that function was called an expected number of times according to verificator.
@@ -44,44 +44,28 @@ public extension Mock {
     }
 }
 
-////MARK: args
-//public extension Mock {
-//
-//    /// Get args of first call from history.
-//    ///
-//    /// - Parameter functionName: Name of the function.
-//    /// - Returns: Array of args or nil.
-//    func argsOf(_ functionName: String) -> [Any?]? {
-//        return argsOfFirstCall(functionName)
-//    }
-//
-//    /// Get args of first call from history.
-//    ///
-//    /// - Parameter functionName: Name of the function.
-//    /// - Returns: Array of args or nil.
-//    func argsOfFirstCall(_ functionName: String) -> [Any?]? {
-//        return argsOf(functionName, callTime: 0)
-//    }
-//
-//    /// Get args of last call from history.
-//    ///
-//    /// - Parameter functionName: Name of the function.
-//    /// - Returns: Array of args or nil.
-//    func argsOfLastCall(_ functionName: String) -> [Any?]? {
-//        return argsOf(functionName, callTime: mockManager.totalCallTimes(functionName) - 1)
-//    }
-//
-//    /// Get args of exact call from history.
-//    ///
-//    /// - Parameters:
-//    ///   - functionName: Name of the function.
-//    ///   - callTime: Call order.
-//    /// - Returns: Array of args or nil.
-//    func argsOf(_ functionName: String, callTime: Int) -> [Any?]? {
-//        return mockManager.argsOf(functionName, callTime: callTime)
-//    }
-//}
-//
+//MARK: - args
+public extension Mock {
+
+    /// Get args of first call from history.
+    ///
+    /// - Parameter functionName: Name of the function.
+    /// - Returns: Array of args or nil.
+    func argsOf(_ function: TFunc) -> Any? {
+        return argsOf(function, callTime: callHandler.callTimesCount(of: function) - 1)
+    }
+
+    /// Get args of exact call from history.
+    ///
+    /// - Parameters:
+    ///   - functionName: Name of the function.
+    ///   - callTime: Call order.
+    /// - Returns: Array of args or nil.
+    func argsOf(_ function: TFunc, callTime: Int) -> Any? {
+        return callHandler.argsOf(function, callTime: callTime)
+    }
+}
+
 ////MARK: stub
 //public extension Mock {
 //
@@ -89,7 +73,7 @@ public extension Mock {
 //    ///
 //    /// - Parameter functionName: Name of the function.
 //    /// - Returns: A function stub to be called with `thenDoSmth`, etc.
-//    func when(_ functionName: String) -> OldStub {
+//    func when(_ function: TFunc) -> OldStub {
 //        return mockManager.when(functionName)
 //    }
 //}
