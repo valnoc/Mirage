@@ -29,42 +29,34 @@ public class FuncCallHandler<TArgs, TReturn> {
     fileprivate var callHistory: [TArgs] = []
     fileprivate let defaultReturnValue: TReturn
     
-    public init(defaultReturnValue: TReturn) {
-        self.defaultReturnValue = defaultReturnValue
-    }
+    fileprivate var stub: Stub<TArgs, TReturn>?
+    let callImplementationClosure: (_ args: TArgs) -> TReturn
+    let shouldCallImplementation: Bool
     
-//    var stubs: [Stub]
-//    let callRealFuncClosure: MockFunctionCallBlock
-//
-//    let shouldCallRealFuncs:Bool
-
-//    public init(callRealFuncClosure: @escaping MockFunctionCallBlock) {
-//        self.callRealFuncClosure = callRealFuncClosure
-//        shouldCallRealFuncs = mock is PartialMock
-//
-//        callHistory = [:]
-//        stubs = []
-//    }
+    public init(callImplementationClosure: @escaping (_ args: TArgs) -> TReturn,
+                defaultReturnValue: TReturn) {
+        self.callImplementationClosure = callImplementationClosure
+        self.defaultReturnValue = defaultReturnValue
+        shouldCallImplementation = false
+    }
     
     @discardableResult
     public func handle(_ args: TArgs) -> TReturn {
         callHistory.append(args)
         
-//        if let stub = stubForFunction(functionName) {
-//            //TODO: fix
-//            return stub.executeNextAction(args) as! TReturn
-//
-//        } else if shouldCallRealFuncs {
-//            //TODO: fix
-//            return callRealFuncClosure(functionName, args) as! TReturn
-//
-//        } else {
+        if let stub = stub {
+            return stub.execute(args)
+
+        } else if shouldCallImplementation {
+            return callImplementationClosure(args)
+
+        } else {
             return defaultReturnValue
-//        }
+        }
     }
 
     //MARK: - verify
-    func verify(called rule: CallTimesRule) throws {
+    public func verify(called rule: CallTimesRule) throws {
         try rule.verify(callTimesCount())
     }
     
@@ -73,30 +65,25 @@ public class FuncCallHandler<TArgs, TReturn> {
     }
     
     //MARK: - args
-    func args() -> TArgs? {
+    public func args() -> TArgs? {
         return callHistory[callTimesCount() - 1]
     }
     
-    func args(callTime: Int) -> TArgs? {
+    public func args(callTime: Int) -> TArgs? {
         guard callTime > -1,
             callTime < callTimesCount() else { return nil }
         return callHistory[callTime]
     }
 
-//    //MARK: stub
-//    func when(_ function: TFunc) -> Stub {
-//        if let oldStub = stubForFunction(functionName) {
-//            return oldStub
-//
-//        } else {
-//            let stub = Stub(functionName: functionName, callRealFuncClosure: callRealFuncClosure)
-//            stubs.append(stub)
-//            return stub
-//        }
-//    }
-//
-//    fileprivate func stubForFunction(_ function: TFunc) -> Stub? {
-//        return stubs.filter({$0.functionName == functionName}).first
-//    }
-
+    //MARK: stub
+    public func when() -> Stub<TArgs, TReturn> {
+        if let stub = stub {
+            return stub
+        }
+        else {
+            let stub = Stub<TArgs, TReturn>(callImplementationClosure: callImplementationClosure)
+            self.stub = stub
+            return stub
+        }
+    }
 }
