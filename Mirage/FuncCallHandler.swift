@@ -24,13 +24,14 @@
 
 import Foundation
 
-//public typealias MockFunctionCallBlock = (_ functionName: String, _ args: [Any?]?) -> Any?
-
-public class CallHandler<TFunc> where TFunc: Hashable {
+public class FuncCallHandler<TArgs, TReturn> {
     
-    fileprivate var callHistory: [TFunc: [Any]] = [:] //[TFunc: [TArgs]]]
-
-    public init() {}
+    fileprivate var callHistory: [TArgs] = []
+    fileprivate let defaultReturnValue: TReturn
+    
+    public init(defaultReturnValue: TReturn) {
+        self.defaultReturnValue = defaultReturnValue
+    }
     
 //    var stubs: [Stub]
 //    let callRealFuncClosure: MockFunctionCallBlock
@@ -46,11 +47,8 @@ public class CallHandler<TFunc> where TFunc: Hashable {
 //    }
     
     @discardableResult
-    public func handle<TArgs, TReturn>(_ function: TFunc,
-                                       withArgs args: TArgs,
-                                       defaultReturnValue: TReturn) -> TReturn {
-        if callHistory[function] == nil { callHistory[function] = [] }
-        callHistory[function]?.append(args)
+    public func handle(_ args: TArgs) -> TReturn {
+        callHistory.append(args)
         
 //        if let stub = stubForFunction(functionName) {
 //            //TODO: fix
@@ -66,21 +64,23 @@ public class CallHandler<TFunc> where TFunc: Hashable {
     }
 
     //MARK: - verify
-    func verify(_ function: TFunc, called rule: CallTimesRule) throws {
-        try rule.verify(callTimesCount(of: function))
-    }
-
-    //MARK: - args
-    func callTimesCount(of function: TFunc) -> Int {
-        return (callHistory[function] ?? []).count
+    func verify(called rule: CallTimesRule) throws {
+        try rule.verify(callTimesCount())
     }
     
-    func argsOf<TArgs>(_ function: TFunc, callTime: Int) -> TArgs? {
+    func callTimesCount() -> Int {
+        return callHistory.count
+    }
+    
+    //MARK: - args
+    func args() -> TArgs? {
+        return callHistory[callTimesCount() - 1]
+    }
+    
+    func args(callTime: Int) -> TArgs? {
         guard callTime > -1,
-            let allCalls = callHistory[function],
-            callTime < allCalls.count,
-            let args = allCalls[callTime] as? TArgs else { return nil }
-        return args
+            callTime < callTimesCount() else { return nil }
+        return callHistory[callTime]
     }
 
 //    //MARK: stub

@@ -9,12 +9,11 @@
 /* Begin PBXBuildFile section */
 		5B001D1722B5478F004E40B3 /* StubAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B001D1122B5478F004E40B3 /* StubAction.swift */; };
 		5B001D1922B5478F004E40B3 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B001D1322B5478F004E40B3 /* Stub.swift */; };
-		5B2A654822B539D100A27C88 /* CallHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A654722B539D100A27C88 /* CallHandler.swift */; };
+		5B2A654822B539D100A27C88 /* FuncCallHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A654722B539D100A27C88 /* FuncCallHandler.swift */; };
 		5B2A655522B53AED00A27C88 /* CallTimesRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A655422B53AED00A27C88 /* CallTimesRule.swift */; };
 		652E393F2202E1CB009BD47F /* Mirage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 652E39352202E1CB009BD47F /* Mirage.framework */; };
 		652E39442202E1CB009BD47F /* MirageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652E39432202E1CB009BD47F /* MirageTests.swift */; };
 		652E39462202E1CB009BD47F /* Mirage.h in Headers */ = {isa = PBXBuildFile; fileRef = 652E39382202E1CB009BD47F /* Mirage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		652E39582202E2DA009BD47F /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652E39522202E2D9009BD47F /* Mock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +29,7 @@
 /* Begin PBXFileReference section */
 		5B001D1122B5478F004E40B3 /* StubAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubAction.swift; sourceTree = "<group>"; };
 		5B001D1322B5478F004E40B3 /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
-		5B2A654722B539D100A27C88 /* CallHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallHandler.swift; sourceTree = "<group>"; };
+		5B2A654722B539D100A27C88 /* FuncCallHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuncCallHandler.swift; sourceTree = "<group>"; };
 		5B2A655422B53AED00A27C88 /* CallTimesRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallTimesRule.swift; sourceTree = "<group>"; };
 		652E39352202E1CB009BD47F /* Mirage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mirage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		652E39382202E1CB009BD47F /* Mirage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mirage.h; sourceTree = "<group>"; };
@@ -38,7 +37,6 @@
 		652E393E2202E1CB009BD47F /* MirageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MirageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		652E39432202E1CB009BD47F /* MirageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirageTests.swift; sourceTree = "<group>"; };
 		652E39452202E1CB009BD47F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		652E39522202E2D9009BD47F /* Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				5B2A654922B53AD300A27C88 /* old */,
-				652E39522202E2D9009BD47F /* Mock.swift */,
-				5B2A654722B539D100A27C88 /* CallHandler.swift */,
+				5B2A654722B539D100A27C88 /* FuncCallHandler.swift */,
 				5B2A655422B53AED00A27C88 /* CallTimesRule.swift */,
 				652E39382202E1CB009BD47F /* Mirage.h */,
 				652E39392202E1CB009BD47F /* Info.plist */,
@@ -219,8 +216,7 @@
 			files = (
 				5B2A655522B53AED00A27C88 /* CallTimesRule.swift in Sources */,
 				5B001D1722B5478F004E40B3 /* StubAction.swift in Sources */,
-				5B2A654822B539D100A27C88 /* CallHandler.swift in Sources */,
-				652E39582202E2DA009BD47F /* Mock.swift in Sources */,
+				5B2A654822B539D100A27C88 /* FuncCallHandler.swift in Sources */,
 				5B001D1922B5478F004E40B3 /* Stub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
