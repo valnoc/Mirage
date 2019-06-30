@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B001D1722B5478F004E40B3 /* OldStubAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B001D1122B5478F004E40B3 /* OldStubAction.swift */; };
-		5B001D1922B5478F004E40B3 /* OldStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B001D1322B5478F004E40B3 /* OldStub.swift */; };
+		5B0C75AD22C9009E00E9EAB3 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C75AC22C9009E00E9EAB3 /* Stub.swift */; };
 		5B2A654822B539D100A27C88 /* FuncCallHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A654722B539D100A27C88 /* FuncCallHandler.swift */; };
 		5B2A655522B53AED00A27C88 /* CallTimesRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A655422B53AED00A27C88 /* CallTimesRule.swift */; };
 		652E393F2202E1CB009BD47F /* Mirage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 652E39352202E1CB009BD47F /* Mirage.framework */; };
@@ -27,8 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5B001D1122B5478F004E40B3 /* OldStubAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldStubAction.swift; sourceTree = "<group>"; };
-		5B001D1322B5478F004E40B3 /* OldStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldStub.swift; sourceTree = "<group>"; };
+		5B0C75AC22C9009E00E9EAB3 /* Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 		5B2A654722B539D100A27C88 /* FuncCallHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuncCallHandler.swift; sourceTree = "<group>"; };
 		5B2A655422B53AED00A27C88 /* CallTimesRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallTimesRule.swift; sourceTree = "<group>"; };
 		652E39352202E1CB009BD47F /* Mirage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mirage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,15 +56,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5B2A654922B53AD300A27C88 /* old */ = {
-			isa = PBXGroup;
-			children = (
-				5B001D1322B5478F004E40B3 /* OldStub.swift */,
-				5B001D1122B5478F004E40B3 /* OldStubAction.swift */,
-			);
-			path = old;
-			sourceTree = "<group>";
-		};
 		652E392B2202E1CB009BD47F = {
 			isa = PBXGroup;
 			children = (
@@ -88,9 +77,9 @@
 		652E39372202E1CB009BD47F /* Mirage */ = {
 			isa = PBXGroup;
 			children = (
-				5B2A654922B53AD300A27C88 /* old */,
 				5B2A654722B539D100A27C88 /* FuncCallHandler.swift */,
 				5B2A655422B53AED00A27C88 /* CallTimesRule.swift */,
+				5B0C75AC22C9009E00E9EAB3 /* Stub.swift */,
 				652E39382202E1CB009BD47F /* Mirage.h */,
 				652E39392202E1CB009BD47F /* Info.plist */,
 			);
@@ -215,9 +204,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B2A655522B53AED00A27C88 /* CallTimesRule.swift in Sources */,
-				5B001D1722B5478F004E40B3 /* OldStubAction.swift in Sources */,
+				5B0C75AD22C9009E00E9EAB3 /* Stub.swift in Sources */,
 				5B2A654822B539D100A27C88 /* FuncCallHandler.swift in Sources */,
-				5B001D1922B5478F004E40B3 /* OldStub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
