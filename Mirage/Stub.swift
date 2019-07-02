@@ -31,10 +31,10 @@ public class Stub<TArgs, TReturn> {
     var actions: [StubAction] = []
     var nextIndex: Int = 0
     
-    let callImplementationClosure: StubAction
+    let callRealFuncClosure: StubAction?
 
-    init(callImplementationClosure: @escaping StubAction) {
-        self.callImplementationClosure = callImplementationClosure
+    init(callRealFuncClosure: StubAction? = nil) {
+        self.callRealFuncClosure = callRealFuncClosure
     }
 
     //MARK: result
@@ -68,7 +68,9 @@ public class Stub<TArgs, TReturn> {
     /// - Returns:  A stub for chained call.
     @discardableResult
     public func thenCallImplementation() -> MySelf {
-        actions.append(callImplementationClosure)
+        if let callRealFuncClosure = callRealFuncClosure {
+            actions.append(callRealFuncClosure)
+        }
         return self
     }
     

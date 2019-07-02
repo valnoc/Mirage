@@ -27,16 +27,16 @@ import Foundation
 public class FuncCallHandler<TArgs, TReturn> {
     
     fileprivate var callHistory: [TArgs] = []
-    fileprivate let defaultReturnValue: TReturn
+    fileprivate let returnValue: TReturn
     
     fileprivate var stub: Stub<TArgs, TReturn>?
-    let callImplementationClosure: (_ args: TArgs) -> TReturn
+    let callRealFuncClosure: ((_ args: TArgs) -> TReturn)?
     let shouldCallImplementation: Bool
     
-    public init(callImplementationClosure: @escaping (_ args: TArgs) -> TReturn,
-                defaultReturnValue: TReturn) {
-        self.callImplementationClosure = callImplementationClosure
-        self.defaultReturnValue = defaultReturnValue
+    public init(returnValue: TReturn,
+                callRealFuncClosure: ((_ args: TArgs) -> TReturn)? = nil) {
+        self.callRealFuncClosure = callRealFuncClosure
+        self.returnValue = returnValue
         shouldCallImplementation = false
     }
     
@@ -46,12 +46,13 @@ public class FuncCallHandler<TArgs, TReturn> {
         
         if let stub = stub {
             return stub.execute(args)
-
-        } else if shouldCallImplementation {
-            return callImplementationClosure(args)
-
+            
+        } else if shouldCallImplementation,
+            let callRealFuncClosure = callRealFuncClosure {
+            return callRealFuncClosure(args)
+            
         } else {
-            return defaultReturnValue
+            return returnValue
         }
     }
 
@@ -81,7 +82,7 @@ public class FuncCallHandler<TArgs, TReturn> {
             return stub
         }
         else {
-            let stub = Stub<TArgs, TReturn>(callImplementationClosure: callImplementationClosure)
+            let stub = Stub<TArgs, TReturn>(callRealFuncClosure: callRealFuncClosure)
             self.stub = stub
             return stub
         }
