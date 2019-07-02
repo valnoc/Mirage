@@ -1,5 +1,5 @@
 //
-//  SecondService.swift
+//  FirstService.swift
 //  Example
 //
 //  Created by Valeriy Bezuglyy on 02/09/2017.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-protocol SecondService {
-    func makeRandomPositiveInt() -> Int
-
-    func foo()
+class Calculator {
+    func sum(_ arg1: Int, _ arg2: Int) -> Int {
+        return arg1 + arg2
+    }
 }

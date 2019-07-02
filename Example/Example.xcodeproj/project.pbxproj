@@ -7,15 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B001D2322B5632B004E40B3 /* PartialMockFirstService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B001D1F22B5632B004E40B3 /* PartialMockFirstService.swift */; };
-		5B001D2422B5632B004E40B3 /* MockSecondService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B001D2022B5632B004E40B3 /* MockSecondService.swift */; };
-		5B001D2522B5632B004E40B3 /* MockFirstService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B001D2122B5632B004E40B3 /* MockFirstService.swift */; };
-		5B001D2622B5632B004E40B3 /* PartialMockMainObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B001D2222B5632B004E40B3 /* PartialMockMainObject.swift */; };
+		5B00E2C122CBDC7100775B7E /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B00E2C022CBDC7100775B7E /* Logger.swift */; };
 		5BD37A7422AEC31B00419C19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD37A7322AEC31B00419C19 /* AppDelegate.swift */; };
 		5BD37A7B22AEC31C00419C19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BD37A7A22AEC31C00419C19 /* Assets.xcassets */; };
 		5BD37AA522AEC3B700419C19 /* MainObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD37AA222AEC3B600419C19 /* MainObject.swift */; };
-		5BD37AA622AEC3B700419C19 /* SecondService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD37AA322AEC3B600419C19 /* SecondService.swift */; };
-		5BD37AA722AEC3B700419C19 /* FirstService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD37AA422AEC3B700419C19 /* FirstService.swift */; };
+		5BD37AA622AEC3B700419C19 /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD37AA322AEC3B600419C19 /* RandomNumberGenerator.swift */; };
+		5BD37AA722AEC3B700419C19 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD37AA422AEC3B700419C19 /* Calculator.swift */; };
 		5BD37AB122AEC3E700419C19 /* MainObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD37AAC22AEC3E700419C19 /* MainObjectTests.swift */; };
 		5BD37AB422AEC4C200419C19 /* Mirage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD37AB322AEC4C200419C19 /* Mirage.framework */; };
 /* End PBXBuildFile section */
@@ -31,10 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5B001D1F22B5632B004E40B3 /* PartialMockFirstService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialMockFirstService.swift; sourceTree = "<group>"; };
-		5B001D2022B5632B004E40B3 /* MockSecondService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSecondService.swift; sourceTree = "<group>"; };
-		5B001D2122B5632B004E40B3 /* MockFirstService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFirstService.swift; sourceTree = "<group>"; };
-		5B001D2222B5632B004E40B3 /* PartialMockMainObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialMockMainObject.swift; sourceTree = "<group>"; };
+		5B00E2C022CBDC7100775B7E /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		5BD37A7022AEC31B00419C19 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BD37A7322AEC31B00419C19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BD37A7A22AEC31C00419C19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -42,8 +36,8 @@
 		5BD37A8422AEC31C00419C19 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BD37A8A22AEC31C00419C19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BD37AA222AEC3B600419C19 /* MainObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainObject.swift; sourceTree = "<group>"; };
-		5BD37AA322AEC3B600419C19 /* SecondService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondService.swift; sourceTree = "<group>"; };
-		5BD37AA422AEC3B700419C19 /* FirstService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstService.swift; sourceTree = "<group>"; };
+		5BD37AA322AEC3B600419C19 /* RandomNumberGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumberGenerator.swift; sourceTree = "<group>"; };
+		5BD37AA422AEC3B700419C19 /* Calculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		5BD37AAC22AEC3E700419C19 /* MainObjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainObjectTests.swift; sourceTree = "<group>"; };
 		5BD37AB322AEC4C200419C19 /* Mirage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mirage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -70,10 +64,6 @@
 		5B001D1E22B5632B004E40B3 /* mocks */ = {
 			isa = PBXGroup;
 			children = (
-				5B001D1F22B5632B004E40B3 /* PartialMockFirstService.swift */,
-				5B001D2022B5632B004E40B3 /* MockSecondService.swift */,
-				5B001D2122B5632B004E40B3 /* MockFirstService.swift */,
-				5B001D2222B5632B004E40B3 /* PartialMockMainObject.swift */,
 			);
 			path = mocks;
 			sourceTree = "<group>";
@@ -101,9 +91,10 @@
 			isa = PBXGroup;
 			children = (
 				5BD37A7322AEC31B00419C19 /* AppDelegate.swift */,
-				5BD37AA422AEC3B700419C19 /* FirstService.swift */,
 				5BD37AA222AEC3B600419C19 /* MainObject.swift */,
-				5BD37AA322AEC3B600419C19 /* SecondService.swift */,
+				5BD37AA422AEC3B700419C19 /* Calculator.swift */,
+				5BD37AA322AEC3B600419C19 /* RandomNumberGenerator.swift */,
+				5B00E2C022CBDC7100775B7E /* Logger.swift */,
 				5BD37A7A22AEC31C00419C19 /* Assets.xcassets */,
 				5BD37A7F22AEC31C00419C19 /* Info.plist */,
 			);
@@ -227,10 +218,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B00E2C122CBDC7100775B7E /* Logger.swift in Sources */,
 				5BD37AA522AEC3B700419C19 /* MainObject.swift in Sources */,
 				5BD37A7422AEC31B00419C19 /* AppDelegate.swift in Sources */,
-				5BD37AA622AEC3B700419C19 /* SecondService.swift in Sources */,
-				5BD37AA722AEC3B700419C19 /* FirstService.swift in Sources */,
+				5BD37AA622AEC3B700419C19 /* RandomNumberGenerator.swift in Sources */,
+				5BD37AA722AEC3B700419C19 /* Calculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,10 +231,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BD37AB122AEC3E700419C19 /* MainObjectTests.swift in Sources */,
-				5B001D2622B5632B004E40B3 /* PartialMockMainObject.swift in Sources */,
-				5B001D2322B5632B004E40B3 /* PartialMockFirstService.swift in Sources */,
-				5B001D2522B5632B004E40B3 /* MockFirstService.swift in Sources */,
-				5B001D2422B5632B004E40B3 /* MockSecondService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
