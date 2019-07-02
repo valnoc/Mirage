@@ -30,8 +30,3 @@ class MockCalculator: Calculator {
         return mock_sum.handle(MockCalculator.SumArgs(arg1: arg1, arg2: arg2))
     }
 }
-
-
-func anyInt() -> Int {
-    return 4
-}
