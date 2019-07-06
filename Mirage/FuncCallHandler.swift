@@ -67,7 +67,7 @@ public class FuncCallHandler<TArgs, TReturn> {
     
     //MARK: - args
     public func args() -> TArgs? {
-        return callHistory[callTimesCount() - 1]
+        return args(callTime: callTimesCount() - 1)
     }
     
     public func args(callTime: Int) -> TArgs? {

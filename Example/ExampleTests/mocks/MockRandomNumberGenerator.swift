@@ -11,17 +11,9 @@ import Foundation
 import Mirage
 
 class MockRandomNumberGenerator: RandomNumberGenerator {
-    //MARK: - sum
-    class MakeIntArgs {
-        init() {
-        }
-    }
-    lazy var mock_makeInt = FuncCallHandler<MakeIntArgs, Int>(returnValue: anyInt(),
-                                                      callRealFuncClosure: { [weak self] (args) -> Int in
-                                                        guard let __self = self else { return anyInt() }
-                                                        return __self.makeInt()
-    })
+    //MARK: - makeInt
+    lazy var mock_makeInt = FuncCallHandler<Void, Int>(returnValue: anyInt())
     func makeInt() -> Int {
-        return mock_makeInt.handle(MockRandomNumberGenerator.MakeIntArgs())
+        return mock_makeInt.handle(())
     }
 }
