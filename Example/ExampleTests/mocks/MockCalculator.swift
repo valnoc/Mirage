@@ -12,6 +12,10 @@ import Mirage
 
 class MockCalculator: Calculator {
     //MARK: - sum
+    fileprivate func super_sum(_ args: Mock.SumArgs) -> Int {
+        return super.sum(args.arg1, args.arg2)
+    }
+    
     override func sum(_ arg1: Int, _ arg2: Int) -> Int {
         let args = Mock.SumArgs(arg1: arg1, arg2: arg2)
         return mock.sum.handle(args)
@@ -20,12 +24,12 @@ class MockCalculator: Calculator {
 
 extension MockCalculator {
     private static var mockHash = [String:Mock]()
-
+    
     var mock: Mock {
         get {
             let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
             guard let value = MockCalculator.mockHash[tmpAddress] else {
-                let newValue = Mock()
+                let newValue = Mock(orig: self)
                 MockCalculator.mockHash[tmpAddress] = newValue
                 return newValue
             }
@@ -34,6 +38,11 @@ extension MockCalculator {
     }
     
     class Mock {
+        let orig: MockCalculator
+        init(orig: MockCalculator) {
+            self.orig = orig
+        }
+        
         class SumArgs {
             let arg1: Int
             let arg2: Int
@@ -43,7 +52,11 @@ extension MockCalculator {
                 self.arg2 = arg2
             }
         }
-        lazy var sum = FuncCallHandler<SumArgs, Int>(returnValue: anyInt())
+        lazy var sum = FuncCallHandler<SumArgs, Int>(returnValue: anyInt(),
+                                                     callRealFuncClosure: { [weak self] (args) -> Int in
+                                                        guard let __self = self else { return anyInt() }
+                                                        return __self.orig.super_sum(args)
+        })
     }
 }
 
