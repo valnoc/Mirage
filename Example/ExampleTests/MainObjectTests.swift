@@ -43,9 +43,9 @@ class MainObjectTests: XCTestCase {
     }
 
     func testSmth() {
-        let args1 = calculator.mock.sum.args()
-        let args2 = calculator.mock.sum.args()
-        let args3 = calculator.mock.sum.args()
+        let args1 = calculator.mock_sum.args()
+        let args2 = calculator.mock_sum.args()
+        let args3 = calculator.mock_sum.args()
     }
 
 }

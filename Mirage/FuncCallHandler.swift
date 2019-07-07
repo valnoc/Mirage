@@ -30,14 +30,14 @@ public class FuncCallHandler<TArgs, TReturn> {
     fileprivate let returnValue: TReturn
     
     fileprivate var stub: Stub<TArgs, TReturn>?
-    let callRealFuncClosure: ((_ args: TArgs) -> TReturn)?
-    let shouldCallImplementation: Bool
+    let callRealFunc: ((_ args: TArgs) -> TReturn)?
+    let shouldCallReal: Bool
     
     public init(returnValue: TReturn,
-                callRealFuncClosure: ((_ args: TArgs) -> TReturn)? = nil) {
-        self.callRealFuncClosure = callRealFuncClosure
+                callRealFunc: ((_ args: TArgs) -> TReturn)? = nil) {
+        self.callRealFunc = callRealFunc
         self.returnValue = returnValue
-        shouldCallImplementation = false
+        shouldCallReal = false
     }
     
     @discardableResult
@@ -47,8 +47,8 @@ public class FuncCallHandler<TArgs, TReturn> {
         if let stub = stub {
             return stub.execute(args)
             
-        } else if shouldCallImplementation,
-            let callRealFuncClosure = callRealFuncClosure {
+        } else if shouldCallReal,
+            let callRealFuncClosure = callRealFunc {
             return callRealFuncClosure(args)
             
         } else {
@@ -82,7 +82,7 @@ public class FuncCallHandler<TArgs, TReturn> {
             return stub
         }
         else {
-            let stub = Stub<TArgs, TReturn>(callRealFuncClosure: callRealFuncClosure)
+            let stub = Stub<TArgs, TReturn>(callRealFuncClosure: callRealFunc)
             self.stub = stub
             return stub
         }
