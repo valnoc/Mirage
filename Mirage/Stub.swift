@@ -24,27 +24,28 @@
 
 import Foundation
 
+/// An object to alternate function behavour.
 public class Stub<TArgs, TReturn> {
-    public typealias MySelf = Stub<TArgs, TReturn>
-    public typealias StubAction = (_ args: TArgs) -> TReturn
+    public typealias Me = Stub<TArgs, TReturn>
+    public typealias Action = (_ args: TArgs) -> TReturn
     
-    var actions: [StubAction] = []
-    var nextIndex: Int = 0
+    fileprivate var actions: [Action] = []
+    fileprivate var nextIndex: Int = 0
     
-    let callRealFuncClosure: StubAction?
+    fileprivate let callRealFunc: Action?
 
-    init(callRealFuncClosure: StubAction? = nil) {
-        self.callRealFuncClosure = callRealFuncClosure
+    init(callRealFunc: Action? = nil) {
+        self.callRealFunc = callRealFunc
     }
 
     //MARK: result
 
-    /// Returns new result instead of default
+    /// Return given result on next call.
     ///
     /// - Parameter result: New result.
-    /// - Returns: A stub for chained call.
+    /// - Returns: Stub for chained call.
     @discardableResult
-    public func thenReturn(_ result: TReturn) -> MySelf {
+    public func thenReturn(_ result: TReturn) -> Me {
         actions.append({ (_ args) -> TReturn in
             return result
         })
@@ -54,9 +55,9 @@ public class Stub<TArgs, TReturn> {
     /// Execute closure instead of called function.
     ///
     /// - Parameter closure: A closure to execute.
-    /// - Returns: A stub for chained call.
+    /// - Returns: Stub for chained call.
     @discardableResult
-    public func thenDo(_ closure: @escaping StubAction) -> MySelf {
+    public func thenDo(_ closure: @escaping Action) -> Me {
         actions.append({ (_ args) -> TReturn in
             return closure(args)
         })
@@ -65,11 +66,11 @@ public class Stub<TArgs, TReturn> {
 
     /// Call real func implementation.
     ///
-    /// - Returns:  A stub for chained call.
+    /// - Returns: Stub for chained call.
     @discardableResult
-    public func thenCallImplementation() -> MySelf {
-        if let callRealFuncClosure = callRealFuncClosure {
-            actions.append(callRealFuncClosure)
+    public func thenCallRealFunc() -> Me {
+        if let callRealFunc = callRealFunc {
+            actions.append(callRealFunc)
         }
         return self
     }

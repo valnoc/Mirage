@@ -117,7 +117,7 @@ public class FuncCallHandler<TArgs, TReturn> {
             return stub
         }
         else {
-            let stub = Stub<TArgs, TReturn>(callRealFuncClosure: callRealFunc)
+            let stub = Stub<TArgs, TReturn>(callRealFunc: callRealFunc)
             self.stub = stub
             return stub
         }
