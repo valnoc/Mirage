@@ -42,7 +42,7 @@ class MainObjectTests: XCTestCase {
         super.tearDown()
     }
 
-    // - simple
+    //MARK: - simple
     func testGivenPositiveSumWhenMainOperationThenItLogsPositiveResult() {
         // given
         calculator.mock_sum.when().thenReturn(1)
@@ -88,7 +88,7 @@ class MainObjectTests: XCTestCase {
         XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .once))
     }
 
-    // - array
+    //MARK: - array
     func testGivenAnyNonNegativeSumWhenMainOperationThenItLogsPositiveResult() {
         for number in 0...100000 {
             calculator.mock_sum.reset()
