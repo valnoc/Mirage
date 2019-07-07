@@ -10,9 +10,9 @@ import XCTest
 import Mirage
 @testable import Example
 
-class MainObjectTests: XCTestCase {
+class PartialMainObjectTests: XCTestCase {
     
-    var sut: MainObject!
+    var sut: PartialMockMainObject!
     
     var calculator: MockCalculator!
     var randomNumberGenerator: MockRandomNumberGenerator!
@@ -26,9 +26,9 @@ class MainObjectTests: XCTestCase {
         randomNumberGenerator = MockRandomNumberGenerator()
         logger = MockLogger()
         
-        sut = MainObject(calculator: calculator,
-                         randomNumberGenerator: randomNumberGenerator,
-                         logger: logger)
+        sut = PartialMockMainObject(calculator: calculator,
+                                    randomNumberGenerator: randomNumberGenerator,
+                                    logger: logger)
     }
     
     override func tearDown() {
@@ -62,23 +62,16 @@ class MainObjectTests: XCTestCase {
     }
     
     func test_GivenPositiveSum_WhenMainOperation_ThenItLogsPositiveResult() {
-        // given
-        calculator.mock_sum.whenCalled().thenReturn(1)
-        
-        // when
-        sut.performMainOperation()
-        
-        // then
-        XCTAssertNoThrow(try randomNumberGenerator.mock_makeInt.verify(called: .times(2)))
-        XCTAssertNoThrow(try calculator.mock_sum.verify(called: .once))
-        
-        XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .once))
-        XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .never))
+        checkPositiveBehaviour(1)
     }
     
     func test_GivenZeroSum_WhenMainOperation_ThenItLogsPositiveResult() {
+        checkPositiveBehaviour(0)
+    }
+    
+    func checkPositiveBehaviour(_ number: Int) {
         // given
-        calculator.mock_sum.whenCalled().thenReturn(0)
+        calculator.mock_sum.whenCalled().thenReturn(number)
         
         // when
         sut.performMainOperation()
@@ -89,11 +82,17 @@ class MainObjectTests: XCTestCase {
         
         XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .once))
         XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .never))
+        
+        XCTAssertNoThrow(try sut.mock_postFailedNotification.verify(called: .never))
     }
     
     func test_GivenNegativeSum_WhenMainOperation_ThenItLogsNegativeResult() {
+        checkNegativeBehaviour(-1)
+    }
+    
+    func checkNegativeBehaviour(_ number: Int) {
         // given
-        calculator.mock_sum.whenCalled().thenReturn(-1)
+        calculator.mock_sum.whenCalled().thenReturn(number)
         
         // when
         sut.performMainOperation()
@@ -104,6 +103,8 @@ class MainObjectTests: XCTestCase {
         
         XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .never))
         XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .once))
+        
+        XCTAssertNoThrow(try sut.mock_postFailedNotification.verify(called: .once))
     }
     
     //MARK: - array
@@ -113,19 +114,9 @@ class MainObjectTests: XCTestCase {
             randomNumberGenerator.mock_makeInt.reset()
             logger.mock_logNegativeResult.reset()
             logger.mock_logPositiveResult.reset()
+            sut.mock_postFailedNotification.reset()
             
-            // given
-            calculator.mock_sum.whenCalled().thenReturn(number)
-            
-            // when
-            sut.performMainOperation()
-            
-            // then
-            XCTAssertNoThrow(try randomNumberGenerator.mock_makeInt.verify(called: .times(2)))
-            XCTAssertNoThrow(try calculator.mock_sum.verify(called: .once))
-            
-            XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .once))
-            XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .never))
+            checkPositiveBehaviour(number)
         }
     }
     
@@ -135,19 +126,9 @@ class MainObjectTests: XCTestCase {
             randomNumberGenerator.mock_makeInt.reset()
             logger.mock_logNegativeResult.reset()
             logger.mock_logPositiveResult.reset()
+            sut.mock_postFailedNotification.reset()
             
-            // given
-            calculator.mock_sum.whenCalled().thenReturn(number)
-            
-            // when
-            sut.performMainOperation()
-            
-            // then
-            XCTAssertNoThrow(try randomNumberGenerator.mock_makeInt.verify(called: .times(2)))
-            XCTAssertNoThrow(try calculator.mock_sum.verify(called: .once))
-            
-            XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .never))
-            XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .once))
+            checkNegativeBehaviour(number)
         }
     }
 }
