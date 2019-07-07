@@ -74,6 +74,8 @@ class MainObjectTests: XCTestCase {
         
         XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .once))
         XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .never))
+        
+        XCTAssertNoThrow(try sut.mock_postFailedNotification.verify(called: .never))
     }
     
     func test_GivenZeroSum_WhenMainOperation_ThenItLogsPositiveResult() {
@@ -89,6 +91,8 @@ class MainObjectTests: XCTestCase {
         
         XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .once))
         XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .never))
+        
+        XCTAssertNoThrow(try sut.mock_postFailedNotification.verify(called: .never))
     }
     
     func test_GivenNegativeSum_WhenMainOperation_ThenItLogsNegativeResult() {
@@ -104,15 +108,18 @@ class MainObjectTests: XCTestCase {
         
         XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .never))
         XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .once))
+        
+        XCTAssertNoThrow(try sut.mock_postFailedNotification.verify(called: .once))
     }
 
     //MARK: - array
-    func testGivenAnyNonNegativeSumWhenMainOperationThenItLogsPositiveResult() {
+    func test_GivenAnyNonNegativeSum_WhenMainOperation_ThenItLogsPositiveResult() {
         for number in 0...100000 {
             calculator.mock_sum.reset()
             randomNumberGenerator.mock_makeInt.reset()
             logger.mock_logNegativeResult.reset()
             logger.mock_logPositiveResult.reset()
+            sut.mock_postFailedNotification.reset()
             
             // given
             calculator.mock_sum.whenCalled().thenReturn(number)
@@ -126,15 +133,18 @@ class MainObjectTests: XCTestCase {
             
             XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .once))
             XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .never))
+            
+            XCTAssertNoThrow(try sut.mock_postFailedNotification.verify(called: .never))
         }
     }
     
-    func testGivenAnyNegativeSumWhenMainOperationThenItLogsNevativeResult() {
+    func test_GivenAnyNegativeSum_WhenMainOperation_ThenItLogsNevativeResult() {
         for number in -100000...(-1) {
             calculator.mock_sum.reset()
             randomNumberGenerator.mock_makeInt.reset()
             logger.mock_logNegativeResult.reset()
             logger.mock_logPositiveResult.reset()
+            sut.mock_postFailedNotification.reset()
             
             // given
             calculator.mock_sum.whenCalled().thenReturn(number)
@@ -148,6 +158,8 @@ class MainObjectTests: XCTestCase {
             
             XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .never))
             XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .once))
+            
+            XCTAssertNoThrow(try sut.mock_postFailedNotification.verify(called: .once))
         }
     }
 }
