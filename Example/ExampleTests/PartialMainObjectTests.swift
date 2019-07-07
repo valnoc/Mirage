@@ -62,14 +62,14 @@ class PartialMainObjectTests: XCTestCase {
     }
     
     func test_GivenPositiveSum_WhenMainOperation_ThenItLogsPositiveResult() {
-        checkPositiveBehaviour(1)
+        assertPositiveBehaviour(1)
     }
     
     func test_GivenZeroSum_WhenMainOperation_ThenItLogsPositiveResult() {
-        checkPositiveBehaviour(0)
+        assertPositiveBehaviour(0)
     }
     
-    func checkPositiveBehaviour(_ number: Int) {
+    func assertPositiveBehaviour(_ number: Int) {
         // given
         calculator.mock_sum.whenCalled().thenReturn(number)
         
@@ -87,10 +87,10 @@ class PartialMainObjectTests: XCTestCase {
     }
     
     func test_GivenNegativeSum_WhenMainOperation_ThenItLogsNegativeResult() {
-        checkNegativeBehaviour(-1)
+        assertNegativeBehaviour(-1)
     }
     
-    func checkNegativeBehaviour(_ number: Int) {
+    func assertNegativeBehaviour(_ number: Int) {
         // given
         calculator.mock_sum.whenCalled().thenReturn(number)
         
@@ -116,7 +116,7 @@ class PartialMainObjectTests: XCTestCase {
             logger.mock_logPositiveResult.reset()
             sut.mock_postFailedNotification.reset()
             
-            checkPositiveBehaviour(number)
+            assertPositiveBehaviour(number)
         }
     }
     
@@ -128,7 +128,7 @@ class PartialMainObjectTests: XCTestCase {
             logger.mock_logPositiveResult.reset()
             sut.mock_postFailedNotification.reset()
             
-            checkNegativeBehaviour(number)
+            assertNegativeBehaviour(number)
         }
     }
 }

@@ -62,23 +62,16 @@ class MainObjectTests: XCTestCase {
     }
     
     func test_GivenPositiveSum_WhenMainOperation_ThenItLogsPositiveResult() {
-        // given
-        calculator.mock_sum.whenCalled().thenReturn(1)
-        
-        // when
-        sut.performMainOperation()
-        
-        // then
-        XCTAssertNoThrow(try randomNumberGenerator.mock_makeInt.verify(called: .times(2)))
-        XCTAssertNoThrow(try calculator.mock_sum.verify(called: .once))
-        
-        XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .once))
-        XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .never))
+        assertPositiveBehaviour(1)
     }
     
     func test_GivenZeroSum_WhenMainOperation_ThenItLogsPositiveResult() {
+        assertPositiveBehaviour(0)
+    }
+    
+    func assertPositiveBehaviour(_ number: Int) {
         // given
-        calculator.mock_sum.whenCalled().thenReturn(0)
+        calculator.mock_sum.whenCalled().thenReturn(number)
         
         // when
         sut.performMainOperation()
@@ -92,8 +85,12 @@ class MainObjectTests: XCTestCase {
     }
     
     func test_GivenNegativeSum_WhenMainOperation_ThenItLogsNegativeResult() {
+        assertNegativeBehaviour(-1)
+    }
+    
+    func assertNegativeBehaviour(_ number: Int) {
         // given
-        calculator.mock_sum.whenCalled().thenReturn(-1)
+        calculator.mock_sum.whenCalled().thenReturn(number)
         
         // when
         sut.performMainOperation()
@@ -114,18 +111,7 @@ class MainObjectTests: XCTestCase {
             logger.mock_logNegativeResult.reset()
             logger.mock_logPositiveResult.reset()
             
-            // given
-            calculator.mock_sum.whenCalled().thenReturn(number)
-            
-            // when
-            sut.performMainOperation()
-            
-            // then
-            XCTAssertNoThrow(try randomNumberGenerator.mock_makeInt.verify(called: .times(2)))
-            XCTAssertNoThrow(try calculator.mock_sum.verify(called: .once))
-            
-            XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .once))
-            XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .never))
+            assertPositiveBehaviour(number)
         }
     }
     
@@ -136,18 +122,7 @@ class MainObjectTests: XCTestCase {
             logger.mock_logNegativeResult.reset()
             logger.mock_logPositiveResult.reset()
             
-            // given
-            calculator.mock_sum.whenCalled().thenReturn(number)
-            
-            // when
-            sut.performMainOperation()
-            
-            // then
-            XCTAssertNoThrow(try randomNumberGenerator.mock_makeInt.verify(called: .times(2)))
-            XCTAssertNoThrow(try calculator.mock_sum.verify(called: .once))
-            
-            XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .never))
-            XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .once))
+            assertNegativeBehaviour(number)
         }
     }
 }
