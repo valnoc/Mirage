@@ -15,8 +15,8 @@ class MainObjectTests: XCTestCase {
     var sut: MainObject!
 
     var calculator: MockCalculator!
-    var randomNumberGenerator: RandomNumberGenerator!
-    var logger: Logger!
+    var randomNumberGenerator: MockRandomNumberGenerator!
+    var logger: MockLogger!
 
     override func setUp() {
         super.setUp()
@@ -42,10 +42,51 @@ class MainObjectTests: XCTestCase {
         super.tearDown()
     }
 
-    func testSmth() {
-        let args1 = calculator.mock_sum.args()
-        let args2 = calculator.mock_sum.args()
-        let args3 = calculator.mock_sum.args()
+    // - simple
+    func testGivenPositiveSumWhenMainOperationThenItLogsPositiveResult() {
+        // given
+        calculator.mock_sum.when().thenReturn(1)
+        
+        // when
+        sut.performMainOperation()
+        
+        // then
+        XCTAssertNoThrow(try randomNumberGenerator.mock_makeInt.verify(called: .times(2)))
+        XCTAssertNoThrow(try calculator.mock_sum.verify(called: .once))
+        
+        XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .once))
+        XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .never))
+    }
+    
+    func testGivenZeroSumWhenMainOperationThenItLogsPositiveResult() {
+        // given
+        calculator.mock_sum.when().thenReturn(0)
+        
+        // when
+        sut.performMainOperation()
+        
+        // then
+        XCTAssertNoThrow(try randomNumberGenerator.mock_makeInt.verify(called: .times(2)))
+        XCTAssertNoThrow(try calculator.mock_sum.verify(called: .once))
+        
+        XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .once))
+        XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .never))
+    }
+    
+    func testGivenNegativeSumWhenMainOperationThenItLogsNegativeResult() {
+        // given
+        calculator.mock_sum.when().thenReturn(-1)
+        
+        // when
+        sut.performMainOperation()
+        
+        // then
+        XCTAssertNoThrow(try randomNumberGenerator.mock_makeInt.verify(called: .times(2)))
+        XCTAssertNoThrow(try calculator.mock_sum.verify(called: .once))
+        
+        XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .never))
+        XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .once))
     }
 
+    // - array
 }

@@ -25,7 +25,7 @@ class MainObject {
     func performMainOperation() {
         let sum = calculator.sum(randomNumberGenerator.makeInt(),
                                  randomNumberGenerator.makeInt())
-        if sum > 0 {
+        if sum >= 0 {
             logger.logPositiveResult(sum)
         } else {
             logger.logNegativeResult(sum)

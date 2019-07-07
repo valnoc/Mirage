@@ -57,8 +57,9 @@ public class FuncCallHandler<TArgs, TReturn> {
     }
 
     //MARK: - verify
-    public func verify(called rule: CallTimesRule) throws {
+    public func verify(called rule: CallTimesRule) throws -> Bool {
         try rule.verify(callTimesCount())
+        return true
     }
     
     func callTimesCount() -> Int {
