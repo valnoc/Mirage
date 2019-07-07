@@ -9,7 +9,7 @@
 import Foundation
 
 class Calculator {
-    func sum(_ arg1: Int, _ arg2: Int) -> Int {
-        return arg1 + arg2
+    func sum(_ left: Int, _ right: Int) -> Int {
+        return left + right
     }
 }

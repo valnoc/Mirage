@@ -17,8 +17,8 @@ class MockCalculator: Calculator {
                                                         guard let __self = self else { return anyInt() }
                                                         return __self.super_sum(args)
     })
-    override func sum(_ arg1: Int, _ arg2: Int) -> Int {
-        let args = SumArgs(arg1: arg1, arg2: arg2)
+    override func sum(_ left: Int, _ right: Int) -> Int {
+        let args = SumArgs(left: left, right: right)
         return mock_sum.handle(args)
     }
 }
@@ -26,15 +26,15 @@ class MockCalculator: Calculator {
 extension MockCalculator{
     //MARK: - sum
     class SumArgs {
-        let arg1: Int
-        let arg2: Int
+        let left: Int
+        let right: Int
         
-        init(arg1: Int, arg2: Int) {
-            self.arg1 = arg1
-            self.arg2 = arg2
+        init(left: Int, right: Int) {
+            self.left = left
+            self.right = right
         }
     }
     fileprivate func super_sum(_ args: SumArgs) -> Int {
-        return super.sum(args.arg1, args.arg2)
+        return super.sum(args.left, args.right)
     }
 }

@@ -43,7 +43,24 @@ class MainObjectTests: XCTestCase {
     }
 
     //MARK: - simple
-    func testGivenPositiveSumWhenMainOperationThenItLogsPositiveResult() {
+    func test_GivenNumbersFromGenerator_WhenMainOperation_ThenNumbersArePassedIntoCalculatorWithoutModification() {
+        // given
+        randomNumberGenerator.mock_makeInt.when()
+            .thenReturn(5)
+            .thenReturn(10)
+        
+        // when
+        sut.performMainOperation()
+        
+        // then
+        XCTAssertNoThrow(try calculator.mock_sum.verify(called: .once))
+        
+        guard let args = calculator.mock_sum.args() else { XCTFail(); return }
+        XCTAssert(args.left == 5)
+        XCTAssert(args.right == 10)
+    }
+    
+    func test_GivenPositiveSum_WhenMainOperation_ThenItLogsPositiveResult() {
         // given
         calculator.mock_sum.when().thenReturn(1)
         
@@ -58,7 +75,7 @@ class MainObjectTests: XCTestCase {
         XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .never))
     }
     
-    func testGivenZeroSumWhenMainOperationThenItLogsPositiveResult() {
+    func test_GivenZeroSum_WhenMainOperation_ThenItLogsPositiveResult() {
         // given
         calculator.mock_sum.when().thenReturn(0)
         
@@ -73,7 +90,7 @@ class MainObjectTests: XCTestCase {
         XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .never))
     }
     
-    func testGivenNegativeSumWhenMainOperationThenItLogsNegativeResult() {
+    func test_GivenNegativeSum_WhenMainOperation_ThenItLogsNegativeResult() {
         // given
         calculator.mock_sum.when().thenReturn(-1)
         
