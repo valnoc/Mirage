@@ -76,7 +76,7 @@ public class FuncCallHandler<TArgs, TReturn> {
     /// Checks whether function call times count is approriate according to the rule.
     ///
     /// - Parameter rule: A rule to be verified.
-    /// - Returns: True if everything is ok. This return value is unnecessery but without it
+    /// - Returns: True if everything is ok. This return value is unnecessery but without it this func is crossed at completions panel inside XCTAssertNoThrow.
     /// - Throws: CallTimesRuleIsBroken error if the rule was broken
     @discardableResult
     public func verify(called rule: CallTimesRule) throws -> Bool {
