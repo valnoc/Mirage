@@ -12,19 +12,6 @@ import Mirage
 
 class MockCalculator: Calculator {
     //MARK: - sum
-    lazy var mock_sum = FuncCallHandler<SumArgs, Int>(returnValue: anyInt(),
-                                                      callRealFunc: { [weak self] (args) -> Int in
-                                                        guard let __self = self else { return anyInt() }
-                                                        return __self.super_sum(args)
-    })
-    override func sum(_ left: Int, _ right: Int) -> Int {
-        let args = SumArgs(left: left, right: right)
-        return mock_sum.handle(args)
-    }
-}
-
-extension MockCalculator{
-    //MARK: - sum
     class SumArgs {
         let left: Int
         let right: Int
@@ -36,5 +23,14 @@ extension MockCalculator{
     }
     fileprivate func super_sum(_ args: SumArgs) -> Int {
         return super.sum(args.left, args.right)
+    }
+    lazy var mock_sum = FuncCallHandler<SumArgs, Int>(returnValue: anyInt(),
+                                                      callRealFunc: { [weak self] (args) -> Int in
+                                                        guard let __self = self else { return anyInt() }
+                                                        return __self.super_sum(args)
+    })
+    override func sum(_ left: Int, _ right: Int) -> Int {
+        let args = SumArgs(left: left, right: right)
+        return mock_sum.handle(args)
     }
 }

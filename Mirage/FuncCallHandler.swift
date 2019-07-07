@@ -31,13 +31,15 @@ public class FuncCallHandler<TArgs, TReturn> {
     
     fileprivate var stub: Stub<TArgs, TReturn>?
     let callRealFunc: ((_ args: TArgs) -> TReturn)?
-    let shouldCallReal: Bool
+    
+    let isPartial: Bool
     
     public init(returnValue: TReturn,
+                isPartial: Bool = false,
                 callRealFunc: ((_ args: TArgs) -> TReturn)? = nil) {
         self.callRealFunc = callRealFunc
         self.returnValue = returnValue
-        shouldCallReal = false
+        self.isPartial = isPartial
     }
     
     @discardableResult
@@ -47,9 +49,9 @@ public class FuncCallHandler<TArgs, TReturn> {
         if let stub = stub {
             return stub.execute(args)
             
-        } else if shouldCallReal,
-            let callRealFuncClosure = callRealFunc {
-            return callRealFuncClosure(args)
+        } else if isPartial {
+            // force unwrapping is used here to get crash if real func caller wasn't given
+            return callRealFunc!(args)
             
         } else {
             return returnValue

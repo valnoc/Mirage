@@ -12,7 +12,7 @@ import Mirage
 
 class MainObjectTests: XCTestCase {
 
-    var sut: MainObject!
+    var sut: PartialMockMainObject!
 
     var calculator: MockCalculator!
     var randomNumberGenerator: MockRandomNumberGenerator!
@@ -26,9 +26,9 @@ class MainObjectTests: XCTestCase {
         randomNumberGenerator = MockRandomNumberGenerator()
         logger = MockLogger()
         
-        sut = MainObject(calculator: calculator,
-                         randomNumberGenerator: randomNumberGenerator,
-                         logger: logger)
+        sut = PartialMockMainObject(calculator: calculator,
+                                    randomNumberGenerator: randomNumberGenerator,
+                                    logger: logger)
     }
 
     override func tearDown() {
