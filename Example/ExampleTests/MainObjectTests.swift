@@ -45,7 +45,7 @@ class MainObjectTests: XCTestCase {
     //MARK: - simple
     func test_GivenNumbersFromGenerator_WhenMainOperation_ThenNumbersArePassedIntoCalculatorWithoutModification() {
         // given
-        randomNumberGenerator.mock_makeInt.when()
+        randomNumberGenerator.mock_makeInt.whenCalled()
             .thenReturn(5)
             .thenReturn(10)
         
@@ -53,6 +53,7 @@ class MainObjectTests: XCTestCase {
         sut.performMainOperation()
         
         // then
+        XCTAssertNoThrow(try randomNumberGenerator.mock_makeInt.verify(called: .times(2)))
         XCTAssertNoThrow(try calculator.mock_sum.verify(called: .once))
         
         guard let args = calculator.mock_sum.args() else { XCTFail(); return }
@@ -62,7 +63,7 @@ class MainObjectTests: XCTestCase {
     
     func test_GivenPositiveSum_WhenMainOperation_ThenItLogsPositiveResult() {
         // given
-        calculator.mock_sum.when().thenReturn(1)
+        calculator.mock_sum.whenCalled().thenReturn(1)
         
         // when
         sut.performMainOperation()
@@ -77,7 +78,7 @@ class MainObjectTests: XCTestCase {
     
     func test_GivenZeroSum_WhenMainOperation_ThenItLogsPositiveResult() {
         // given
-        calculator.mock_sum.when().thenReturn(0)
+        calculator.mock_sum.whenCalled().thenReturn(0)
         
         // when
         sut.performMainOperation()
@@ -92,7 +93,7 @@ class MainObjectTests: XCTestCase {
     
     func test_GivenNegativeSum_WhenMainOperation_ThenItLogsNegativeResult() {
         // given
-        calculator.mock_sum.when().thenReturn(-1)
+        calculator.mock_sum.whenCalled().thenReturn(-1)
         
         // when
         sut.performMainOperation()
@@ -114,7 +115,7 @@ class MainObjectTests: XCTestCase {
             logger.mock_logPositiveResult.reset()
             
             // given
-            calculator.mock_sum.when().thenReturn(number)
+            calculator.mock_sum.whenCalled().thenReturn(number)
             
             // when
             sut.performMainOperation()
@@ -136,7 +137,7 @@ class MainObjectTests: XCTestCase {
             logger.mock_logPositiveResult.reset()
             
             // given
-            calculator.mock_sum.when().thenReturn(number)
+            calculator.mock_sum.whenCalled().thenReturn(number)
             
             // when
             sut.performMainOperation()

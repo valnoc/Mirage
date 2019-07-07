@@ -79,7 +79,7 @@ public class FuncCallHandler<TArgs, TReturn> {
     }
 
     //MARK: - stub
-    public func when() -> Stub<TArgs, TReturn> {
+    public func whenCalled() -> Stub<TArgs, TReturn> {
         if let stub = stub {
             return stub
         }
