@@ -57,6 +57,7 @@ public class FuncCallHandler<TArgs, TReturn> {
     }
 
     //MARK: - verify
+    @discardableResult
     public func verify(called rule: CallTimesRule) throws -> Bool {
         try rule.verify(callTimesCount())
         return true
@@ -77,7 +78,7 @@ public class FuncCallHandler<TArgs, TReturn> {
         return callHistory[callTime]
     }
 
-    //MARK: stub
+    //MARK: - stub
     public func when() -> Stub<TArgs, TReturn> {
         if let stub = stub {
             return stub
@@ -87,5 +88,11 @@ public class FuncCallHandler<TArgs, TReturn> {
             self.stub = stub
             return stub
         }
+    }
+    
+    //MARK: - reset
+    public func reset() {
+        callHistory.removeAll()
+        stub = nil
     }
 }

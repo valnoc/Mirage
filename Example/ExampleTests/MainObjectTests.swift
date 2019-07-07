@@ -89,4 +89,47 @@ class MainObjectTests: XCTestCase {
     }
 
     // - array
+    func testGivenAnyNonNegativeSumWhenMainOperationThenItLogsPositiveResult() {
+        for number in 0...100000 {
+            calculator.mock_sum.reset()
+            randomNumberGenerator.mock_makeInt.reset()
+            logger.mock_logNegativeResult.reset()
+            logger.mock_logPositiveResult.reset()
+            
+            // given
+            calculator.mock_sum.when().thenReturn(number)
+            
+            // when
+            sut.performMainOperation()
+            
+            // then
+            XCTAssertNoThrow(try randomNumberGenerator.mock_makeInt.verify(called: .times(2)))
+            XCTAssertNoThrow(try calculator.mock_sum.verify(called: .once))
+            
+            XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .once))
+            XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .never))
+        }
+    }
+    
+    func testGivenAnyNegativeSumWhenMainOperationThenItLogsNevativeResult() {
+        for number in -100000...(-1) {
+            calculator.mock_sum.reset()
+            randomNumberGenerator.mock_makeInt.reset()
+            logger.mock_logNegativeResult.reset()
+            logger.mock_logPositiveResult.reset()
+            
+            // given
+            calculator.mock_sum.when().thenReturn(number)
+            
+            // when
+            sut.performMainOperation()
+            
+            // then
+            XCTAssertNoThrow(try randomNumberGenerator.mock_makeInt.verify(called: .times(2)))
+            XCTAssertNoThrow(try calculator.mock_sum.verify(called: .once))
+            
+            XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .never))
+            XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .once))
+        }
+    }
 }
