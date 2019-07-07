@@ -8,8 +8,8 @@
 
 import Foundation
 
-class FirstService {
-    func performCalculation(arg1: Int, arg2: Int) -> Int {
-        return arg1 + arg2
+class Calculator {
+    func sum(_ left: Int, _ right: Int) -> Int {
+        return left + right
     }
 }

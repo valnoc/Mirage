@@ -1,7 +1,7 @@
 //
 //    MIT License
 //
-//    Copyright (c) 2017 Valeriy Bezuglyy
+//    Copyright (c) 2019 Valeriy Bezuglyy
 //
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the "Software"), to deal
@@ -24,34 +24,30 @@
 
 import Foundation
 
-public class Stub {
+public class Stub<TArgs, TReturn> {
+    public typealias MySelf = Stub<TArgs, TReturn>
+    public typealias StubAction = (_ args: TArgs) -> TReturn
     
-    let functionName: String
-    let callRealFuncClosure: MockFunctionCallBlock
+    var actions: [StubAction] = []
+    var nextIndex: Int = 0
     
-    var actions: [StubAction]
-    var nextActionIndex: Int
-    
-    init(functionName: String, callRealFuncClosure: @escaping MockFunctionCallBlock) {
-        self.functionName = functionName
+    let callRealFuncClosure: StubAction?
+
+    init(callRealFuncClosure: StubAction? = nil) {
         self.callRealFuncClosure = callRealFuncClosure
-        
-        actions = []        
-        nextActionIndex = 0
     }
-    
+
     //MARK: result
-    
+
     /// Returns new result instead of default
     ///
     /// - Parameter result: New result.
     /// - Returns: A stub for chained call.
     @discardableResult
-    public func thenReturn(_ result: Any?) -> Stub {
-        let stubAction = StubAction { (_) -> Any? in
+    public func thenReturn(_ result: TReturn) -> MySelf {
+        actions.append({ (_ args) -> TReturn in
             return result
-        }
-        actions.append(stubAction)
+        })
         return self
     }
 
@@ -60,65 +56,32 @@ public class Stub {
     /// - Parameter closure: A closure to execute.
     /// - Returns: A stub for chained call.
     @discardableResult
-    public func thenDo(_ closure: @escaping (_ args: [Any?]) -> Void) -> Stub {
-        let stubAction = StubAction { (args) -> Any? in
-            closure(args)
-            return nil
-        }
-        actions.append(stubAction)
-        return self
-    }
-    
-    /// Execute closure instead of called function and return result.
-    ///
-    /// - Parameter closure: A closure to execute.
-    /// - Returns: A stub for chained call.
-    @discardableResult
-    public func thenDo(_ closure: @escaping (_ args: [Any?]) -> Any?) -> Stub {
-        let stubAction = StubAction { (args) -> Any? in
+    public func thenDo(_ closure: @escaping StubAction) -> MySelf {
+        actions.append({ (_ args) -> TReturn in
             return closure(args)
-        }
-        actions.append(stubAction)
+        })
         return self
     }
-    
-    /// Do nothing when function was called. Useful for partial mocks as common mocks are already doing nothing on call.
-    ///
-    /// - Returns: A stub for chained call.
-    @discardableResult
-    public func thenDoNothing() -> Stub {
-        let stubAction = StubAction { (args) -> Any? in
-            return nil
-        }
-        actions.append(stubAction)
-        return self
-    }
-    
+
     /// Call real func implementation.
     ///
     /// - Returns:  A stub for chained call.
     @discardableResult
-    public func thenCallReal() -> Stub {
-        let stubAction = StubAction { [weak self] (args) -> Any? in
-            guard let __self = self else { return nil }
-            return __self.callRealFuncClosure(__self.functionName, args)
+    public func thenCallImplementation() -> MySelf {
+        if let callRealFuncClosure = callRealFuncClosure {
+            actions.append(callRealFuncClosure)
         }
-        actions.append(stubAction)
         return self
     }
     
     //MARK: execute
-    func executeNextAction(_ args: [Any?]) -> Any? {
-        guard actions.count > 0 else { return nil }
-        
-        var action: StubAction
-        if nextActionIndex < actions.count {
-            action = actions[nextActionIndex]
-            nextActionIndex += 1
-        } else {
-            action = actions.last!
+    func execute(_ args: TArgs) -> TReturn {
+        var index = actions.count - 1
+        if nextIndex < index {
+            index = nextIndex
+            nextIndex += 1
         }
         
-        return action.execute(args)
+        return actions[index](args)
     }
 }

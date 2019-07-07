@@ -8,8 +8,6 @@
 
 import Foundation
 
-protocol SecondService {
-    func makeRandomPositiveInt() -> Int
-
-    func foo()
+protocol RandomNumberGenerator {
+    func makeInt() -> Int
 }

@@ -10,41 +10,30 @@ import Foundation
 
 class MainObject {
 
-    var firstService: FirstService
-    var secondService: SecondService
+    var calculator: Calculator
+    var randomNumberGenerator: RandomNumberGenerator
+    var logger: Logger
 
-    init(firstService: FirstService,
-         secondService: SecondService) {
-        self.firstService = firstService
-        self.secondService = secondService
+    init(calculator: Calculator,
+         randomNumberGenerator: RandomNumberGenerator,
+         logger: Logger) {
+        self.calculator = calculator
+        self.randomNumberGenerator = randomNumberGenerator
+        self.logger = logger
     }
 
-    func perfromMainOperation() {
-        let sum = firstService.performCalculation(arg1: secondService.makeRandomPositiveInt(), arg2: secondService.makeRandomPositiveInt())
-
-        if sum > 0 {
-            secondService.foo()
+    func performMainOperation() {
+        let sum = calculator.sum(randomNumberGenerator.makeInt(),
+                                 randomNumberGenerator.makeInt())
+        if sum >= 0 {
+            logger.logPositiveResult(sum)
         } else {
-            postFailedNotification("sum < 0")
+            logger.logNegativeResult(sum)
+            postFailedNotification("negative sum")
         }
     }
 
     func postFailedNotification(_ reason: String) {
-    }
-
-    func performArgOperation(_ a: Int, _ b: Int) {
-        _ = firstService.performCalculation(arg1: a, arg2: b * 2)
-    }
-
-    func calculateSum() -> Int {
-        return makeFirstArg() + makeSecondArg()
-    }
-
-    func makeFirstArg() -> Int {
-        return 2
-    }
-
-    func makeSecondArg() -> Int {
-        return 5
+        // show message or smth
     }
 }
