@@ -1,5 +1,5 @@
 # Mirage
-[![License](https://img.shields.io/github/license/valnoc/Mirage.svg)](https://github.com/valnoc/Mirage/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues-raw/valnoc/Mirage.svg)](https://github.com/valnoc/Mirage/issues) 
+[![License](https://img.shields.io/github/license/valnoc/Mirage.svg)](https://github.com/valnoc/Mirage/blob/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues-raw/valnoc/Mirage.svg)](https://github.com/valnoc/Mirage/issues) 
 
 [![Cocoapods release](https://img.shields.io/cocoapods/v/Mirage.svg)]() 
 
