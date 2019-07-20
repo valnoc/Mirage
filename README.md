@@ -237,5 +237,19 @@ XCTAssert(args.left == 5)
 XCTAssert(args.right == 10)
 ```
 
+## Migration Guide
+Migration from *Mirage 1* to *Mirage 2* consists of several steps.
+
+1. Rewrite mocks
+
+It is very easy to migrate mocks with new version of [Fata Morgana](https://github.com/valnoc/FataMorgana)
+
+2. Use find&replace feature to change `Once()` to `.once`, etc
+
+3. Use find&replace feature along with regexps to change `verify` to `when` calls
+I'll give regexps here later
+
+4. Remove args casts after `args()` calls
+
 ## License
 Mirage is available under MIT License.
