@@ -181,27 +181,37 @@ lazy var mock_performMainOperation = FuncCallHandler<Void, Void>(returnValue: ()
 })
 ```
 
-### Verify
-There are several verification modes:
-- `Never`
-- `Once`
-- `AtLeast`
-- `AtMost`
-- `Times` for exact number of times
-`verify(...)` throws `WrongCallTimesError` if actual call times do not match verification mode.
+### Verify call times
+You can call `verify(called:)` on any `FuncCallHandler` to check the number of times this func was called
+```swift
+- never: callTimes == 0
+- once: callTimes == 1
+- times: callTimes == *value*
+- atLeast: callTimes >= *value*
+- atMost: callTimes <= *value*
+```
+
+`verify(called:)` throws `CallTimesRuleIsBroken` if actual call times do not match the given rule.
 
 Use `XCTAssertNoThrow(try ...)` with `verify` call
 ```swift
-XCTAssertNoThrow(try mockFirstService.verify(mockFirstService.sel_performCalculation, Once()))
-XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_makeRandomPositiveInt, Times(2)))
-XCTAssertNoThrow(try mockSecondService.verify(mockSecondService.sel_foo, Never()))
+XCTAssertNoThrow(try randomNumberGenerator.mock_makeInt.verify(called: .times(2)))
+XCTAssertNoThrow(try calculator.mock_sum.verify(called: .once))
+
+XCTAssertNoThrow(try logger.mock_logPositiveResult.verify(called: .once))
+XCTAssertNoThrow(try logger.mock_logNegativeResult.verify(called: .never))
 ```
-### Args
-You can get arguments of any call from history using `argsOf(...)` function. It returns an array of arguments for this call or nil. So the best pratice is to use guard and XCTFail around `argsOf(...)`.
+
+### Call Args
+You can get arguments of any call from history using `args() -> TArgs?` or `args(callTime: Int) -> TArgs?` functions. It returns *an array of arguments* for this call or *nil* if no call with given *callTime* was registered. 
+
+So the best pratice is to use guard and XCTFail around `argsOf()` if you expect this args to exist.
 ```swift
-guard let args = mockFirstService.argsOf(mockFirstService.sel_performCalculation) else { XCTFail(); return }
-guard let arg1 = args[0] as? Int else { XCTFail(); return }
-guard let arg2 = args[1] as? Int else { XCTFail(); return }
+// then
+guard let args = calculator.mock_sum.args() else { XCTFail(); return }
+XCTAssert(args.left == 5)
+XCTAssert(args.right == 10)
 ```
+
 ## License
 Mirage is available under MIT License.
