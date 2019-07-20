@@ -4,6 +4,12 @@
 Mirage is a mocking library for swift projects. 
 The recommended way is to use [Fata Morgana](https://github.com/valnoc/FataMorgana) for mocks generation to avoid writing them manually.
 
+- [Features](#features)
+- [Installation](#installation)
+  - [Carthage](#carthage)
+  - [Cocoapods](#cocoapods)
+  - [Source files](#source-files)
+
 ## Features
 Using Mirage you can:
 - create mocks, stubs, partial mocks
@@ -14,10 +20,16 @@ Using Mirage you can:
 ## Installation
 Requires Swift 4.2
 
+#### Carthage
+Add this line into your Cartfile, run `carthage update --platform iOS` and link binary to the target as you always do it)
+```ruby
+github "valnoc/Mirage" ~> 2.0
+```
+
 #### Cocoapods
 Add this line into your Podfile under a test target and run `pod update`
 ```ruby
-pod 'Mirage'
+pod 'Mirage', '~> 2.0'
 ```
 
 Podfile example
