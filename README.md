@@ -13,6 +13,14 @@ The recommended way is to use [Fata Morgana](https://github.com/valnoc/FataMorga
   - [Carthage](#carthage)
   - [Cocoapods](#cocoapods)
   - [Source files](#source-files)
+- [Usage](#usage)
+  - [Mocks](#mocks)
+  - [Stubs](#stubs)
+  - [Partial mocks](#partial-mocks)
+  - [Verify call times](#verify-call-times)
+  - [Call Args](#call-args)
+- [Migration Guide](#migration-guide)
+- [License](#license)
 
 ## Features
 Using Mirage you can:
