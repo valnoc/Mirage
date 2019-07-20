@@ -1,17 +1,18 @@
 # Mirage
 [![](https://img.shields.io/cocoapods/v/Mirage.svg)]()
 
-Mirage is a lightweight mocking framework for swift projects. 
+Mirage is a mocking library for swift projects. 
+The recommended way is to use [Fata Morgana](https://github.com/valnoc/FataMorgana) for mocks generation to avoid writing them manually.
 
 ## Features
 Using Mirage you can:
 - create mocks, stubs, partial mocks
-- verify call times
+- verify `func` call times
 - get call arguments history
 
 ---
 ## Installation
-Requires Swift 4.0
+Requires Swift 4.2
 
 #### Cocoapods
 Add this line into your Podfile under a test target and run `pod update`
@@ -35,94 +36,118 @@ Copy /Mirage folder into your test target.
 ---
 ## Usage
 Check Example project for details.
-
 Try [Fata Morgana](https://github.com/valnoc/FataMorgana) for mocks generation.
+
 ### Mocks
-A Mock is an object which mimics the behaviour of a real object and records functions' calls.
-#### Class mock
-To create a class mock (ex. `FirstService`): 
+A Mock is an object which mimics behaviour of a real object and records functions' calls. You can create `class` mocks and `protocol` mocks in the same way.
+
+> The **first version of Mirage** provided the instruments to create a mock for a whole class or a protocol. A mock could be easily created manually but the usage was not so good - you had to cast args to there types every time you call `args(of:)` and the stubs returned `Any`. Since **Mirage 2** funcs are mocked individually. 
+
+All mocks and stubs are generics. They use `TArgs` and `TReturn` types.
+
+If a func has one argument `TArgs` should be of its type. But if it has several arguments you should create a struct (or class) as a container of this args.
+
+`TReturn` represents func's return type.
+
+#### Mock Example
+Let's create a mock for this class
+
+```swift
+class Calculator {
+    func sum(_ left: Int, _ right: Int) -> Int {
+        return left + right
+    }
+}
+```
+
+##### Full variant
 1. Create a new Mock class inhereted from the original 
 ```swift
-class MockService: FirstService
-```
-2. Implement Mock protocol 
-```swift
-class MockService: FirstService, Mock
-```
-First of all add a MockManager variable. It is recommended to add it like a lazy var. 
+import Mirage
 
-First argument of MockManager(...) should always be self. Self is not stored anywhere and in fact is used inside init(...) only to get info whether an instance is a mock or a partial mock.
-
-Second argument is a closure which is responsible for calling real implementation of mocked functions. This closure is called with `thenCallRealFunc()` stubs or with partial mocks.
-```swift
-lazy var mockManager: MockManager = MockManager(self, callRealFuncClosure: { [weak self] (funcName, args) -> Any? in
-    guard let __self = self else { return nil }
-    return __self.callRealFunc(funcName, args)
-})
+class MockCalculator: Calculator {
 ```
-3. Override all funcs which should to be mocked.
-New implementation should call mockManager.handle(...) for call registration. 
-Arguments are: 
-* func string identifier
-* default return value (`nil` for void functions) to return if no stub found
-* incoming args
+2. `func sum` has 2 args `left` and `right` so let's create a nested class (or a struct) to contain them
 ```swift
-return mockManager.handle(sel_performCalculation, withDefaultReturnValue: 0, withArgs: arg1, arg2) as! Int
-```
-The best pratice for defining `sel_performCalculation` is to use func name + first args if there are overloads like `func foo(_ a:Double)` and `func foo(_ a:Int)`. Anyway you can pass here any string you wish.
-
-**DO NOT FORGET!** to use passed func identifier in callRealFuncClosure of MockManager and call `super.function(...)`
-
-Example
-```swift
-class MockFirstService: FirstService, Mock {
-    
-    lazy var mockManager: MockManager = MockManager(self, callRealFuncClosure: { [weak self] (funcName, args) -> Any? in
-        guard let __self = self else { return nil }
-        return __self.callRealFunc(funcName, args)
-    })
-    fileprivate func callRealFunc(_ funcName:String, _ args:[Any?]?) -> Any? {
-        switch funcName {
-        case sel_performCalculation:
-            return super.performCalculation(arg1: args![0] as! Int, arg2: args![1] as! Int)
-        default:
-            return nil
+    class SumArgs {
+        let left: Int
+        let right: Int
+        
+        init(left: Int, right: Int) {
+            self.left = left
+            self.right = right
         }
     }
-    
-    //MARK: - mocked calls
-    let sel_performCalculation = "performCalculation(arg1:arg2:)"
-    override func performCalculation(arg1:Int, arg2: Int) -> Int {
-        return mockManager.handle(sel_performCalculation, withDefaultReturnValue: 0, withArgs: arg1, arg2) as! Int
-    }
-}
 ```
-#### Protocol mock
-This case is even simpler. Steps are totally the same as creating a class mock except for calling real func implementation.
-
-Example
-
-`SecondService` is just a protocol.
+3. Add this `func` to call real implementation of this function
 ```swift
-class MockSecondService: SecondService, Mock {
-    
-    lazy var mockManager: MockManager = MockManager(self, callRealFuncClosure: { [weak self] (funcName, args) -> Any? in
-        guard let __self = self else { return nil }
-        return nil
-    })
-    
-    //MARK: - mocked calls
-    let sel_makeRandomPositiveInt = "makeRandomPositiveInt()"
-    func makeRandomPositiveInt() -> Int {
-        return mockManager.handle(sel_makeRandomPositiveInt, withDefaultReturnValue: 4, withArgs: nil) as! Int
+    fileprivate func super_sum(_ args: SumArgs) -> Int {
+        return super.sum(args.left, args.right)
     }
-    
-    let sel_foo = "foo()"
-    func foo() {
-        mockManager.handle(sel_foo, withDefaultReturnValue: nil, withArgs: nil)
+```
+4. Add `FuncCallHandler`. This is the core of func mocking.
+```swift
+    lazy var mock_sum = FuncCallHandler<SumArgs, Int>(returnValue: anyInt(),
+                                                      callRealFunc: { [weak self] (args) -> Int in
+                                                        guard let __self = self else { return anyInt() }
+                                                        return __self.super_sum(args)
+    })
+```    
+5. `override` the original func and call `mock_sum` to handle func call
+```swift
+    override func sum(_ left: Int, _ right: Int) -> Int {
+        let args = SumArgs(left: left, right: right)
+        return mock_sum.handle(args)
+    }
+```
+
+This is it)
+```swift
+class MockCalculator: Calculator {
+    //MARK: - sum
+    class SumArgs {
+        let left: Int
+        let right: Int
+        
+        init(left: Int, right: Int) {
+            self.left = left
+            self.right = right
+        }
+    }
+    fileprivate func super_sum(_ args: SumArgs) -> Int {
+        return super.sum(args.left, args.right)
+    }
+    lazy var mock_sum = FuncCallHandler<SumArgs, Int>(returnValue: anyInt(),
+                                                      callRealFunc: { [weak self] (args) -> Int in
+                                                        guard let __self = self else { return anyInt() }
+                                                        return __self.super_sum(args)
+    })
+    override func sum(_ left: Int, _ right: Int) -> Int {
+        let args = SumArgs(left: left, right: right)
+        return mock_sum.handle(args)
     }
 }
 ```
+
+##### Short variant
+```swift
+class MockCalculator: Calculator {
+    //MARK: - sum
+    struct SumArgs {
+        let left: Int
+        let right: Int
+    }
+    lazy var mock_sum = FuncCallHandler<SumArgs, Int>(returnValue: anyInt())
+    override func sum(_ left: Int, _ right: Int) -> Int {
+        let args = SumArgs(left: left, right: right)
+        return mock_sum.handle(args)
+    }
+}
+```
+
+
+
+
 ### Stubs
 Function stubbing allows to change the behavour of a function according to testing needs.
 To create a stub, call mock function `when(...)`, passing the identifier of a stubbed function.
