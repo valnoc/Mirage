@@ -1,5 +1,5 @@
 # Mirage
-[![](https://img.shields.io/cocoapods/v/Mirage.svg)]()
+[![License](https://img.shields.io/github/license/valnoc/Mirage.svg)](https://github.com/valnoc/Mirage/master/LICENSE.md) [![Cocoapods release](https://img.shields.io/cocoapods/v/Mirage.svg)]() [![GitHub release](https://img.shields.io/github/release/valnoc/Mirage.svg)](https://github.com/valnoc/Mirage/releases) [![GitHub issues](https://img.shields.io/github/issues-raw/valnoc/Mirage.svg)](https://github.com/valnoc/Mirage/issues) 
 
 Mirage is a mocking library for swift projects. 
 The recommended way is to use [Fata Morgana](https://github.com/valnoc/FataMorgana) for mocks generation to avoid writing them manually.
@@ -18,7 +18,7 @@ Using Mirage you can:
 
 ---
 ## Installation
-Requires Swift 4.2
+Requires Swift 4.2+
 
 #### Carthage
 Add this line into your Cartfile, run `carthage update --platform iOS` and link binary to the target as you always do it)
