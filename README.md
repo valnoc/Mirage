@@ -130,6 +130,8 @@ class MockCalculator: Calculator {
 ```
 
 ##### Short variant
+`super_sum` and `callRealFunc` can be skipped if you are not going to use it.
+You can also use a struct and get a generated `init`.
 ```swift
 class MockCalculator: Calculator {
     //MARK: - sum
@@ -145,48 +147,40 @@ class MockCalculator: Calculator {
 }
 ```
 
-
-
-
 ### Stubs
 Function stubbing allows to change the behavour of a function according to testing needs.
-To create a stub, call mock function `when(...)`, passing the identifier of a stubbed function.
+To create a stub, call mock function `whenCalled()`. 
 
-Then call one of the following:
-* `thenReturn(_ result: Any)` to return exact value as a result
-* `thenDo(_ closure: @escaping (_ args: [Any?]) -> Void)` to perform some action
-* `thenDo(_ closure: @escaping (_ args: [Any?]) -> Any?)` to return a result of action
-* `thenDoNothing()` to do... well... nothing)))
-* `thenCallReal()` to call real implementation of this function
+Then call one of the following functions:
+* `thenReturn(_ result: TReturn)` to return the exact value as a result
+* `thenDo(_ closure: @escaping Action)` to execute closure instead of called function
+* `thenCallRealFunc()` to call real implementation of this function
 
-This `thenSmth` calls can be chained to return one result for first call and another for next calls.
+This `thenSmth` calls can be chained to return one result for the first call and another one for the next calls.
 
 ```swift
-mockFirstService.when(mockFirstService.sel_performCalculation).thenReturn(100)
-mockSecondService.when(mockSecondService.sel_makeRandomPositiveInt).thenReturn(5).thenReturn(100)
+calculator.mock_sum.whenCalled().thenReturn(number)
 
-var triggered = false
-mockFirstService.when(mockFirstService.sel_performCalculation).thenDo({ _ -> Any? in
-    triggered = true
-    return -100
-})
-
-mockFirstService.when(mockFirstService.sel_performCalculation).thenCallReal()
+randomNumberGenerator.mock_makeInt.whenCalled()
+    .thenReturn(5)
+    .thenReturn(10)
 ```
-### Partial mocks
-A Partial mock is smth between a real object and a mock.
-- Functions' calls and their args are recorded.
-- Functions automatically call real implementation (real object behaviour).
-- Any function can be stubbed to return test-needed value or to get alternative behavour.
 
+### Partial mocks
+A Partial mock is the same thing as a mock but it automatically calls real implementations of its functions.
 There are discussions whether partial mock is a pattern or an anti-pattern, whether you therefore should use them or not. 
 
 Mirage allows you to create a partial mock with one line of code. It's up to you - to use or not to use.
-
-To create a partial mock, create a mock subclass, implementing PartialMock protocol.
+To create a partial mock of a func, add `isPartial: true` to a `FuncCallHandler`
 ```swift
-class PartialMockFirstService: MockFirstService, PartialMock { }
+lazy var mock_performMainOperation = FuncCallHandler<Void, Void>(returnValue: (),
+                                                                 isPartial: true,
+                                                                 callRealFunc: { [weak self] (args) -> Void in
+                                                                    guard let __self = self else { return () }
+                                                                    return __self.super_performMainOperation()
+})
 ```
+
 ### Verify
 There are several verification modes:
 - `Never`
