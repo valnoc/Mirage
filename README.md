@@ -1,9 +1,7 @@
 # Mirage
 [![License](https://img.shields.io/github/license/valnoc/Mirage.svg)](https://github.com/valnoc/Mirage/blob/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues-raw/valnoc/Mirage.svg)](https://github.com/valnoc/Mirage/issues) 
 
-[![Cocoapods release](https://img.shields.io/cocoapods/v/Mirage.svg)]() 
-
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![GitHub release](https://img.shields.io/github/release/valnoc/Mirage.svg)](https://github.com/valnoc/Mirage/releases) 
+[![Cocoapods release](https://img.shields.io/cocoapods/v/Mirage.svg)]() [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![GitHub release](https://img.shields.io/github/release/valnoc/Mirage.svg)](https://github.com/valnoc/Mirage/releases) 
 
 Mirage is a mocking library for swift projects. 
 The recommended way is to use [Fata Morgana](https://github.com/valnoc/FataMorgana) for mocks generation to avoid writing them manually.
