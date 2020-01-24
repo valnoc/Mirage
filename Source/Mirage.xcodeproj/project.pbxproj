@@ -10,7 +10,7 @@
 		5B0C75AD22C9009E00E9EAB3 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C75AC22C9009E00E9EAB3 /* Stub.swift */; };
 		5B2A654822B539D100A27C88 /* FuncCallHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A654722B539D100A27C88 /* FuncCallHandler.swift */; };
 		5B2A655522B53AED00A27C88 /* CallTimesRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A655422B53AED00A27C88 /* CallTimesRule.swift */; };
-		652E393F2202E1CB009BD47F /* Mirage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 652E39352202E1CB009BD47F /* Mirage.framework */; };
+		652E393F2202E1CB009BD47F /* Mirage2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 652E39352202E1CB009BD47F /* Mirage2.framework */; };
 		652E39442202E1CB009BD47F /* MirageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652E39432202E1CB009BD47F /* MirageTests.swift */; };
 		652E39462202E1CB009BD47F /* Mirage.h in Headers */ = {isa = PBXBuildFile; fileRef = 652E39382202E1CB009BD47F /* Mirage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -29,7 +29,7 @@
 		5B0C75AC22C9009E00E9EAB3 /* Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 		5B2A654722B539D100A27C88 /* FuncCallHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuncCallHandler.swift; sourceTree = "<group>"; };
 		5B2A655422B53AED00A27C88 /* CallTimesRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallTimesRule.swift; sourceTree = "<group>"; };
-		652E39352202E1CB009BD47F /* Mirage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mirage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		652E39352202E1CB009BD47F /* Mirage2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mirage2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		652E39382202E1CB009BD47F /* Mirage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mirage.h; sourceTree = "<group>"; };
 		652E39392202E1CB009BD47F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		652E393E2202E1CB009BD47F /* MirageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MirageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,7 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				652E393F2202E1CB009BD47F /* Mirage.framework in Frameworks */,
+				652E393F2202E1CB009BD47F /* Mirage2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,7 +68,7 @@
 		652E39362202E1CB009BD47F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				652E39352202E1CB009BD47F /* Mirage.framework */,
+				652E39352202E1CB009BD47F /* Mirage2.framework */,
 				652E393E2202E1CB009BD47F /* MirageTests.xctest */,
 			);
 			name = Products;
@@ -124,7 +124,7 @@
 			);
 			name = Mirage;
 			productName = Mirage;
-			productReference = 652E39352202E1CB009BD47F /* Mirage.framework */;
+			productReference = 652E39352202E1CB009BD47F /* Mirage2.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		652E393D2202E1CB009BD47F /* MirageTests */ = {
@@ -371,7 +371,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.valnoc.mirage.Mirage;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)2";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -397,7 +397,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.valnoc.mirage.Mirage;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)2";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
