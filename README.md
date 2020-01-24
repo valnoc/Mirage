@@ -236,7 +236,7 @@ XCTAssert(args.right == 10)
 ```
 
 ## Migration Guide
-In order to migrate a project from the first version of Mirage framework to the second one, the framework has been renamed as `Mirage2`. It allows to used both the first and the second versions in the same project and to migrate file by file.
+In order to migrate a project from the first version of Mirage framework to the second one, the framework has been renamed as `Mirage2`. It allows to use both the first and the second versions in the same project and to migrate file by file.
 
 Migration from *Mirage 1* to *Mirage 2* consists of several steps.
 
