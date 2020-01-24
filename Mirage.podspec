@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Mirage"
-  s.version          = "2.0.0"
+  s.version          = "2.1.0"
   s.summary          = "Mirage is a mocking library for swift projects. The recommended way is to use github.com/valnoc/FataMorgana for Mirage mocks generation."
   s.description      = <<-DESC
 Mirage is a mocking library for swift projects. The recommended way is to use https://github.com/valnoc/FataMorgana for Mirage mocks generation to avoid writing them manually.
