@@ -20,7 +20,7 @@
 		5BD37AA622AEC3B700419C19 /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD37AA322AEC3B600419C19 /* RandomNumberGenerator.swift */; };
 		5BD37AA722AEC3B700419C19 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD37AA422AEC3B700419C19 /* Calculator.swift */; };
 		5BD37AB122AEC3E700419C19 /* MainObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD37AAC22AEC3E700419C19 /* MainObjectTests.swift */; };
-		5BD37AB422AEC4C200419C19 /* Mirage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD37AB322AEC4C200419C19 /* Mirage.framework */; };
+		5BF486ED23DB810200D43E70 /* Mirage2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF486EC23DB810200D43E70 /* Mirage2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +52,7 @@
 		5BD37AA422AEC3B700419C19 /* Calculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		5BD37AAC22AEC3E700419C19 /* MainObjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainObjectTests.swift; sourceTree = "<group>"; };
 		5BD37AB322AEC4C200419C19 /* Mirage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mirage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BF486EC23DB810200D43E70 /* Mirage2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mirage2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BD37AB422AEC4C200419C19 /* Mirage.framework in Frameworks */,
+				5BF486ED23DB810200D43E70 /* Mirage2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +133,7 @@
 		5BD37AB222AEC4C200419C19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5BF486EC23DB810200D43E70 /* Mirage2.framework */,
 				5BD37AB322AEC4C200419C19 /* Mirage.framework */,
 			);
 			name = Frameworks;

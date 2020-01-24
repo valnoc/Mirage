@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Mirage
+import Mirage2
 @testable import Example
 
 class MainObjectTests: XCTestCase {

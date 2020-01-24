@@ -8,7 +8,7 @@
 
 import Foundation
 @testable import Example
-import Mirage
+import Mirage2
 
 class MockCalculator: Calculator {
     //MARK: - sum

@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Mirage
+@testable import Mirage2
 
 class MirageTests: XCTestCase {
 
